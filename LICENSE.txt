@@ -1,0 +1,79 @@
+Licence Agreement for Farm Emissions Model (FEM) Software
+
+Crown copyright © 2024, Ministry of Primary Industries Manatū Ahu Matua (MPI) on behalf of the New Zealand Government
+
+1.	Agreement to use of MPI-FEM: The Farm Emissions Model (MPI-FEM) software (the Software) is a codified implementation of a methodology developed by MPI that enables calculation of a farm's biogenic emissions following the input of specified data about the farm. It is made available on the terms of this licence agreement (the Agreement). Use or distribution of the Software in any way or form indicates your acceptance of the terms and conditions set out below.
+
+2.	Defined terms: For the purposes of this Agreement:
+
+Adaptation means any work that is based on or derived from the Software, including any translation of the Software into another programming language; 
+API means application programming interface;
+
+Distribute means to transfer, convey or otherwise propagate the Software's source code in a manner that enables a recipient to copy or obtain a copy of the source code, but does not include merely running the Software (internally or as a publicly accessible web application) or transferring the Software to a service provider to undertake such activity for you; 
+
+Modify means to make any change to the Software, including any change to the static inputs on which it relies, and modification and modified have corresponding meanings; 
+
+MPI Methodology means the methodology developed by MPI referred to in clause 1; and
+
+New Zealand Farms Situation means a situation in which the Software (in unmodified or modified form) could be used to provide either a standalone calculation of a New Zealand farm's biogenic emissions or a calculation of a New Zealand farm's biogenic emissions as part of a wider solution (such as but not limited to a tool that enables calculation of biogenic emissions and other kinds of emissions). 
+
+3.	Licence grant: Permission is hereby granted, free of charge, to any person obtaining a copy of the Software, to deal in the Software without restriction, including without limitation the rights to use, copy, Modify, merge, publish, convey, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the conditions set out in clause 4 and the other terms of this Agreement.
+
+4.	Conditions: The permission in clause 3 is subject to the following conditions: 
+    
+    (a)	Include copy of Agreement: A copy of this Agreement must be included in all copies or substantial portions of the Software, including all copies you Distribute and all Adaptations you Distribute. 
+    
+    (b)	No warranties or liability: The Software is provided “as is”, without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and noninfringement. In no event will the authors or copyright holders be liable for any claim, damages or other liability, whether in an action of contract, tort (including negligence) or otherwise, arising from, out of or in connection with the Software or the use or other dealings in the Software.
+    
+    (c)	Recipient provenance obligations: Every recipient of the Software who implements the Software for a New Zealand Farms Situation:
+        (i)	must, if using the Software in unmodified form (and therefore in a manner that produces a standard output that follows the MPI Methodology), state, in close proximity to the output biogenic emissions calculation (including, as applicable, in the user interface and any documentary download), that the output has been produced by the version of MPI-FEM contained in the software distribution to which this Agreement applies; and
+        (ii)	must not, if using the Software in modified form, state that the output has been produced by or follows MPI-FEM (to avoid doubt and without limitation, the Software is used in modified form if changes have been made to the code, if static inputs found in lookup tables have been changed, or if the Software has been recreated in another programming language).
+    To avoid doubt, the obligations in this clause 4(c) apply to implementations of the Software focusing only on New Zealand farms, as well as to implementations focusing on farms more broadly but including New Zealand farms. 
+
+    (d)	API implementations: 
+        (i)	Standard outputs: If:
+            (A)	you implement the Software in unmodified form (so as to produce a standard biogenic emissions output that follows the MPI Methodology) for a New Zealand Farms Situation; and
+            (B)	an intermediary third party (the Intermediary) can access your implementation via an API to obtain calculations of farms' biogenic emissions for use by others such as individual farmers or those acting for them or on their behalf (Downstream Users),
+            then:
+            (C)	the API output must state that it has been produced by the version of MPI-FEM contained in the software distribution to which this Agreement applies; and
+            (D)	you must put API terms in place with the Intermediary under which the Intermediary must retain that statement when providing the calculations to Downstream Users.
+        (ii) Non-standard outputs: If:
+            (A)	you implement the Software in modified form (so as to produce a biogenic emissions output that does not follow the MPI Methodology) for a New Zealand Farms Situation; and 
+            (B)	an Intermediary can access your implementation via an API to obtain calculations of farms' biogenic emissions for Downstream Users,
+            then:
+            (C)	the API output must not state that it has been produced by or follows MPI-FEM; and
+            (D)	you must put API terms in place with the Intermediary under which the Intermediary must not state, when providing the calculations to Downstream Users, that the calculations have been produced by or follow MPI-FEM.
+        (iii)	Standard and non-standard outputs: If:
+            (A)	you implement the Software for a New Zealand Farms Situation in a manner that enables user selection(s) to determine whether or not a standard biogenic emissions output that follows the MPI Methodology will be produced (for example, your implementation might enable input parameters to be changed); and 
+            (B)	an Intermediary can access your implementation via an API to obtain calculations of farms' biogenic emissions for Downstream Users,
+            then:
+            (C)	if a standard output that follows the MPI Methodology is produced (the Standard Case), the output must state that it has been produced by the version of MPI-FEM contained in the software distribution to which this Agreement applies (the Standard Case Statement); 
+            (D)	if the output does not follow the MPI Methodology (the Non-Standard Case), the output must not state that it has been produced by or follows MPI-FEM; and
+            (E)	you must put API terms in place with the Intermediary under which the Intermediary:
+                •	must, in all Standard Cases, retain the Standard Case Statement when providing the calculations to Downstream Users; and
+                •	must not, in any Non-Standard Case, state, when providing the calculations to Downstream Users, that the calculations have been produced by or follow MPI-FEM.
+
+    (e)	Distribution without modification: If you Distribute the Software without modification, you are not permitted to license it under alternative terms (any recipient who receives it is permitted to use it in accordance with this Agreement (see clause 3 above) and will see this Agreement given your obligation in clause 4(a)).
+
+    (f)	Distribution of Adaptation: If you Distribute an Adaptation of the Software:
+        (i)	you must indicate in your distribution that you have modified MPI-FEM and the respects in which you have modified it; and
+        (ii)	you may, if you wish, license your Adaptation under alternative terms, provided those terms include a term which states that if your Adaptation is implemented for a New Zealand Farms Situation, your licensee or counterparty must not state that the output has been produced by or follows MPI-FEM; and
+        (iii)	if you license your Adaptation under alternative terms and your alternative terms permit your licensee or counterparty to Distribute your Adaptation or their own Adaptation and license your or their Adaptation on their own alternative terms, your alternative terms must require:
+            (A)	their own alternative terms to include a term that is materially similar to clause 4(f) of this Agreement (Their Clause 4(f) Equivalent); and
+            (B)	Their Clause 4(f) Equivalent to state that it is intended to be and is enforceable by the Ministry of Primary Industries Manatū Ahu Matua (MPI) on behalf of the New Zealand Government.
+            (g)	Documentation licensing: If any documentation accompanying or relating to the Software is licensed under a different licence (such as a Creative Commons licence), your use of that documentation shall be subject to the terms of that licence and not this Agreement.
+
+5.	Termination:
+
+    (a)	If you fail to comply with any condition or other term of this Agreement (each a Breach), your rights under the Agreement shall terminate automatically.
+
+    (b)	Where your right to use the Software has terminated under clause 5(a), it reinstates:
+        (i)	automatically as of the date the Breach is cured, provided it is cured within 14 days of your discovery of the Breach; or
+        (ii)	upon express reinstatement by MPI.
+        This clause 5(b) does not affect any right MPI may have to seek remedies for your Breaches of this Agreement.
+
+    (c)	To avoid doubt, MPI may also offer the Software under separate terms or conditions or stop distributing the Software at any time, but doing so will not terminate this Agreement for anyone who has obtained the Software.
+
+    (d)	Clauses 4, 5 and 6 survive termination of this Agreement.
+    
+6.	Governing law and jurisdiction: This Agreement and its formation are governed by New Zealand law. You submit to the exclusive jurisdiction of the New Zealand courts in respect of all matters relating to the Agreement and its formation. To avoid doubt, MPI may seek interim relief in any court in any jurisdiction.
