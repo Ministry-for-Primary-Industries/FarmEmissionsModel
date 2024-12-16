@@ -8,7 +8,7 @@ stockClassList_newborns <- c(
   "Hinds R1", "Stags R1", 
   # sheep
   "Lambs"
-) # used by eq_fem3_ME_Z0, eq_fem3_ME_Z1
+) # used by: eq_fem3_ME_Z0, eq_fem3_ME_Z1
 
 stockClassList_lactatingMothers <- c(
   # beef
@@ -19,7 +19,7 @@ stockClassList_lactatingMothers <- c(
   "Hinds Mature",
   # sheep
   "Ewe Hoggets", "Ewes Mature"
-) # ustockClassList_pregnantMotherssed by: eq_fem3_ME_l, eq_fem5_N_Retained_Milk_kg
+) # used by: eq_fem3_ME_l, eq_fem5_N_Retained_Milk_kg
 
 stockClassList_newborns_lactatingMothers <- append(
   stockClassList_newborns,
