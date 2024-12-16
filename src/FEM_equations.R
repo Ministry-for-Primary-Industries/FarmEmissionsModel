@@ -8,7 +8,7 @@ stockClassList_newborns <- c(
   "Hinds R1", "Stags R1", 
   # sheep
   "Lambs"
-) # used by eq_fem3_ME_Z0, eq_fem3_ME_Z1
+) # used by: eq_fem3_ME_Z0, eq_fem3_ME_Z1
 
 stockClassList_lactatingMothers <- c(
   # beef
