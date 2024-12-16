@@ -1,4 +1,4 @@
-[![MPI Logo](https://www.mpi.govt.nz/assets/themes/mpi-dark-logo.png)](https://www.mpi.govt.nz/)
+[![MPI Logo](https://www.mpi.govt.nz/assets/themes/mpi_logo_green.png)](https://www.mpi.govt.nz/)
 
 ---
 
