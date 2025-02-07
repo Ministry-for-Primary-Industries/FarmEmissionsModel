@@ -75,7 +75,7 @@ stockClassList_newborns <- c(
   "Hinds R1", "Stags R1", 
   # sheep
   "Lambs"
-) # used by: eq_fem3_ME_Z0, eq_fem3_ME_Z1
+) # used by: eq_fem3_ME_Z1 and preprocessing
 
 stockClassList_lactatingMothers <- c(
   # beef
@@ -128,7 +128,7 @@ mother stock classes
 
 This prepares farm data inputs on:
 
--   Milk yield from L/herd to kg/animal
+-   Milk Yield from L/herd to kg/animal
 
 -   Milk solids content from kg/herd to percentage terms \[on a
     mass:mass percentage basis, consistent with the academic literature
@@ -187,8 +187,8 @@ eq_fem3_Milk_Yield_kg <- function(
   
   # convert herd Milk Yield to per animal terms
   
-  # coalesce NAs to zero
-  Milk_Yield_Herd_kg <- coalesce(Milk_Yield_Herd_kg, 0)
+  # set NAs to 0
+  Milk_Yield_Herd_kg <- replace_na(Milk_Yield_Herd_kg, 0)
   
   Milk_Yield_kg = Milk_Yield_Herd_kg / StockCount_mean
   
@@ -228,7 +228,7 @@ eq_fem3_k_l <- function(
   }
   
   case_when(
-    !StockClass %in% stockClassList_newborns_lactatingMothers ~ 0, # zero if NOT newborn or mother
+    !StockClass %in% stockClassList_newborns_lactatingMothers ~ 0, # zero if not newborn or mother
     Sector %in% c("Beef", "Dairy", "Sheep") ~ feq_cattle_sheep(),
     Sector == "Deer" ~ feq_deer()
   )
@@ -250,13 +250,13 @@ eq_fem3_GE_Milk <- function(
   
   # calculate gross energy content of milk, GE_Milk
   
-  # coalesce NAs to zero
-  Milk_Fat_pct <- coalesce(Milk_Fat_pct, 0)
-  Milk_Protein_pct <- coalesce(Milk_Protein_pct, 0)
-  Milk_Yield_kg <- coalesce(Milk_Yield_kg, 0)
-  Milk_Mother_kg <- coalesce(Milk_Mother_kg, 0)
-  Milk_Newborn_kg <- coalesce(Milk_Newborn_kg, 0)
-  MilkPowder_Newborn_kg <- coalesce(MilkPowder_Newborn_kg, 0)
+  # set NAs to 0
+  Milk_Fat_pct <- replace_na(Milk_Fat_pct, 0)
+  Milk_Protein_pct <- replace_na(Milk_Protein_pct, 0)
+  Milk_Yield_kg <- replace_na(Milk_Yield_kg, 0)
+  Milk_Mother_kg <- replace_na(Milk_Mother_kg, 0)
+  Milk_Newborn_kg <- replace_na(Milk_Newborn_kg, 0)
+  MilkPowder_Newborn_kg <- replace_na(MilkPowder_Newborn_kg, 0)
   
   # calculate Milk_combined_kg for simple case_when conditions
   
@@ -311,12 +311,11 @@ eq_fem3_ME_l <- function(
   
   # calculate energy required for milk production, ME_l
   
-  # coalesce NAs to zero
-  
   feq_mothers <- function() {
     
-    Milk_Yield_kg <- coalesce(Milk_Yield_kg, 0)
-    Milk_Mother_kg <- coalesce(Milk_Mother_kg, 0)
+    # set NAs to 0
+    Milk_Yield_kg <- replace_na(Milk_Yield_kg, 0)
+    Milk_Mother_kg <- replace_na(Milk_Mother_kg, 0)
     
     Milk_total_kg <- Milk_Yield_kg + Milk_Mother_kg
     
@@ -341,7 +340,6 @@ relevant growing stock classes
 
 ``` r
 eq_fem3_ME_LWG <- function(
-  k_l, # calculated in system
   SRW_kg, # assumedParameters lookup
   LW_kg, # assumedParameters lookup
   LWG_kg, # assumedParameters lookup
@@ -357,7 +355,7 @@ eq_fem3_ME_LWG <- function(
   
   R = EBC / (4 * (SRW_kg ^ 0.75)) - 1
   
-  P_LW = pmin(LW_kg / SRW_kg, 1) # according to CSIRO (2007), LW_kg should not exceed SRW_kg in this equation => capping to 1
+  P_LW = pmin(LW_kg / SRW_kg, 1) # according to CSIRO (2007), LW_kg should not exceed SRW_kg in this eqn => set ceiling of 1
   
   k_gnl = 0.042 * ME_Diet_AIM + 0.006
   
@@ -427,12 +425,12 @@ eq_fem3_ME_p <- function(
   
   # ref FEM equation 3.21
   
-  # coalesce any NAs to zero:
+  # set NAs to 0:
   
-  ME_l <- coalesce(ME_l, 0)
-  ME_LWG <- coalesce(ME_LWG, 0)
-  ME_Velvet <- coalesce(ME_Velvet, 0)
-  ME_Wool <- coalesce(ME_Wool, 0)
+  ME_l <- replace_na(ME_l, 0)
+  ME_LWG <- replace_na(ME_LWG, 0)
+  ME_Velvet <- replace_na(ME_Velvet, 0)
+  ME_Wool <- replace_na(ME_Wool, 0)
   
   ME_p = ME_l + ME_LWG + ME_Velvet + ME_Wool
   
@@ -590,35 +588,6 @@ The metabolisable energy received from milk consumed, in relevant
 newborn stock classes while weaning off
 
 ``` r
-eq_fem3_ME_Z0_pct <- function(
-  StockClass, # only applies to newborns
-  Days_Newborn_Fed_OnlyMilk, # derived in preproc from farm data
-  MonthDays
-) {
-  
-  # ref FEM equation 3.33
-  
-  # coalesce NAs to zero
-  
-  Days_Newborn_Fed_OnlyMilk <- coalesce(Days_Newborn_Fed_OnlyMilk, 0)
-  
-  # calculate the percentage of ME_total in a given month that is "written-off" as the animal as being fed only on milk:
-  
-  feq_newborns <- function() {
-    
-    ME_Z0_pct = Days_Newborn_Fed_OnlyMilk / MonthDays
-    
-    return(ME_Z0_pct)
-    
-  }
-  
-  case_when(
-    StockClass %in% stockClassList_newborns ~ feq_newborns(),
-    TRUE ~ 0
-  )
-
-}
-
 eq_fem3_ME_Z1 <- function(
     StockClass, # only applies to newborns
     Milk_Newborn_kg, # derived in preproc from farm data / AIM assumptions
@@ -629,10 +598,10 @@ eq_fem3_ME_Z1 <- function(
   
   # ref FEM equation 3.34
   
-  # coalesce NAs to zero
+  # set NAs to zero
   
-  Milk_Newborn_kg <- coalesce(Milk_Newborn_kg, 0)
-  MilkPowder_Newborn_kg <- coalesce(MilkPowder_Newborn_kg, 0)
+  Milk_Newborn_kg <- replace_na(Milk_Newborn_kg, 0)
+  MilkPowder_Newborn_kg <- replace_na(MilkPowder_Newborn_kg, 0)
   
   feq_newborns <- function() {
     
@@ -737,10 +706,10 @@ eq_fem3_ME_total <- function(
   
   # calculation of total metabolisable energy, after adjustments for ME_Z
   
-  # coalesce NAs
-  ME_Z0_pct = coalesce(ME_Z0_pct, 0)
+  # set NAs to 0
+  ME_Z0_pct = replace_na(ME_Z0_pct, 0)
   
-  ME_total <- (ME_total_pre_ME_Z - ME_Z1) * (1 - ME_Z0_pct)
+  ME_total <- pmax((ME_total_pre_ME_Z - ME_Z1) * (1 - ME_Z0_pct), 0)
   
   return(ME_total)
   
@@ -945,11 +914,11 @@ eq_fem5_N_Intake_kg <- function(
   
   # ref FEM equations 5.1 - 5.2
   
-  # coalesce NAs to zero:
-  Milk_Newborn_kg <- coalesce(Milk_Newborn_kg, 0)
-  Milk_Protein_pct <- coalesce(Milk_Protein_pct, 0)
-  MilkPowder_Newborn_kg <- coalesce(MilkPowder_Newborn_kg, 0)
-  MilkPowder_Protein_pct <- coalesce(MilkPowder_Protein_pct, 0)
+  # set NAs to 0:
+  Milk_Newborn_kg <- replace_na(Milk_Newborn_kg, 0)
+  Milk_Protein_pct <- replace_na(Milk_Protein_pct, 0)
+  MilkPowder_Newborn_kg <- replace_na(MilkPowder_Newborn_kg, 0)
+  MilkPowder_Protein_pct <- replace_na(MilkPowder_Protein_pct, 0)
   
   # calculate nitrogen intake from milk ingested, Z3:
   
@@ -995,8 +964,8 @@ eq_fem5_N_Retained_Milk_kg <- function(
   
   # ref FEM equations 5.3a - 5.3b
   
-  # coalesce any NA reproduction rates to 1
-  Reproduction_Rate <- coalesce(Reproduction_Rate, 1)
+  # set NAs to 1
+  Reproduction_Rate <- replace_na(Reproduction_Rate, 1)
   
   # for dairy we use milk for production: Milk_Yield_kg and exclude Reproduction_Rate
   
@@ -1121,12 +1090,12 @@ eq_fem5_N_Excretion_kg <- function(
   
   # ref FEM equation 7.8
   
-  # coalesce any NA N_retained values to 0
-  N_Retained_Milk_kg <- coalesce(N_Retained_Milk_kg, 0)
-  N_Retained_LWG_kg <- coalesce(N_Retained_LWG_kg, 0)
-  N_Retained_FWG_kg <- coalesce(N_Retained_FWG_kg, 0)
-  N_Retained_Velvet_kg <- coalesce(N_Retained_Velvet_kg, 0)
-  N_Retained_Wool_kg <- coalesce(N_Retained_Wool_kg, 0)
+  # set NAs to 0
+  N_Retained_Milk_kg <- replace_na(N_Retained_Milk_kg, 0)
+  N_Retained_LWG_kg <- replace_na(N_Retained_LWG_kg, 0)
+  N_Retained_FWG_kg <- replace_na(N_Retained_FWG_kg, 0)
+  N_Retained_Velvet_kg <- replace_na(N_Retained_Velvet_kg, 0)
+  N_Retained_Wool_kg <- replace_na(N_Retained_Wool_kg, 0)
   
   N_Excretion_kg <- N_Intake_kg - (N_Retained_Milk_kg + N_Retained_LWG_kg + N_Retained_FWG_kg + N_Retained_Velvet_kg + N_Retained_Wool_kg)
   
@@ -1373,10 +1342,9 @@ eq_fem7_N2O_Pasture_Urine_Direct_kg <- function(
   
   # ref FEM equations 7.3 - 7.5
   
-  # coalesce NAs to 0:
-  
-  N_Urine_Flattish_pct <- coalesce(N_Urine_Flattish_pct, 0)
-  N_Urine_Steep_pct <- coalesce(N_Urine_Steep_pct, 0)
+  # set NAs to 0
+  N_Urine_Flattish_pct <- replace_na(N_Urine_Flattish_pct, 0)
+  N_Urine_Steep_pct <- replace_na(N_Urine_Steep_pct, 0)
   
   # AIM sets the following emission factors for urine based on species and steepness of land grazed on
   
