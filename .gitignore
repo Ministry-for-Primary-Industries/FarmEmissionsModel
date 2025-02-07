@@ -1,6 +1,12 @@
 # data files
 FEM_lookups/
 *.zip
+*.csv
+*.json
+
+# data spec files
+*.xlsx
+*.pdf
 
 # knit helper script
 knit_FEM_equations.R
