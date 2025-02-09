@@ -46,7 +46,7 @@ source(file.path("src", "model_pipeline", "3.1_livestock.R"))
 source(file.path("src", "model_pipeline", "3.2_fertiliser.R"))
 
 # Step 4: Summarise outputs
-# = as configured by run parameters
+# - as configured by run parameters
 
 source(file.path("src", "model_pipeline", "4_summary_outputs.R"))
 
