@@ -34,17 +34,17 @@ This codebase is built with and intended to be run on R v4.4.2. The R environmen
 
 ### 3. Add Lookup Tables
 
-Static lookup tables containing parameter values used by FEM are provided on the [MPI website in a zip archive](https://www.mpi.govt.nz/dmsdocument/66681) "Click to download lookup tables").
+Static lookup tables containing parameter values used by FEM are provided on the [MPI website in a zip archive](https://www.mpi.govt.nz/dmsdocument/66681 "Click to download lookup tables").
 
 Extract the archive into the repository's root directory such that filepaths follow a structure of: `FarmEmissionsModel/FEM_lookups/{version}/lookup_{x}.csv`.
 
 ### 4. Add Farm Data
 
-Farm data inputs must conform to the [FEM data specification](https://www.mpi.govt.nz/dmsdocument/67533).
+Farm data inputs must conform to the [FEM data specification](https://www.mpi.govt.nz/dmsdocument/67533 "Click to download data specfication").
 
 Add conformant CSV or JSON data into an appropriate folder (default location: `FarmEmissionsModel/data_input/`).
 
-We recommend initially starting with our [example data](https://www.mpi.govt.nz/dmsdocument/67536).
+We recommend initially starting with our [example data](https://www.mpi.govt.nz/dmsdocument/67536 "Click to download example data").
 
 *Note there is currently limited validation performed on input data but the majority of anticipated logic is described in the Data Specification. In future we intend for run_FEM.R to perform this validation and output error logs.*
 
