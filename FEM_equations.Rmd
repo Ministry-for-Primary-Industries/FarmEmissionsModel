@@ -834,7 +834,7 @@ eq_fem4_derive_farm_diet_parameters <- function(
       DMD_pct_Diet = coalesce(DMD_pct_Diet, DMD_pct_Pasture),
       N_pct_Diet = coalesce(N_pct_Diet, N_pct_Pasture)
     ) %>%
-    select(-ME_Pasture, -DMD_pct_Pasture, -N_pct_Pasture) %>% # remove helper cols
+    select(-ME_Pasture, -DMD_pct_Pasture, -N_pct_Pasture) # remove helper cols
     
     return(out_df)
   
