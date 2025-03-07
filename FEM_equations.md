@@ -1614,18 +1614,18 @@ onto pasture as described in the previous section.
 
 ``` r
 eq_fem8_N2O_SynthFert_Direct_t <- function(
-    N_urea_coated_t, # farm data input
-    N_urea_uncoated_t, # farm data input
-    N_otherSynthFert_t, # farm data input. Note other being "non-urea N containing synthetic fert"
-    EF_1_urea=0.0059, # set by AIM
-    EF_1_otherSynthFert=0.01 # set by AIM
+    N_Urea_Coated_t, # farm data input
+    N_Urea_Uncoated_t, # farm data input
+    N_NonUrea_SyntheticFert_t, # farm data input. Note other being "non-urea N containing synthetic fert"
+    EF_1_Urea=0.0059, # set by AIM
+    EF_1_OtherSynthFert=0.01 # set by AIM
     ) {
     
     # ref FEM equations 8.1 - 8.2
     
-    N_urea_all_t <- N_urea_coated_t + N_urea_uncoated_t
+    N_Urea_all_t <- N_Urea_Coated_t + N_Urea_Uncoated_t
     
-    N2O_SynthFert_Direct_t <- 44/28 * ((N_urea_all_t * EF_1_urea) + (N_otherSynthFert_t * EF_1_otherSynthFert))
+    N2O_SynthFert_Direct_t <- 44/28 * ((N_Urea_all_t * EF_1_Urea) + (N_NonUrea_SyntheticFert_t * EF_1_OtherSynthFert))
     
     return(N2O_SynthFert_Direct_t)
     
