@@ -1,18 +1,18 @@
 # helper function for strict type conversion
 typeset_input_cols <- function(col_old, to_type, col_name, df_name) {
-  
+
   # perform the conversion based on the desired type
   col_new <- switch(
     to_type,
     character = as.character(col_old),
-    integer = as.integer(col_old),
+    integer = as.numeric(col_old),
     numeric = as.numeric(col_old),
     Date = as.Date(col_old)
   )
-  
+
   # identify where NAs were introduced during conversion (excluding original NAs)
   na_introduced <- is.na(col_new) & !is.na(col_old)
-  
+
   if (any(na_introduced)) {
     # extract invalid values
     invalid_values <- unique(col_old[na_introduced])
@@ -33,7 +33,22 @@ typeset_input_cols <- function(col_old, to_type, col_name, df_name) {
       )
     )
   }
-  
+
+  if (to_type == "integer") {
+    non_integers <- ifelse(as.numeric(round(col_new, 0)) == col_new, FALSE, TRUE)
+    if (any(non_integers)) {
+      col_new <- as.integer(round(col_new, 0))
+      message(paste0("Type conversion warning in table '",
+                     df_name,
+                     "', column '",
+                     col_name,
+                     "values coerced to integer by rounding."))
+    }
+    else {
+      col_new <- as.integer(col_new)
+    }
+  }
+
   return(col_new)
 }
 
@@ -99,20 +114,20 @@ input_cols_type_list <- list(
 
 # helper function to read CSV and apply typeset_input_cols()
 read_and_convert_csv <- function(file_name, df_specs, df_name) {
-  
+
   # read the CSV with all columns as character to preserve raw data
   df <- read_csv(
     file = file.path(param_input_path, file_name),
     col_types = cols(.default = "c")  # Read all columns as character
   )
-  
+
   # convert each specified column using typeset_input_cols
   df_converted <- as_tibble(df) %>%
     mutate(across(
       .cols = names(df_specs),
       .fns = ~ typeset_input_cols(.x, df_specs[[cur_column()]], cur_column(), df_name)
     ))
-  
+
   return(df_converted)
 }
 
@@ -123,7 +138,7 @@ convert_json_df <- function(df_data, df_specs, df_name) {
       .cols = names(df_specs),
       .fns = ~ typeset_input_cols(.x, df_specs[[cur_column()]], cur_column(), df_name)
     ))
-  
+
   return(converted_df)
 }
 
@@ -139,11 +154,11 @@ if (!dir.exists(param_input_path)) {
 
 # main data loading Logic
 if (param_input_data_format == "csv") {
-  
+
   # define required CSV files
   required_csv_files <- names(input_cols_type_list)
   required_csv_files <- paste0(required_csv_files, ".csv")
-  
+
   # check for missing CSV files
   missing_files <- required_csv_files[!file.exists(file.path(param_input_path, required_csv_files))]
   if (length(missing_files) > 0) {
@@ -152,69 +167,69 @@ if (param_input_data_format == "csv") {
       paste(missing_files, collapse = ", ")
     )
   }
-  
+
   # read and convert each CSV file using column specs
   FarmYear_df <- read_and_convert_csv("FarmYear.csv", input_cols_type_list$FarmYear, "FarmYear")
-  
+
   StockRec_BirthsDeaths_df <- read_and_convert_csv(
     "StockRec_BirthsDeaths.csv",
     input_cols_type_list$StockRec_BirthsDeaths,
     "StockRec_BirthsDeaths"
   )
-  
+
   StockRec_Movements_df <- read_and_convert_csv(
     "StockRec_Movements.csv",
     input_cols_type_list$StockRec_Movements,
     "StockRec_Movements"
   )
-  
+
   StockRec_OpeningBalance_df <- read_and_convert_csv(
     "StockRec_OpeningBalance.csv",
     input_cols_type_list$StockRec_OpeningBalance,
     "StockRec_OpeningBalance"
   )
-  
+
   SuppFeed_DryMatter_df <- read_and_convert_csv(
     "SuppFeed_DryMatter.csv",
     input_cols_type_list$SuppFeed_DryMatter,
     "SuppFeed_DryMatter"
   )
-  
+
   SuppFeed_SectoralAllocation_df <- read_and_convert_csv(
     "SuppFeed_SectoralAllocation.csv",
     input_cols_type_list$SuppFeed_SectoralAllocation,
     "SuppFeed_SectoralAllocation"
   )
-  
+
   Dairy_Production_df <- read_and_convert_csv(
     "Dairy_Production.csv",
     input_cols_type_list$Dairy_Production,
     "Dairy_Production"
   )
-  
+
   Fertiliser_df <- read_and_convert_csv("Fertiliser.csv",
                                         input_cols_type_list$Fertiliser,
                                         "Fertiliser")
-  
+
 } else if (param_input_data_format == "json") {
   # define JSON file name
   json_file <- file.path(param_input_path, "Farm_Data.json")
-  
+
   # check if JSON file exists
   if (!file.exists(json_file)) {
     stop("JSON file not found: ", json_file)
   }
-  
+
   # Read JSON file
   combined_data <- tryCatch({
     fromJSON(json_file)
   }, error = function(e) {
     stop("FAILED reading JSON file of farm data: ", e$message)
   })
-  
+
   # list of dfs expected in JSON
   expected_json_dfs <- names(input_cols_type_list)
-  
+
   # check if all expected df are present in JSON
   missing_json_dfs <- expected_json_dfs[!expected_json_dfs %in% names(combined_data)]
   if (length(missing_json_dfs) > 0) {
@@ -223,50 +238,50 @@ if (param_input_data_format == "csv") {
       paste(missing_json_dfs, collapse = ", ")
     )
   }
-  
+
   # convert each df from JSON using col specs
   FarmYear_df <- convert_json_df(combined_data$FarmYear,
                                  input_cols_type_list$FarmYear,
                                  "FarmYear")
-  
+
   StockRec_BirthsDeaths_df <- convert_json_df(
     combined_data$StockRec_BirthsDeaths,
     input_cols_type_list$StockRec_BirthsDeaths,
     "StockRec_BirthsDeaths"
   )
-  
+
   StockRec_Movements_df <- convert_json_df(
     combined_data$StockRec_Movements,
     input_cols_type_list$StockRec_Movements,
     "StockRec_Movements"
   )
-  
+
   StockRec_OpeningBalance_df <- convert_json_df(
     combined_data$StockRec_OpeningBalance,
     input_cols_type_list$StockRec_OpeningBalance,
     "StockRec_OpeningBalance"
   )
-  
+
   SuppFeed_DryMatter_df <- convert_json_df(
     combined_data$SuppFeed_DryMatter,
     input_cols_type_list$SuppFeed_DryMatter,
     "SuppFeed_DryMatter"
   )
-  
+
   SuppFeed_SectoralAllocation_df <- convert_json_df(
     combined_data$SuppFeed_SectoralAllocation,
     input_cols_type_list$SuppFeed_SectoralAllocation,
     "SuppFeed_SectoralAllocation"
   )
-  
+
   Dairy_Production_df <- convert_json_df(
     combined_data$Dairy_Production,
     input_cols_type_list$Dairy_Production,
     "Dairy_Production"
   )
-  
+
   Fertiliser_df <- convert_json_df(combined_data$Fertiliser,
                                    input_cols_type_list$Fertiliser,
                                    "Fertiliser")
-  
+
 }
