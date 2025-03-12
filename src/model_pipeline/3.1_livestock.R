@@ -36,16 +36,14 @@ run_livestock_module <- function(
       Milk_Yield_kg = eq_fem3_Milk_Yield_kg(
         Milk_Yield_Herd_kg = Milk_Yield_Herd_kg,
         StockCount_mean = StockCount_mean)
-    )
+    ) %>% 
   
   # bind other stock classes back in:
   
-  livestock_calc_df1 <- livestock_calc_df1 %>%
-    bind_rows(livestock_precalc_df_nonMilkingCows)
+    bind_rows(livestock_precalc_df_nonMilkingCows) %>% 
   
   # continue calculations on all stock classes:
   
-  livestock_calc_df1 <- livestock_calc_df1 %>%
     mutate(
       
       # calculate subcomponents of ME_p:
@@ -194,11 +192,10 @@ run_livestock_module <- function(
       ME_total = ME_total,
       ME_Diet = ME_Diet
     )
-  )
+  ) %>% 
   
   # livestock emissions part 3: nitrogen excretion [FEM ch5]
   
-  livestock_calc_df3 <- livestock_calc_df2 %>%
     mutate(
       
       # calculate N_Intake_kg:
@@ -265,11 +262,11 @@ run_livestock_module <- function(
         N_Excretion_kg = N_Excretion_kg,
         N_Dung_kg = N_Dung_kg
       )
-    )
+    ) %>% 
   
   # livestock emissions part 4: enteric fermentation [FEM ch6]
   
-  livestock_calc_df4 <- livestock_calc_df3 %>% mutate(
+  mutate(
     CH4_Enteric_kg = eq_fem6_CH4_Enteric_kg(
       Sector = Sector,
       StockClass = StockClass,
@@ -277,11 +274,10 @@ run_livestock_module <- function(
       ME_Diet = ME_Diet,
       MonthDays = MonthDays
     )
-  )
+  ) %>% 
   
   # livestock emissions part 5: excretion [FEM ch7]
   
-  livestock_calc_df5 <- livestock_calc_df4 %>%
     mutate(
       
       # calculate FDM_kg:
@@ -375,7 +371,7 @@ run_livestock_module <- function(
       N2O_OrganicFert_Volat_kg = eq_fem7_N2O_OrganicFert_Volat_kg(N_OrganicFert_kg = N_OrganicFert_kg)
     )
   
-  return(livestock_calc_df5)
+  return(livestock_calc_df2)
   
 }
 

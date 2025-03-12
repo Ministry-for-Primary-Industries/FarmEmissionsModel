@@ -6,26 +6,26 @@ run_SynthFert_module <- function(Fertiliser_df) {
     mutate(
       # N2O Emissions
       N2O_SynthFert_Direct_t = eq_fem8_N2O_SynthFert_Direct_t(
-        N_urea_uncoated_t = N_Urea_Uncoated_t,
-        N_urea_coated_t = N_Urea_Coated_t,
-        N_otherSynthFert_t = N_NonUrea_SyntheticFert_t
+        N_Urea_Uncoated_t = N_Urea_Uncoated_t,
+        N_Urea_Coated_t = N_Urea_Coated_t,
+        N_NonUrea_SyntheticFert_t = N_NonUrea_SyntheticFert_t
       ),
       
       N2O_SynthFert_Leach_t = eq_fem8_N2O_SynthFert_Leach_t(
-        N_urea_uncoated_t = N_Urea_Uncoated_t,
-        N_urea_coated_t = N_Urea_Coated_t,
-        N_otherSynthFert_t = N_NonUrea_SyntheticFert_t
+        N_Urea_Uncoated_t = N_Urea_Uncoated_t,
+        N_Urea_Coated_t = N_Urea_Coated_t,
+        N_NonUrea_SyntheticFert_t = N_NonUrea_SyntheticFert_t
       ),
       
       N2O_SynthFert_Volat_t = eq_fem8_N2O_SynthFert_Volat_t(
-        N_urea_uncoated_t = N_Urea_Uncoated_t,
-        N_urea_coated_t = N_Urea_Coated_t,
-        N_otherSynthFert_t = N_NonUrea_SyntheticFert_t
+        N_Urea_Uncoated_t = N_Urea_Uncoated_t,
+        N_Urea_Coated_t = N_Urea_Coated_t,
+        N_NonUrea_SyntheticFert_t = N_NonUrea_SyntheticFert_t
       ),
       # CO2 Emissions (Urea only)
       CO2_SynthFert_t = eq_fem8_CO2_SynthFert_t(
-        N_urea_uncoated_t = N_Urea_Uncoated_t,
-        N_urea_coated_t = N_Urea_Coated_t
+        N_Urea_Uncoated_t = N_Urea_Uncoated_t,
+        N_Urea_Coated_t = N_Urea_Coated_t
       )
     )
   
