@@ -2,6 +2,13 @@
 
 source(file.path("src", "FEM_equations.R"))
 
+# download FEM look up tables zip file and extract
+
+tempfile <- tempfile(fileext = ".zip")
+download.file("https://www.mpi.govt.nz/dmsdocument/66681-FEM_lookups.zip", tempfile)
+unzip(tempfile, exdir = getwd())
+unlink(tempfile)
+
 # load lookup tables
 
 lookup_assumedParameters_df <- read_csv(file.path(
