@@ -1582,18 +1582,18 @@ Organic fertiliser is out of scope, except for dairy effluent spread onto pastur
 ```{r}
 
 eq_fem8_N2O_SynthFert_Direct_t <- function(
-    N_urea_coated_t, # farm data input
-    N_urea_uncoated_t, # farm data input
-    N_otherSynthFert_t, # farm data input. Note other being "non-urea N containing synthetic fert"
-    EF_1_urea=0.0059, # set by AIM
-    EF_1_otherSynthFert=0.01 # set by AIM
+    N_Urea_Coated_t, # farm data input
+    N_Urea_Uncoated_t, # farm data input
+    N_NonUrea_SyntheticFert_t, # farm data input. Note other being "non-urea N containing synthetic fert"
+    EF_1_Urea=0.0059, # set by AIM
+    EF_1_OtherSynthFert=0.01 # set by AIM
     ) {
     
     # ref FEM equations 8.1 - 8.2
     
-    N_urea_all_t <- N_urea_coated_t + N_urea_uncoated_t
+    N_Urea_all_t <- N_Urea_Coated_t + N_Urea_Uncoated_t
     
-    N2O_SynthFert_Direct_t <- 44/28 * ((N_urea_all_t * EF_1_urea) + (N_otherSynthFert_t * EF_1_otherSynthFert))
+    N2O_SynthFert_Direct_t <- 44/28 * ((N_Urea_all_t * EF_1_Urea) + (N_NonUrea_SyntheticFert_t * EF_1_OtherSynthFert))
     
     return(N2O_SynthFert_Direct_t)
     
@@ -1601,16 +1601,16 @@ eq_fem8_N2O_SynthFert_Direct_t <- function(
 
 
 eq_fem8_N2O_SynthFert_Leach_t <- function(
-    N_urea_coated_t, # farm data input
-    N_urea_uncoated_t, # farm data input
-    N_otherSynthFert_t, # farm data input
+    N_Urea_Coated_t, # farm data input
+    N_Urea_Uncoated_t, # farm data input
+    N_NonUrea_SyntheticFert_t, # farm data input
     EF_5=0.0075, # set by AIM
     frac_leach_synthFert=0.082 # set by AIM
     ) {
   
   # ref FEM equations 8.3 - 8.4
   
-  N_synthFert_t <- N_urea_coated_t + N_urea_uncoated_t + N_otherSynthFert_t
+  N_synthFert_t <- N_Urea_Coated_t + N_Urea_Uncoated_t + N_NonUrea_SyntheticFert_t
   
   N2O_SynthFert_Leach_t <- 44/28 * (N_synthFert_t * EF_5 * frac_leach_synthFert)
   
@@ -1619,9 +1619,9 @@ eq_fem8_N2O_SynthFert_Leach_t <- function(
 }
 
 eq_fem8_N2O_SynthFert_Volat_t <- function(
-    N_urea_coated_t, # farmer input
-    N_urea_uncoated_t, # farmer input
-    N_otherSynthFert_t, # farmer input
+    N_Urea_Coated_t, # farmer input
+    N_Urea_Uncoated_t, # farmer input
+    N_NonUrea_SyntheticFert_t, # farmer input
     EF_4=0.01,
     frac_gasf_coated=0.055,
     frac_gasf_uncoated=0.1
@@ -1630,8 +1630,8 @@ eq_fem8_N2O_SynthFert_Volat_t <- function(
   # ref FEM equation 8.5
   
   N2O_SynthFert_Volat_t <- 44/28 * EF_4 * (
-    N_urea_coated_t * frac_gasf_coated +
-    (N_urea_uncoated_t + N_otherSynthFert_t) * frac_gasf_uncoated
+    N_Urea_Coated_t * frac_gasf_coated +
+    (N_Urea_Uncoated_t + N_NonUrea_SyntheticFert_t) * frac_gasf_uncoated
     )
   
   return(N2O_SynthFert_Volat_t)
@@ -1646,15 +1646,15 @@ Urea, both urease-inhibitor coated and uncoated, has a direct pathway of CO2 emi
 ```{r}
 
 eq_fem8_CO2_SynthFert_t <- function(
-    N_urea_coated_t, # farm data input
-    N_urea_uncoated_t, # farm data input
+    N_Urea_Coated_t, # farm data input
+    N_Urea_Uncoated_t, # farm data input
     C_pct_Urea=0.2, # set by AIM
     corr_CO2=44/12 # set by AIM
     ) {
   
   # ref FEM equations 8.6 - 8.7
   
-  M_urea_all_t <- (N_urea_coated_t + N_urea_uncoated_t) / 0.46
+  M_urea_all_t <- (N_Urea_Coated_t + N_Urea_Uncoated_t) / 0.46
   
   CO2_SynthFert_t <- M_urea_all_t * C_pct_Urea * corr_CO2
 
