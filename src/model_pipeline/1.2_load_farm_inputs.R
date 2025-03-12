@@ -5,7 +5,7 @@ typeset_input_cols <- function(col_old, to_type, col_name, df_name) {
   col_new <- switch(
     to_type,
     character = as.character(col_old),
-    integer = as.integer(col_old),
+    integer = as.numeric(col_old),
     numeric = as.numeric(col_old),
     Date = as.Date(col_old)
   )
@@ -32,6 +32,21 @@ typeset_input_cols <- function(col_old, to_type, col_name, df_name) {
         paste(invalid_values, collapse = ", ")
       )
     )
+  }
+  
+  if (to_type == "integer") {
+    non_integers <- ifelse(as.numeric(round(col_new, 0)) == col_new, FALSE, TRUE)
+    if (any(non_integers)) {
+      col_new <- as.integer(round(col_new, 0))
+      message(paste0("Type conversion warning in table '",
+                     df_name,
+                     "', column '",
+                     col_name,
+                     "values coerced to integer by rounding."))
+    }
+    else {
+      col_new <- as.integer(col_new)
+    }
   }
   
   return(col_new)
