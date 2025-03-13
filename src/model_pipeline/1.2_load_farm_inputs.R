@@ -1,3 +1,13 @@
+# download farm input data zip file and extract
+
+if (!param_input_path %in% list.files(getwd())){
+  tempfile <- tempfile(fileext = ".zip")
+  download.file("https://www.mpi.govt.nz/dmsdocument/67536.zip", tempfile)
+  unzip(tempfile, exdir = getwd())
+  file.rename("FEM_example_input_data_v2024b", param_input_path)
+  unlink(tempfile)
+}
+
 # helper function for strict type conversion
 typeset_input_cols <- function(col_old, to_type, col_name, df_name) {
   
