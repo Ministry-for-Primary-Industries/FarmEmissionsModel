@@ -10,6 +10,8 @@ param_output_data_format = "csv" # csv or json
 param_saveout_granular_calculation_data = FALSE # TRUE or FALSE
 param_summarise_mode = "highLevel-only" # off / detailed-only / highLevel-only / all
 param_saveout_summary_data = TRUE # TRUE or FALSE (TRUE requires an active param_summarise_mode)
+param_saveout_mitigations_delta = TRUE  # TRUE or FALSE (TRUE will create csv with mitigation impacts)
+
 
 # load R env --------------------------------------------------------------
 

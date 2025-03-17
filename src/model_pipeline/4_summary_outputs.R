@@ -139,8 +139,16 @@ if (param_summarise_mode != "off") {
   smry_livestock_annual_by_Sector_df <- summarise_livestock_annual_by_Sector(smry_livestock_monthly_by_StockClass_df)
   smry_livestock_annual_df <- summarise_livestock_annual(smry_livestock_annual_by_Sector_df)
   smry_fertiliser_annual_df <- summarise_fertiliser_annual(fertiliser_results_granular_df)
+  
+  # corresponding dataframes excluding mitigation impacts
+  smry_fertiliser_annual_df_excl_mitigation <- summarise_fertiliser_annual(fertiliser_results_granular_df_excl_mitigation)
+  
   # high level summaries (all farms)
   smry_all_annual_by_emission_type_df <- summarise_all_annual_by_emission_type(smry_livestock_annual_df, smry_fertiliser_annual_df)
   smry_all_annual_by_gas_df <- summarise_all_annual_by_gas(smry_all_annual_by_emission_type_df)
+  
+  # corresponding dataframes excluding mitigation impacts
+  smry_all_annual_by_emission_type_df_excl_mitigation <- summarise_all_annual_by_emission_type(smry_livestock_annual_df, smry_fertiliser_annual_df_excl_mitigation)
+  smry_all_annual_by_gas_df_excl_mitigation <- summarise_all_annual_by_gas(smry_all_annual_by_emission_type_df_excl_mitigation)
   
 }
