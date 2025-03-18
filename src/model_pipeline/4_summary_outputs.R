@@ -151,4 +151,14 @@ if (param_summarise_mode != "off") {
   smry_all_annual_by_emission_type_df_excl_mitigation <- summarise_all_annual_by_emission_type(smry_livestock_annual_df, smry_fertiliser_annual_df_excl_mitigation)
   smry_all_annual_by_gas_df_excl_mitigation <- summarise_all_annual_by_gas(smry_all_annual_by_emission_type_df_excl_mitigation)
   
+  # calculate mitigation impact
+  if (param_saveout_mitigations_delta == TRUE) {
+    smry_all_annual_by_emission_type_df_mitigation_delta <- (smry_all_annual_by_emission_type_df_excl_mitigation %>% select(-Entity__PeriodEnd) -
+                                                               smry_all_annual_by_emission_type_df %>% select(-Entity__PeriodEnd)) %>% 
+      bind_cols(smry_all_annual_by_emission_type_df %>% select(Entity__PeriodEnd))
+    
+    smry_all_annual_by_gas_df_mitigation_delta <- (smry_all_annual_by_gas_df_excl_mitigation %>% select(-Entity__PeriodEnd) -
+                                                     smry_all_annual_by_gas_df %>% select(-Entity__PeriodEnd)) %>% 
+      bind_cols(smry_all_annual_by_gas_df %>% select(Entity__PeriodEnd))
+  }
 }
