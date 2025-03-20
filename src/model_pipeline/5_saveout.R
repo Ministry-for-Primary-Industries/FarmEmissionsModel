@@ -137,6 +137,24 @@ if (param_saveout_summary_data == TRUE) {
                     param_output_path,
                     paste0("smry_all_annual_by_gas_mitigation_delta_", sys_datetime, ".csv")
                   ))
+        
+        write_csv(smry_all_annual_by_emission_type_df_max_mitigation_delta,
+                  file.path(
+                    param_output_path,
+                    paste0(
+                      "smry_all_annual_by_emission_type_max_mitigation_delta_",
+                      sys_datetime,
+                      ".csv"
+                    )
+                  ))
+        
+        write_csv(smry_all_annual_by_gas_df_max_mitigation_delta,
+                  file.path(
+                    param_output_path,
+                    paste0("smry_all_annual_by_gas_max_mitigation_delta_", sys_datetime, ".csv")
+                  ))
+        
+        
       }
       
     }
@@ -179,7 +197,9 @@ if (param_saveout_summary_data == TRUE) {
             smry_all_annual_by_emission_type = smry_all_annual_by_emission_type_df,
             smry_all_annual_by_gas = smry_all_annual_by_gas_df,
             smry_all_annual_by_emission_type_mitigation_delta = smry_all_annual_by_emission_type_df_mitigation_delta,
-            smry_all_annual_by_gas_mitigation_delta = smry_all_annual_by_gas_df_mitigation_delta
+            smry_all_annual_by_gas_mitigation_delta = smry_all_annual_by_gas_df_mitigation_delta,
+            smry_all_annual_by_emission_type_max_mitigation_delta = smry_all_annual_by_emission_type_df_max_mitigation_delta,
+            smry_all_annual_by_gas_mitigation_max_delta = smry_all_annual_by_gas_df_max_mitigation_delta
           ),
           file.path(
             param_output_path,

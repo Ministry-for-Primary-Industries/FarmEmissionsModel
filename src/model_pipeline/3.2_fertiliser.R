@@ -1,4 +1,4 @@
-run_SynthFert_module <- function(Fertiliser_df, excl_mitigation) {
+run_SynthFert_module <- function(Fertiliser_df, excl_mitigations = FALSE, max_mitigations = FALSE) {
   
   # synthetic fertiliser emissions [FEM ch8]
   
@@ -29,7 +29,7 @@ run_SynthFert_module <- function(Fertiliser_df, excl_mitigation) {
       )
     )
   
-  if (excl_mitigation == TRUE) {
+  if (excl_mitigations == TRUE) {
     calc_fert_df <- calc_fert_df %>% 
       mutate(N2O_SynthFert_Volat_t = eq_fem8_N2O_SynthFert_Volat_t(N_Urea_Uncoated_t = N_Urea_Uncoated_t,
                                                                    N_Urea_Coated_t = N_Urea_Coated_t,
@@ -37,12 +37,26 @@ run_SynthFert_module <- function(Fertiliser_df, excl_mitigation) {
                                                                    frac_gasf_coated = 0.1))
   }
   
+  if (max_mitigations == TRUE) {
+    calc_fert_df <- calc_fert_df %>% 
+      mutate(N2O_SynthFert_Volat_t = eq_fem8_N2O_SynthFert_Volat_t(N_Urea_Uncoated_t = N_Urea_Uncoated_t,
+                                                                   N_Urea_Coated_t = N_Urea_Coated_t,
+                                                                   N_NonUrea_SyntheticFert_t = N_NonUrea_SyntheticFert_t,
+                                                                   frac_gasf_uncoated = 0.055))
+  }
+  
   return(calc_fert_df)
   
 }
 
-fertiliser_results_granular_df <- run_SynthFert_module(Fertiliser_df = Fertiliser_df, excl_mitigation = FALSE)
+fertiliser_results_granular_df <- run_SynthFert_module(Fertiliser_df = Fertiliser_df)
 
-# excluding mitigation impact
-fertiliser_results_granular_df_excl_mitigation <- run_SynthFert_module(Fertiliser_df = Fertiliser_df, excl_mitigation = TRUE)
+
+
+if (param_saveout_mitigations_delta == TRUE) {
+  # excluding mitigation impact from UI
+  fertiliser_results_granular_df_excl_mitigation <- run_SynthFert_module(Fertiliser_df = Fertiliser_df, excl_mitigations = TRUE)
+  # including maximum potential mitigation impact from UI (i.e., using 100% UI coated urea)
+  fertiliser_results_granular_df_max_mitigation <- run_SynthFert_module(Fertiliser_df = Fertiliser_df, max_mitigations = TRUE)
+}
 
