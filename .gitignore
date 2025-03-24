@@ -1,8 +1,6 @@
 # data files
-FEM_lookups/
-*.zip
-*.csv
-*.json
+data_output/
+
 
 # data spec files
 *.xlsx

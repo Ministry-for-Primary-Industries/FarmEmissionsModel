@@ -1,0 +1,5 @@
+Entity_ID,Period_End,Month,StockClass,Births,Deaths
+10001,2022-06-30,8,Lambs,40,0
+10001,2022-06-30,9,Lambs,510,0
+10001,2022-06-30,5,Ram and Wether Hoggets,0,4
+10002,2023-05-31,8,Dairy Heifers R1,150,0
