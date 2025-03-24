@@ -1,0 +1,151 @@
+list,allowable_values
+Territory_list,Far North District
+Territory_list,Whangarei District
+Territory_list,Kaipara District
+Territory_list,Auckland
+Territory_list,Thames-Coromandel District
+Territory_list,Hauraki District
+Territory_list,Waikato District
+Territory_list,Matamata-Piako District
+Territory_list,Hamilton City
+Territory_list,Waipa District
+Territory_list,Otorohanga District
+Territory_list,South Waikato District
+Territory_list,Waitomo District
+Territory_list,Taupo District
+Territory_list,Western Bay of Plenty District
+Territory_list,Tauranga City
+Territory_list,Rotorua District
+Territory_list,Whakatane District
+Territory_list,Kawerau District
+Territory_list,Opotiki District
+Territory_list,Gisborne District
+Territory_list,Wairoa District
+Territory_list,Hastings District
+Territory_list,Napier City
+Territory_list,Central Hawkes Bay District
+Territory_list,New Plymouth District
+Territory_list,Stratford District
+Territory_list,South Taranaki District
+Territory_list,Ruapehu District
+Territory_list,Whanganui District
+Territory_list,Rangitikei District
+Territory_list,Manawatu District
+Territory_list,Palmerston North City
+Territory_list,Tararua District
+Territory_list,Horowhenua District
+Territory_list,Kapiti Coast District
+Territory_list,Porirua City
+Territory_list,Upper Hutt City
+Territory_list,Lower Hutt City
+Territory_list,Wellington City
+Territory_list,Masterton District
+Territory_list,Carterton District
+Territory_list,South Wairarapa District
+Territory_list,Tasman District
+Territory_list,Nelson City
+Territory_list,Marlborough District
+Territory_list,Kaikoura District
+Territory_list,Buller District
+Territory_list,Grey District
+Territory_list,Westland District
+Territory_list,Hurunui District
+Territory_list,Waimakariri District
+Territory_list,Christchurch City
+Territory_list,Selwyn District
+Territory_list,Ashburton District
+Territory_list,Timaru District
+Territory_list,Mackenzie District
+Territory_list,Waimate District
+Territory_list,Waitaki District
+Territory_list,Central Otago District
+Territory_list,Queenstown-Lakes District
+Territory_list,Dunedin City
+Territory_list,Clutha District
+Territory_list,Southland District
+Territory_list,Gore District
+Territory_list,Invercargill City
+Territory_list,Chatham Islands Territory
+Primary_Farm_Class_list,Dairy
+Primary_Farm_Class_list,North Island Hill Country
+Primary_Farm_Class_list,North Island Hard Hill Country
+Primary_Farm_Class_list,North Island Finishing
+Primary_Farm_Class_list,South Island Hill Country
+Primary_Farm_Class_list,South Island High Country
+Primary_Farm_Class_list,South Island Finishing-Breeding
+Primary_Farm_Class_list,South Island Finishing
+Primary_Farm_Class_list,South Island Mixed Cropping & Finishing
+Primary_Farm_Class_list,Cropping
+Primary_Farm_Class_list,Orchyard
+Primary_Farm_Class_list,Vineyard
+Transaction_Type_list,Sale
+Transaction_Type_list,Purchase
+Transaction_Type_list,Transfer In
+Transaction_Type_list,Transfer Out
+Sector_list,Beef
+Sector_list,Dairy
+Sector_list,Deer
+Sector_list,Sheep
+StockClass_list,Heifers R1
+StockClass_list,Heifers R2
+StockClass_list,Heifers R3
+StockClass_list,Cows Mature
+StockClass_list,Steers R1
+StockClass_list,Steers R2
+StockClass_list,Steers R3
+StockClass_list,Bulls R1
+StockClass_list,Bulls R2
+StockClass_list,Bulls R3
+StockClass_list,Bulls Mature
+StockClass_list,Dairy Heifers R1
+StockClass_list,Dairy Heifers R2
+StockClass_list,Milking Cows Mature
+StockClass_list,Dairy Bulls R1
+StockClass_list,Dairy Bulls R2
+StockClass_list,Dairy Bulls Mature
+StockClass_list,Hind R1
+StockClass_list,Hinds R2
+StockClass_list,Hinds Mature
+StockClass_list,Stags R1
+StockClass_list,Stags R2
+StockClass_list,Stags R3
+StockClass_list,Stags Mature
+StockClass_list,Lambs
+StockClass_list,Ewe Hoggets
+StockClass_list,Ram and Wether Hoggets
+StockClass_list,Ewes Mature
+StockClass_list,Wethers Mature
+StockClass_list,Rams Mature
+Supplementary_Feed_list,"Barley, Silage"
+Supplementary_Feed_list,"Lucerne, Silage"
+Supplementary_Feed_list,"Maize, Silage"
+Supplementary_Feed_list,"Pasture, Silage"
+Supplementary_Feed_list,"Oat, Silage"
+Supplementary_Feed_list,"Sorghum, Silage"
+Supplementary_Feed_list,"Plantain, Silage"
+Supplementary_Feed_list,"Triticale, Silage"
+Supplementary_Feed_list,"Cereal, Silage"
+Supplementary_Feed_list,"Pasture, Hay"
+Supplementary_Feed_list,"Pasture, Haylage/Baleage"
+Supplementary_Feed_list,Straw
+Supplementary_Feed_list,"Lucerne, Forage"
+Supplementary_Feed_list,"Fodderbeet, Forage (Whole Crop)"
+Supplementary_Feed_list,"Kale, Forage (Whole Crop)"
+Supplementary_Feed_list,"Rape, Forage (Whole Crop)"
+Supplementary_Feed_list,"Turnip, Forage (Whole Crop)"
+Supplementary_Feed_list,"Swede, Forage (Whole Crop)"
+Supplementary_Feed_list,Chicory
+Supplementary_Feed_list,Plantain
+Supplementary_Feed_list,"Barley, Grain"
+Supplementary_Feed_list,"Maize, Grain"
+Supplementary_Feed_list,"Wheat, Grain"
+Supplementary_Feed_list,Dried Distillers Grain (DDG)
+Supplementary_Feed_list,Soyabean Meal
+Supplementary_Feed_list,Cotton Seed Meal
+Supplementary_Feed_list,Palm Kernel Extract (PKE)
+Supplementary_Feed_list,Tapioca
+Supplementary_Feed_list,Molasses
+Supplementary_Feed_list,Broll
+Supplementary_Feed_list,Soyabean-hull
+Supplementary_Feed_list,Other Concentrates
+Supplementary_Feed_list,Horticultural Waste

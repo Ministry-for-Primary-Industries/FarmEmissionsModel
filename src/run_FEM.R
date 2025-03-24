@@ -24,8 +24,6 @@ library(tidyr)
 
 # run pipeline -------------------------------------------------------------
 
-param_FEM_version = "v2024b"
-
 # Step 1: Load farm data conforming to FEM data spec and static inputs (equations and lookup tables)
 # - validates all tables are fed to the model
 # - and all columns have correct names and data types

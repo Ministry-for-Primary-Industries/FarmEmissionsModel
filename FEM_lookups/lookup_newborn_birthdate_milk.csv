@@ -1,0 +1,5 @@
+Sector,BirthMonth_National,BirthDay_National,Days_Newborn_Fed_OnlyMilk_annual,Days_Newborn_Fed_Milk_annual,Milk_Newborn_kg_annual,MilkPowder_Newborn_kg_annual,Milk_Fat_pct,Milk_Protein_pct,MilkPowder_Protein_pct
+Beef,9,20,61,242,824,66.66666666666667,0.04893203883495146,0.032427184466019415,0.0334
+Dairy,8,13,61,61,NA,200,NA,NA,0.0334
+Deer,11,19,120,120,204,NA,NA,0.0366,NA
+Sheep,9,11,61,122,103,NA,0.08,0.06,NA
