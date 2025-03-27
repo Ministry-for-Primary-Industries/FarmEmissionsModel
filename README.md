@@ -44,7 +44,7 @@ Farm data inputs must conform to the [FEM data specification](https://www.mpi.go
 
 Add conformant CSV or JSON data into an appropriate folder (default location: `FarmEmissionsModel/data_input/`).
 
-We recommend initially starting with our [example data](https://www.mpi.govt.nz/dmsdocument/67536 "Click to download example data").
+We recommend starting with the example data available in `FarmEmissionsModel/data_input_example/`. This is supplied in both CSV and JSON formats.
 
 *Note there is currently limited validation performed on input data but the majority of anticipated logic is described in the Data Specification. In future we intend for run_FEM.R to perform this validation and output error logs.*
 
