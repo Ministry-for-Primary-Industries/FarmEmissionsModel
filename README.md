@@ -31,14 +31,7 @@ This codebase is built with and intended to be run on R v4.4.2. The R environmen
     install.packages("renv")
     renv::restore()
     ```
-
-### 3. Add Lookup Tables
-
-Static lookup tables containing parameter values used by FEM are provided on the [MPI website in a zip archive](https://www.mpi.govt.nz/dmsdocument/66681 "Click to download lookup tables").
-
-Extract the archive into the repository's root directory such that filepaths follow a structure of: `FarmEmissionsModel/FEM_lookups/{version}/lookup_{x}.csv`.
-
-### 4. Add Farm Data
+### 3. Add Farm Data
 
 Farm data inputs must conform to the [FEM data specification](https://www.mpi.govt.nz/dmsdocument/67533 "Click to download data specfication").
 
@@ -48,7 +41,7 @@ We recommend starting with the example data available in `FarmEmissionsModel/dat
 
 *Note there is currently limited validation performed on input data but the majority of anticipated logic is described in the Data Specification. In future we intend for run_FEM.R to perform this validation and output error logs.*
 
-### 5. Run Pipeline
+### 4. Run Pipeline
 
 Run `src/run_FEM.R`
 
@@ -74,6 +67,10 @@ To cover all use cases we supply this in 3 formats:
 We encourage raising any code issues via Github and welcome community pull requests to address any discovered code quality issues. In time we will provide guidelines for contributing.
 
 Science or policy questions concerning the methodology should be directed to [info@mpi.govt.nz](mailto:info@mpi.govt.nz?subject=Farm%20Emissions%20Method%20question).
+
+## Versioning
+
+FEM's explicit versioning approach is outlined here: [FEM_versioning](https://github.com/Ministry-for-Primary-Industries/FarmEmissionsModel/blob/main/FEM_versioning.md)
 
 ## License
 
