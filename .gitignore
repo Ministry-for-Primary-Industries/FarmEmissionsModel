@@ -1,6 +1,6 @@
-# data files
+# farm data io folders
+data_input/
 data_output/
-
 
 # data spec files
 *.xlsx
