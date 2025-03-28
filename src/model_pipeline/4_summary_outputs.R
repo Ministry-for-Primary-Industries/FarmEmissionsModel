@@ -144,3 +144,40 @@ if (param_summarise_mode != "off") {
   smry_all_annual_by_gas_df <- summarise_all_annual_by_gas(smry_all_annual_by_emission_type_df)
   
 }
+
+# Section 4: Format summary outputs ---------------------------------------
+
+deconcat_join_key <- function(df) {
+  
+  out_df <- df %>%
+    ungroup() %>%
+    mutate(
+      # parse Entity ID by extracting str before delimiter __
+      Entity_ID = str_extract(Entity__PeriodEnd, ".*(?=__)"),
+      # parse Period_End by extracting str after delimiter __
+      Period_End = str_extract(Entity__PeriodEnd, "(?<=__).*$")
+    ) %>%
+    select(
+      Entity_ID,
+      Period_End,
+      everything(),
+      -Entity__PeriodEnd
+    )
+  
+  return(out_df)
+  
+}
+
+if (param_summarise_mode != "off") {
+  
+  # detailed (per-module) summaries
+  smry_livestock_monthly_by_StockClass_df <- deconcat_join_key(smry_livestock_monthly_by_StockClass_df)
+  smry_livestock_monthly_by_Sector_df <- deconcat_join_key(smry_livestock_monthly_by_Sector_df)
+  smry_livestock_annual_by_Sector_df <- deconcat_join_key(smry_livestock_annual_by_Sector_df)
+  smry_livestock_annual_df <- deconcat_join_key(smry_livestock_annual_df)
+  smry_fertiliser_annual_df <- deconcat_join_key(smry_fertiliser_annual_df)
+  # high level summaries
+  smry_all_annual_by_emission_type_df <- deconcat_join_key(smry_all_annual_by_emission_type_df)
+  smry_all_annual_by_gas_df <- deconcat_join_key(smry_all_annual_by_gas_df)
+  
+}
