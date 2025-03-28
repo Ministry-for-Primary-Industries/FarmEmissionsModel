@@ -71,7 +71,7 @@ Science or policy questions concerning the methodology should be directed to [in
 
 ## Versioning
 
-FEM's explicit versioning approach is outlined here: [FEM_versioning](https://github.com/Ministry-for-Primary-Industries/FarmEmissionsModel/blob/main/FEM_versioning.md)
+FEM's explicit versioning approach is outlined in [VERSIONING.md](https://github.com/Ministry-for-Primary-Industries/FarmEmissionsModel/blob/main/VERSIONING.md)
 
 ## License
 
