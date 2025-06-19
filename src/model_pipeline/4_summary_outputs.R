@@ -145,7 +145,7 @@ if (param_summarise_mode != "off") {
   
 }
 
-# Section 4: Format summary outputs ---------------------------------------
+# Section 4: Format Outputs -----------------------------------------------
 
 deconcat_join_key <- function(df) {
   
@@ -170,6 +170,9 @@ deconcat_join_key <- function(df) {
 
 if (param_summarise_mode != "off") {
   
+  # granular outputs
+  livestock_results_granular_df <- deconcat_join_key(livestock_results_granular_df)
+  fertiliser_results_granular_df <- deconcat_join_key(fertiliser_results_granular_df)
   # detailed (per-module) summaries
   smry_livestock_monthly_by_StockClass_df <- deconcat_join_key(smry_livestock_monthly_by_StockClass_df)
   smry_livestock_monthly_by_Sector_df <- deconcat_join_key(smry_livestock_monthly_by_Sector_df)
