@@ -152,10 +152,8 @@ deconcat_join_key <- function(df) {
   out_df <- df %>%
     ungroup() %>%
     mutate(
-      # parse Entity ID by extracting str before delimiter __
-      Entity_ID = str_extract(Entity__PeriodEnd, ".*(?=__)"),
-      # parse Period_End by extracting str after delimiter __
-      Period_End = str_extract(Entity__PeriodEnd, "(?<=__).*$")
+      Entity_ID = substr(Entity__PeriodEnd, 1, nchar(Entity__PeriodEnd) - 12),
+      Period_End = substr(Entity__PeriodEnd, nchar(Entity__PeriodEnd) - 9, nchar(Entity__PeriodEnd))
     ) %>%
     select(
       Entity_ID,

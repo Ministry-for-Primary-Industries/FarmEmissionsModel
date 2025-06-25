@@ -19,7 +19,6 @@ library(jsonlite)
 library(lubridate)
 library(purrr)
 library(readr)
-library(stringr)
 library(tidyr)
 
 # run pipeline -------------------------------------------------------------
