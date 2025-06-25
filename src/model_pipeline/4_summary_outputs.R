@@ -46,7 +46,8 @@ summarise_livestock_monthly_by_Sector <- function(df) {
       CH4_DungUrine_kg = sum(CH4_DungUrine_kg),
       CH4_Effluent_kg = sum(CH4_Effluent_kg),
       N2O_DungUrine_kg = sum(N2O_DungUrine_kg),
-      N2O_Effluent_kg = sum(N2O_Effluent_kg)
+      N2O_Effluent_kg = sum(N2O_Effluent_kg),
+      .groups = "drop"
     )
   
   return(out_df)
@@ -62,7 +63,8 @@ summarise_livestock_annual_by_Sector <- function(df) {
       CH4_DungUrine_kg = sum(CH4_DungUrine_kg),
       CH4_Effluent_kg = sum(CH4_Effluent_kg),
       N2O_DungUrine_kg = sum(N2O_DungUrine_kg),
-      N2O_Effluent_kg = sum(N2O_Effluent_kg)
+      N2O_Effluent_kg = sum(N2O_Effluent_kg),
+      .groups = "drop"
     )
   
   return(out_df)
