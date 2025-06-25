@@ -747,9 +747,9 @@ eq_fem4_derive_farm_diet_parameters <- function(
     TRUE ~ "NonDairy"
   )
   
-  # apply sectoral feed allocation
-  SuppFeed_DryMatter_df <- SuppFeed_DryMatter_df %>%
-    left_join( # left join req'd
+  # apply sectoral allocation to supplementary feed
+  supps_df <- SuppFeed_DryMatter_df %>%
+    inner_join(
       SuppFeed_SectoralAllocation_df,
       by="Entity__PeriodEnd"
     ) %>%
@@ -763,8 +763,11 @@ eq_fem4_derive_farm_diet_parameters <- function(
   
   # Part 2.1: Combined supplements diet (excl. pasture) nutritional profile
   
-  SuppFeed_DryMatter_df <- SuppFeed_DryMatter_df %>% 
-    left_join(lookup_nutrientProfile_supplements_df, by="SupplementName") %>% # left join req'd
+  supps_df <- supps_df %>% 
+    inner_join(
+      lookup_nutrientProfile_supplements_df,
+      by="SupplementName"
+    ) %>%
     select(Entity__PeriodEnd, SupplementName, ME_Supp, DMD_pct_Supp, N_pct_Supp, Supp_t_annual) %>%
     group_by(Entity__PeriodEnd) %>%
     mutate(
@@ -773,7 +776,7 @@ eq_fem4_derive_farm_diet_parameters <- function(
     ) %>%
     ungroup()
   
-  inputs_supps_df_agg <- SuppFeed_DryMatter_df %>%
+  supps_df_agg <- supps_df %>%
     summarise(
       .by = Entity__PeriodEnd,
       ME_AllSupps = sum(ME_Supp * Supp_allocation),
@@ -799,7 +802,7 @@ eq_fem4_derive_farm_diet_parameters <- function(
       ME_total_allocation = ME_total_SectorTotal / sum(ME_total_SectorTotal)
     ) %>%
     ungroup() %>%
-    left_join(inputs_supps_df_agg, by="Entity__PeriodEnd") # left_join req'd
+    left_join(supps_df_agg, by="Entity__PeriodEnd") # left_join req'd
   
   # Part 2.3: Determine tonnages and energy contribution of supplements and pasture:
   
