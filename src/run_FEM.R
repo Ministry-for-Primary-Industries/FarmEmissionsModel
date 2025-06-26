@@ -7,9 +7,12 @@ param_input_data_format = "csv" # csv or json
 param_output_path = "data_output" # this will be created if it doesn't exist
 param_output_data_format = "csv" # csv or json
 
-param_saveout_granular_calculation_data = FALSE # TRUE or FALSE
-param_summarise_mode = "highLevel-only" # off / detailed-only / highLevel-only / all
-param_saveout_summary_data = TRUE # TRUE or FALSE (TRUE requires an active param_summarise_mode)
+# set output tables to saveout, refer to README
+param_saveout_tables = c(
+  "smry_livestock_annual",
+  "smry_all_annual_by_emission_type",
+  "smry_all_annual_by_gas"
+)
 
 # load R env --------------------------------------------------------------
 
@@ -43,7 +46,6 @@ source(file.path("src", "model_pipeline", "3.1_livestock.R"))
 source(file.path("src", "model_pipeline", "3.2_fertiliser.R"))
 
 # Step 4: Summarise outputs
-# - as configured by run parameters
 
 source(file.path("src", "model_pipeline", "4_summary_outputs.R"))
 
