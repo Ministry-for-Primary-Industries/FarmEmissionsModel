@@ -13,13 +13,13 @@ param_saveout_summary_data = TRUE # TRUE or FALSE (TRUE requires an active param
 
 # load R env --------------------------------------------------------------
 
-library(assertthat)
-library(dplyr)
-library(jsonlite)
-library(lubridate)
-library(purrr)
-library(readr)
-library(tidyr)
+suppressPackageStartupMessages(library(assertthat))
+suppressPackageStartupMessages(library(dplyr))
+suppressPackageStartupMessages(library(jsonlite))
+suppressPackageStartupMessages(library(lubridate))
+suppressPackageStartupMessages(library(purrr))
+suppressPackageStartupMessages(library(readr))
+suppressPackageStartupMessages(library(tidyr))
 
 # run pipeline -------------------------------------------------------------
 

@@ -46,7 +46,8 @@ summarise_livestock_monthly_by_Sector <- function(df) {
       CH4_DungUrine_kg = sum(CH4_DungUrine_kg),
       CH4_Effluent_kg = sum(CH4_Effluent_kg),
       N2O_DungUrine_kg = sum(N2O_DungUrine_kg),
-      N2O_Effluent_kg = sum(N2O_Effluent_kg)
+      N2O_Effluent_kg = sum(N2O_Effluent_kg),
+      .groups = "drop"
     )
   
   return(out_df)
@@ -62,7 +63,8 @@ summarise_livestock_annual_by_Sector <- function(df) {
       CH4_DungUrine_kg = sum(CH4_DungUrine_kg),
       CH4_Effluent_kg = sum(CH4_Effluent_kg),
       N2O_DungUrine_kg = sum(N2O_DungUrine_kg),
-      N2O_Effluent_kg = sum(N2O_Effluent_kg)
+      N2O_Effluent_kg = sum(N2O_Effluent_kg),
+      .groups = "drop"
     )
   
   return(out_df)
@@ -78,7 +80,8 @@ summarise_livestock_annual <- function(df) {
       CH4_DungUrine_kg = sum(CH4_DungUrine_kg),
       CH4_Effluent_kg = sum(CH4_Effluent_kg),
       N2O_DungUrine_kg = sum(N2O_DungUrine_kg),
-      N2O_Effluent_kg = sum(N2O_Effluent_kg)
+      N2O_Effluent_kg = sum(N2O_Effluent_kg),
+      .groups = "drop"
     )
   
   return(out_df)
@@ -122,7 +125,8 @@ summarise_all_annual_by_gas <- function(df) {
     summarise(
       CH4_total_kg = sum(CH4_Digestion_kg + CH4_DungUrine_kg + CH4_Effluent_kg),
       N2O_total_kg = sum(N2O_DungUrine_kg + N2O_Effluent_kg + N2O_SynthFert_kg),
-      CO2_total_kg = sum(CO2_SynthFert_kg)
+      CO2_total_kg = sum(CO2_SynthFert_kg),
+      .groups = "drop"
     )
   
   return(out_df)
