@@ -133,21 +133,17 @@ summarise_all_annual_by_gas <- function(df) {
   
 }
 
-# Section 3: Gen summaries according to run parameters --------------------
-
-if (param_summarise_mode != "off") {
+# Section 3: Gen Summaries ------------------------------------------------
   
-  # detailed (per-module) summaries (only farms with input data for relevant module)
-  smry_livestock_monthly_by_StockClass_df <- summarise_livestock_monthly_by_StockClass(livestock_results_granular_df)
-  smry_livestock_monthly_by_Sector_df <- summarise_livestock_monthly_by_Sector(smry_livestock_monthly_by_StockClass_df)
-  smry_livestock_annual_by_Sector_df <- summarise_livestock_annual_by_Sector(smry_livestock_monthly_by_StockClass_df)
-  smry_livestock_annual_df <- summarise_livestock_annual(smry_livestock_annual_by_Sector_df)
-  smry_fertiliser_annual_df <- summarise_fertiliser_annual(fertiliser_results_granular_df)
-  # high level summaries (all farms)
-  smry_all_annual_by_emission_type_df <- summarise_all_annual_by_emission_type(smry_livestock_annual_df, smry_fertiliser_annual_df)
-  smry_all_annual_by_gas_df <- summarise_all_annual_by_gas(smry_all_annual_by_emission_type_df)
-  
-}
+# detailed (per-module) summaries (only farms with input data for relevant module)
+smry_livestock_monthly_by_StockClass_df <- summarise_livestock_monthly_by_StockClass(livestock_results_granular_df)
+smry_livestock_monthly_by_Sector_df <- summarise_livestock_monthly_by_Sector(smry_livestock_monthly_by_StockClass_df)
+smry_livestock_annual_by_Sector_df <- summarise_livestock_annual_by_Sector(smry_livestock_monthly_by_StockClass_df)
+smry_livestock_annual_df <- summarise_livestock_annual(smry_livestock_annual_by_Sector_df)
+smry_fertiliser_annual_df <- summarise_fertiliser_annual(fertiliser_results_granular_df)
+# high level summaries (all farms)
+smry_all_annual_by_emission_type_df <- summarise_all_annual_by_emission_type(smry_livestock_annual_df, smry_fertiliser_annual_df)
+smry_all_annual_by_gas_df <- summarise_all_annual_by_gas(smry_all_annual_by_emission_type_df)
 
 # Section 4: Format Outputs -----------------------------------------------
 
@@ -170,19 +166,15 @@ deconcat_join_key <- function(df) {
   
 }
 
-if (param_summarise_mode != "off") {
-  
-  # granular outputs
-  livestock_results_granular_df <- deconcat_join_key(livestock_results_granular_df)
-  fertiliser_results_granular_df <- deconcat_join_key(fertiliser_results_granular_df)
-  # detailed (per-module) summaries
-  smry_livestock_monthly_by_StockClass_df <- deconcat_join_key(smry_livestock_monthly_by_StockClass_df)
-  smry_livestock_monthly_by_Sector_df <- deconcat_join_key(smry_livestock_monthly_by_Sector_df)
-  smry_livestock_annual_by_Sector_df <- deconcat_join_key(smry_livestock_annual_by_Sector_df)
-  smry_livestock_annual_df <- deconcat_join_key(smry_livestock_annual_df)
-  smry_fertiliser_annual_df <- deconcat_join_key(smry_fertiliser_annual_df)
-  # high level summaries
-  smry_all_annual_by_emission_type_df <- deconcat_join_key(smry_all_annual_by_emission_type_df)
-  smry_all_annual_by_gas_df <- deconcat_join_key(smry_all_annual_by_gas_df)
-  
-}
+# granular (per-module) outputs
+livestock_results_granular_df <- deconcat_join_key(livestock_results_granular_df)
+fertiliser_results_granular_df <- deconcat_join_key(fertiliser_results_granular_df)
+# detailed (per-module) summaries
+smry_livestock_monthly_by_StockClass_df <- deconcat_join_key(smry_livestock_monthly_by_StockClass_df)
+smry_livestock_monthly_by_Sector_df <- deconcat_join_key(smry_livestock_monthly_by_Sector_df)
+smry_livestock_annual_by_Sector_df <- deconcat_join_key(smry_livestock_annual_by_Sector_df)
+smry_livestock_annual_df <- deconcat_join_key(smry_livestock_annual_df)
+smry_fertiliser_annual_df <- deconcat_join_key(smry_fertiliser_annual_df)
+# high level summaries
+smry_all_annual_by_emission_type_df <- deconcat_join_key(smry_all_annual_by_emission_type_df)
+smry_all_annual_by_gas_df <- deconcat_join_key(smry_all_annual_by_gas_df)
