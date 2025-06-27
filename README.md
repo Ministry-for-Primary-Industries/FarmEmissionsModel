@@ -48,8 +48,27 @@ Run `src/run_FEM.R`
 
 At the head of this script are configurable run parameters for setting:
 - input/output folder locations and file format (CSV/JSON)
-- whether granular results are saved in the output folder
-- whether summary results are saved to the output folder and the level of summarisation
+- output tables to saveout via `param_saveout_tables`
+    - if no saved outputs are desired this can be set to `FALSE` or an empty vector `c()`
+    - the full list of savable outputs is:
+    ```R
+    param_saveout_tables = c(
+        # granular, per module
+        "livestock_results_granular",
+        "fertiliser_results_granular",
+        # summary - detailed, per module
+        "smry_livestock_monthly_by_StockClass",
+        "smry_livestock_monthly_by_Sector",
+        "smry_livestock_annual_by_Sector",
+        "smry_livestock_annual",
+        "smry_fertiliser_annual",
+        # summary - high level, all modules
+        "smry_all_annual_by_emission_type",
+        "smry_all_annual_by_gas"
+        )
+    ```
+
+    Note if a given `Entity_ID` and `Period_End` has no farm data inputs for a specific module (e.g. fertiliser or livestock) if will have no output rows in the per module tables. It will have output rows of zeros in the high level all-module summaries.
 
 ## FEM Equations
 
