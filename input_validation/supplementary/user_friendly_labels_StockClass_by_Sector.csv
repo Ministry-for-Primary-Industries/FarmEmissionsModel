@@ -1,31 +1,31 @@
-Sector,StockClass,User_Friendly_Label,FEM_Definition,IRD_StockClass
-Beef,Heifers R1,Heifer Calves R1 (0-1yr),Female cattle born in the current period,Rising one-year heifers
-Beef,Heifers R2,Heifers R2 (1-2yr),Female cattle born in the previous period,Rising two-year heifers
-Beef,Heifers R3,Heifers R3 (2-3yr),Female cattle born two periods ago,Mixed-age cows
-Beef,Cows Mature,Cows (3+),Female cattle born three or more periods ago,Mixed-age cows
-Beef,Steers R1,Steer Calves R1 (0-1yr),Male castrated cattle born in the current period,Rising one-year steers and bulls
-Beef,Steers R2,Steers R2 (1-2yr),Male castrated cattle born in the previous period,Rising two-year steers and bulls
-Beef,Steers R3,Steers R3 (2+),Male castrated cattle born two or more periods ago,Rising three-year and older steers and bulls
-Beef,Bulls R1,Bull Calves R1 (0-1yr),Male uncastrated cattle born in the current period,Rising one-year steers and bulls
-Beef,Bulls R2,Bulls R2 (1-2yr) ,Male uncastrated cattle born in the previous period,Rising two-year steers and bulls
-Beef,Bulls R3,Bulls R3 (2-3yr),Male uncastrated cattle born two periods ago,Rising three-year and older steers and bulls
-Beef,Bulls Mature,Bulls (3+),Male uncastrated cattle born three or more periods ago,Breeding bulls
+ï»¿Sector,StockClass,User_Friendly_Label,FEM_Definition,IRD_StockClass
+Beef,Heifers R1,Heifer Calves R1 (0-1yr),Female beef cattle born in the current period,Rising one-year heifers
+Beef,Heifers R2,Heifers R2 (1-2yr),Female beef cattle born in the previous period. R1s last period,Rising two-year heifers
+Beef,Heifers R3,Heifers R3 (2-3yr),Female beef cattle born two periods ago. R2s last period,Mixed-age cows
+Beef,Cows Mature,Cows (3+),Female beef cattle born three or more periods ago. R3s or 3+ last period,Mixed-age cows
+Beef,Steers R1,Steer Calves R1 (0-1yr),Male castrated beef cattle born in the current period,Rising one-year steers and bulls
+Beef,Steers R2,Steers R2 (1-2yr),Male castrated beef cattle born in the previous period. R1s last period,Rising two-year steers and bulls
+Beef,Steers R3,Steers R3 (2+),Male castrated beef cattle born two or more periods ago. R2s last period,Rising three-year and older steers and bulls
+Beef,Bulls R1,Bull Calves R1 (0-1yr),Male uncastrated beef cattle born in the current period,Rising one-year steers and bulls
+Beef,Bulls R2,Bulls R2 (1-2yr),Male uncastrated beef cattle born in the previous period. R1s last period,Rising two-year steers and bulls
+Beef,Bulls R3,Bulls R3 (2-3yr),Male uncastrated beef cattle born two periods ago. R2s last period,Rising three-year and older steers and bulls
+Beef,Bulls Mature,Bulls (3+),Male uncastrated beef cattle born three or more periods ago. R3s or 3+ last period,Breeding bulls
 Dairy,Dairy Heifers R1,Dairy Heifer Calves R1 (0-1yr),Female dairy cattle born in the current period,Rising one-year heifers
-Dairy,Dairy Heifers R2,Dairy Heifers R2 (1-2yr),Female dairy cattle born in the previous period,Rising two-year heifers
-Dairy,Milking Cows Mature,Milking Cows (2+),Female dairy cattle born two or more periods ago,Mixed-age cows
-Dairy,Dairy Bulls R1,Dairy Bull Calves R1 (0-1yr),Male uncastrated dairy cattle born in the current period ,Rising one-year steers and bulls
-Dairy,Dairy Bulls R2,Dairy Bulls R2 (1-2yr),Male uncastrated castrated dairy cattle born in the previous period,Rising two-year steers and bulls
-Dairy,Dairy Bulls Mature,Dairy Bulls (2+),Male uncastrated dairy cattle born two or more periods ago,Breeding bulls
+Dairy,Dairy Heifers R2,Dairy Heifers R2 (1-2yr),Female dairy cattle born in the previous period. R2s last period,Rising two-year heifers
+Dairy,Milking Cows Mature,Milking Cows (2+),Female dairy cattle born two or more periods ago. R2s or 2+ last period,Mixed-age cows
+Dairy,Dairy Bulls R1,Dairy Bull Calves R1 (0-1yr),Male uncastrated dairy cattle born in the current period,Rising one-year steers and bulls
+Dairy,Dairy Bulls R2,Dairy Bulls R2 (1-2yr),Male uncastrated dairy cattle born in the previous period. R1s last period,Rising two-year steers and bulls
+Dairy,Dairy Bulls Mature,Dairy Bulls (2+),Male uncastrated dairy cattle born two or more periods ago. R2s or 2+ last period,Breeding bulls
 Deer,Hinds R1,Hind Fawns R1 (0-1yr),"Female deer born in the current period and raised for meat, breeding or hunting",Rising one-year hinds
-Deer,Hinds R2,Hinds R2 (1-2yr),"Female deer born in the previous period and raised for meat, breeding or hunting",Rising two-year hinds
-Deer,Hinds Mature,Hinds (2+),"Female deer born two or more periods ago and raised for meat, breeding or hunting",Mixed-age hinds
+Deer,Hinds R2,Hinds R2 (1-2yr),"Female deer born in the previous period and raised for meat, breeding or hunting. R1s last period",Rising two-year hinds
+Deer,Hinds Mature,Hinds (2+),"Female deer born two or more periods ago and raised for meat, breeding or hunting. R2s or 2+ last period",Mixed-age hinds
 Deer,Stags R1,Stag Fawns R1 (0-1yr),"Male deer born in the current period and raised for velvet, meat, breeding or hunting",Rising one-year stags
-Deer,Stags R2,Stags R2 (1-2yr),"Male deer born in the previous period and raised for velvet, meat, breeding or hunting",Rising two-year and older stags (nonbreeding)
-Deer,Stags R3,Stags R3 (2-3yr),"Male deer born two periods ago and raised for velvet, meat, breeding or hunting",Rising two-year and older stags (nonbreeding)
-Deer,Stags Mature,Stags (3+),"Male deer born three or more periods ago and raised for velvet, meat, breeding or hunting",Breeding stags
+Deer,Stags R2,Stags R2 (1-2yr),"Male deer born in the previous period and raised for velvet, meat, breeding or hunting. R1s last period",Rising two-year and older stags (nonbreeding)
+Deer,Stags R3,Stags R3 (2-3yr),"Male deer born two periods ago and raised for velvet, meat, breeding or hunting. R3s last period",Rising two-year and older stags (nonbreeding)
+Deer,Stags Mature,Stags (3+),"Male deer born three or more periods ago and raised for velvet, meat, breeding or hunting. R3s or 3+ last period",Breeding stags
 Sheep,Lambs,Lambs (0-1yr),Sheep born in the current period,NA
-Sheep,Ewe Hoggets,Ewe Hoggets (1-2yr),Female sheep born in the previous period,Ewe hoggets
-Sheep,Ram and Wether Hoggets,Ram and Wether Hoggets (1-2yr),Male sheep born in the previous period,Ram and wether hoggets
-Sheep,Ewes Mature,Ewes (2+),Female sheep born two or more periods ago,"Two-tooth ewes, Mixed-age ewes (rising three-year and four-year old ewes), Rising five-year and older ewes"
-Sheep,Wethers Mature,Wethers (2+),Male castrated sheep born two or more periods ago,Mixed-age wethers
-Sheep,Rams Mature,Rams (2+),Male uncastrated sheep born two or more periods ago,Breeding rams
+Sheep,Ewe Hoggets,Ewe Hoggets (1-2yr),Female sheep born in the previous period. Lambs last period,Ewe hoggets
+Sheep,Ram and Wether Hoggets,Ram and Wether Hoggets (1-2yr),Male sheep born in the previous period. Lambs last period,Ram and wether hoggets
+Sheep,Ewes Mature,Ewes (2+),Female sheep born two or more periods ago. Ewe Hoggets or 2+ last period,"Two-tooth ewes,Mixed-age ewes (rising three-year and four-year old ewes), Rising five-year and older ewes"
+Sheep,Wethers Mature,Wethers (2+),Male castrated sheep born two or more periods ago. Wether Hoggets or 2+ last period,Mixed-age wethers
+Sheep,Rams Mature,Rams (2+),Male uncastrated sheep born two or more periods ago. Ram hoggets or 2+ last period,Breeding rams
