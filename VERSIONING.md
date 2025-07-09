@@ -23,13 +23,15 @@ This approach ensures clarity, transparency, and manageability in software updat
 
 ## Release Cycle
 
-FEM releases are published annually in December. For example, in December 2025, the version released will be:
+FEM releases are published annually with December target. For example the next annual version released will be:
 
 ```
 v2025.1.0.0
 ```
 
 Each annual release will incorporate the latest updates from New Zealand’s national Agricultural Inventory Model published earlier in the year. Annual releases are supported and maintained for at least 3 years from initial release date.
+
+Pre-releases following a `v2025.1.0.0beta1` and `v2025.1.0.rc1` versioning format will be published for downstream users to test in advance of a final release. This process may be streamlined if there are no or few breaking changes.
 
 ## Examples of Intra-Year Version Updates
 
