@@ -16,9 +16,9 @@ It closely follows the Ministry for Primary Industries' national [Agricultural G
 
 ## How to run the FEM
 
-### 1. Clone this Repository
+### 1. Download the latest release
 
-Refer to GitHub documentation if required.
+We recommend starting with the latest final release for the latest available year from the [releases page](https://github.com/Ministry-for-Primary-Industries/FarmEmissionsModel/releases).
 
 ### 2. Install R Environment
 
@@ -32,15 +32,16 @@ This codebase is built with and intended to be run on R v4.4.3. The R environmen
     renv::restore()
     ```
 - Note an apppropriate version of Rtools may be required to compile libraries specified in the renv lockfile. 
+
 ### 3. Add Farm Data
 
-Farm data inputs must conform to the [FEM data specification](https://www.mpi.govt.nz/dmsdocument/67533 "Click to download data specfication").
+Farm data inputs must conform to the FEM data specification, available for download as an asset with the associated release on the [releases page](https://github.com/Ministry-for-Primary-Industries/FarmEmissionsModel/releases). A supporting data dictionary is also available here providing detailed data definitions.
 
 Add conformant CSV or JSON data into an appropriate folder (default location: `FarmEmissionsModel/data_input/`).
 
 We recommend starting with the example data available in `FarmEmissionsModel/data_input_example/`. This is supplied in both CSV and JSON formats.
 
-*Note there is currently limited validation performed on input data but the majority of anticipated logic is described in the Data Specification. In future we intend for run_FEM.R to perform this validation and output error logs.*
+*Note there is currently limited validation performed on input data in FEM. It is the users responsibility to apply the validation rules contained in the FEM data specification, prior to passing data through FEM.*
 
 ### 4. Run Pipeline
 
