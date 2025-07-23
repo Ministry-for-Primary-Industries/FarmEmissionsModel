@@ -12,7 +12,7 @@ This is the reference R implementation of the Farm Emissions Model (FEM) for est
 
 The FEM methodology describes a process for estimating methane, nitrous oxide and carbon dioxide emissions from both livestock (cattle, deer and sheep) and synthetic nitrogenous fertiliser. It has been tailored to specific characteristics found in NZ agriculture.
 
-It closely follows the Ministry for Primary Industries' national [Agricultural GHG Inventory Methodology](https://www.mpi.govt.nz/dmsdocument/13906/direct) (currently v10 2024-04).
+It closely follows the Ministry for Primary Industries' national Agricultural GHG Inventory Methodology.
 
 ## How to run the FEM
 
