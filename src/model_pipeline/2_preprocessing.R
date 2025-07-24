@@ -493,6 +493,7 @@ livestock_precalc_df <- StockRec_monthly_df %>%
     "Reproduction_Rate",
     "FWG_kg",
     "Milk_Mother_kg",
+    "BW_kg",
     # newborn milk related
     "Days_Newborn_Fed_Milk",
     "Days_Newborn_Fed_OnlyMilk",
