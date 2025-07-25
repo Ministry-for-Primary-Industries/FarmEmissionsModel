@@ -16,13 +16,21 @@ Dairy,Milking Cows Mature
 Dairy,Dairy Bulls R1
 Dairy,Dairy Bulls R2
 Dairy,Dairy Bulls Mature
-Deer,Hinds R1
-Deer,Hinds R2
-Deer,Hinds Mature
-Deer,Stags R1
-Deer,Stags R2
-Deer,Stags R3
-Deer,Stags Mature
+Deer,Velvet Hinds R1
+Deer,Velvet Hinds R2
+Deer,Velvet Hinds Mature
+Deer,Velvet Stags R1
+Deer,Velvet Stags R2
+Deer,Velvet Stags R3
+Deer,Velvet Stags Mature
+Deer,Venison Hinds R1
+Deer,Venison Hinds Breeding R2
+Deer,Venison Hinds Mature
+Deer,Venison Hinds Non Breeding R2
+Deer,Venison Stags R1
+Deer,Venison Stags R2
+Deer,Venison Stags R3
+Deer,Venison Stags Mature
 Sheep,Lambs
 Sheep,Ewe Hoggets
 Sheep,Ram and Wether Hoggets
