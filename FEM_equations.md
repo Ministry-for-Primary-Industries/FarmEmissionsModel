@@ -576,7 +576,7 @@ eq_fem3_ME_c <- function(
     
       E_t = 10 ** (3.322 - 4.979*exp(-6.43e-03 * Days_Pregnant))
       
-      ME_c_day = 0.025 * BW_kg * (
+      ME_c_day = 0.25 * BW_kg * (
         ((0.07372 * E_t) * exp(-6.43e-03 * Days_Pregnant)) / k_c
       )
       
