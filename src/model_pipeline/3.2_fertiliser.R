@@ -22,10 +22,20 @@ run_SynthFert_module <- function(Fertiliser_df) {
         N_Urea_Coated_t = N_Urea_Coated_t,
         N_NonUrea_SyntheticFert_t = N_NonUrea_SyntheticFert_t
       ),
-      # CO2 Emissions (Urea only)
+      
+      N2O_NonDairyOrganicFert_Direct_t = eq_fem8_N2O_NonDairyOrganicFert_Direct_t(
+        N_NonDairyOrganicFert_Direct_t = N_OrganicFert_t
+      ),
+      
+      # CO2 Emissions
       CO2_SynthFert_t = eq_fem8_CO2_SynthFert_t(
         N_Urea_Uncoated_t = N_Urea_Uncoated_t,
         N_Urea_Coated_t = N_Urea_Coated_t
+      ),
+      
+      CO2_LimeDol_t = eq_fem8_CO2_LimeDol_t(
+        Lime_t = Lime_t,
+        Dolomite_t = Dolomite_t
       )
     )
   
