@@ -1193,7 +1193,8 @@ eq_fem6_CH4_Enteric_kg <- function(
   StockClass, # StockClass variation
   DMI_kg, # calculated in system
   ME_Diet, # calculated in system
-  MonthDays
+  MonthDays,
+  BV_aCH4
   ) {
   
   # ref FEM equations 6.1 - 6.4
@@ -1205,7 +1206,7 @@ eq_fem6_CH4_Enteric_kg <- function(
   
   feq_cattle_deer <- function(MCR) {
     
-    CH4_Enteric_kg <- DMI_kg * ( MCR / 1000 )
+    CH4_Enteric_kg <- DMI_kg * ( MCR / 1000 ) * (1 + BV_aCH4)
     
     return(CH4_Enteric_kg)
     
@@ -1215,7 +1216,7 @@ eq_fem6_CH4_Enteric_kg <- function(
     
     DMI_kg_day <- DMI_kg / MonthDays
     
-    CH4_Enteric_kg_day <- (11.705 / 1000) * exp(0.05 * ME_Diet) * (DMI_kg_day)^0.734
+    CH4_Enteric_kg_day <- (11.705 / 1000) * exp(0.05 * ME_Diet) * ((DMI_kg_day)^0.734) * (1 + BV_aCH4)
     
     CH4_Enteric_kg <- CH4_Enteric_kg_day * MonthDays
     
@@ -1227,7 +1228,7 @@ eq_fem6_CH4_Enteric_kg <- function(
     
     DMI_kg_day <- DMI_kg / MonthDays
     
-    CH4_Enteric_kg_day <- (21.977 / 1000) * DMI_kg_day^0.765
+    CH4_Enteric_kg_day <- (21.977 / 1000) * (DMI_kg_day^0.765) * (1 + BV_aCH4)
     
     CH4_Enteric_kg <- CH4_Enteric_kg_day * MonthDays
     
