@@ -484,6 +484,7 @@ livestock_precalc_df <- StockRec_monthly_df %>%
     "SRW_kg",
     "LW_kg",
     "LWG_kg",
+    "BW_kg",
     # other production
     "Velvet_Yield_kg",
     "Wool_Yield_kg",
