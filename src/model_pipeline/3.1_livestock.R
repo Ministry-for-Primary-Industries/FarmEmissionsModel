@@ -121,7 +121,8 @@ run_livestock_module <- function(
         Days_Pregnant = Days_Pregnant,
         Trimester_Factor = Trimester_Factor,
         Reproduction_Rate = Reproduction_Rate,
-        MonthDays = MonthDays
+        MonthDays = MonthDays,
+        BW_kg = BW_kg
       ),
       
       ME_Z1 = eq_fem3_ME_Z1(
