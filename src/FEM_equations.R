@@ -394,12 +394,13 @@ eq_fem3_ME_c <- function(
     Trimester_Factor, # assumedParameters lookup
     Reproduction_Rate, # assumedParameters lookup
     k_c=0.133, # set by AIM
-    MonthDays
+    MonthDays,
+    BW_kg # assumedParameters lookup
 ) {
   
     # ref FEM equations 3.25 - 3.32
   
-    feq_cattle <- function() {
+    feq_dairy <- function() {
       
       BW_kg = 0.095 * LW_kg
     
@@ -413,6 +414,20 @@ eq_fem3_ME_c <- function(
       
       return(ME_c)
     
+    }
+    
+    feq_beef <- function() {
+      
+      E_t = 10 ** (151.665 - 151.64 * exp(-5.76e-05 * Days_Pregnant))
+      
+      ME_c_day = 0.025 * BW_kg * (
+        ((0.0201 * E_t) * exp(-5.76e-05 * Days_Pregnant)) / k_c
+      )
+      
+      ME_c = ME_c_day * MonthDays * Reproduction_Rate
+      
+      return(ME_c)
+      
     }
   
     feq_deer <- function() {
@@ -431,7 +446,7 @@ eq_fem3_ME_c <- function(
     
       E_t = 10 ** (3.322 - 4.979*exp(-6.43e-03 * Days_Pregnant))
       
-      ME_c_day = 0.025 * BW_kg * (
+      ME_c_day = 0.25 * BW_kg * (
         ((0.07372 * E_t) * exp(-6.43e-03 * Days_Pregnant)) / k_c
       )
       
@@ -443,7 +458,8 @@ eq_fem3_ME_c <- function(
       
     
     case_when(
-      Sector %in% c("Beef", "Dairy") & Days_Pregnant > 0 ~ feq_cattle(),
+      Sector == "Dairy" & Days_Pregnant > 0 ~ feq_dairy(),
+      Sector == "Beef" & Days_Pregnant > 0 ~ feq_beef(),
       Sector == "Deer" & Trimester_Factor > 0 ~ feq_deer(),
       Sector == "Sheep" & Days_Pregnant > 0 ~ feq_sheep(),
       TRUE ~ 0 # zero when not pregnant
