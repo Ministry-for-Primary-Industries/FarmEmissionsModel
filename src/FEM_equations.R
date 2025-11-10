@@ -1289,50 +1289,50 @@ eq_fem7_N2O_Effluent_Lagoon_Volat_kg <- function(
 }
 
 
-eq_fem7_N_OrganicFert_kg <- function(
+eq_fem7_N_Effluent_Spread_kg <- function(
   N_Excretion_kg, # calculated in system
   DungUrine_to_Lagoon_pct # calculated in system
 ) {
   
   # ref FEM equation 7.13
   
-  N_OrganicFert_kg = N_Excretion_kg * DungUrine_to_Lagoon_pct
+  N_Effluent_Spread_kg = N_Excretion_kg * DungUrine_to_Lagoon_pct
   
-  return(N_OrganicFert_kg)
+  return(N_Effluent_Spread_kg)
   
 }
 
-eq_fem7_N2O_OrganicFert_Direct_kg <- function(
-  N_OrganicFert_kg, # calculated in system
+eq_fem7_N2O_Effluent_Spread_Direct_kg <- function(
+  N_Effluent_Spread_kg, # calculated in system
   frac_gasMS_AL=0.35, # set by AIM
   EF_1_Dairy=0.0025 # set by AIM
 ) {
   
   # ref FEM equation 7.14
   
-  N2O_OrganicFert_Direct_kg = 44/28 * ( N_OrganicFert_kg * (1 - frac_gasMS_AL) * EF_1_Dairy )
+  N2O_Effluent_Spread_Direct_kg = 44/28 * ( N_Effluent_Spread_kg * (1 - frac_gasMS_AL) * EF_1_Dairy )
   
-  return(N2O_OrganicFert_Direct_kg)
+  return(N2O_Effluent_Spread_Direct_kg)
   
 }
 
-eq_fem7_N2O_OrganicFert_Leach_kg <- function(
-  N_OrganicFert_kg, # calculated in system
+eq_fem7_N2O_Effluent_Spread_Leach_kg <- function(
+  N_Effluent_Spread_kg, # calculated in system
   frac_gasMS_AL=0.35, # set by AIM
-  frac_leach_organicfert=0.08, # set by AIM
+  frac_leach_eff_spread=0.08, # set by AIM
   EF_5=0.0075 # set by AIM
 ) {
   
   # ref FEM equation 7.15
   
-  N2O_OrganicFert_Leach_kg = 44/28 * ( N_OrganicFert_kg * (1 - frac_gasMS_AL) * frac_leach_organicfert * EF_5 )
+  N2O_Effluent_Spread_Leach_kg = 44/28 * ( N_Effluent_Spread_kg * (1 - frac_gasMS_AL) * frac_leach_eff_spread * EF_5 )
   
-  return(N2O_OrganicFert_Leach_kg)
+  return(N2O_Effluent_Spread_Leach_kg)
   
 }
 
-eq_fem7_N2O_OrganicFert_Volat_kg <- function(
-  N_OrganicFert_kg, # calculated in system
+eq_fem7_N2O_Effluent_Spread_Volat_kg <- function(
+  N_Effluent_Spread_kg, # calculated in system
   frac_gasMS_AL=0.35, # set by AIM
   frac_NOx_and_NH3=0.1, # set by AIM
   EF_4=0.01 # set by AIM
@@ -1340,9 +1340,9 @@ eq_fem7_N2O_OrganicFert_Volat_kg <- function(
   
   # ref FEM equation 7.16
   
-  N2O_OrganicFert_Volat_kg = 44/28 * ( N_OrganicFert_kg * (1 - frac_gasMS_AL) * frac_NOx_and_NH3 * EF_4 )
+  N2O_Effluent_Spread_Volat_kg = 44/28 * ( N_Effluent_Spread_kg * (1 - frac_gasMS_AL) * frac_NOx_and_NH3 * EF_4 )
   
-  return(N2O_OrganicFert_Volat_kg)
+  return(N2O_Effluent_Spread_Volat_kg)
   
 }
 
@@ -1423,32 +1423,42 @@ eq_fem8_CO2_SynthFert_t <- function(
 }
 
 
-eq_fem8_N2O_NonDairyOrganicFert_Direct_t <- function(
-    N_NonDairyOrganicFert_Direct_t, # farm data input
-    EF_1_NonDairyOrganicFert = 0.006, # set by AIM
+eq_fem8_N2O_OrganicFert_Direct_t <- function(
+    N_OrganicFert_t, # farm data input
+    EF_1_OrganicFert = 0.006, # set by AIM
     corr_N2O = 44 / 28 # set by AIM
     ) {
   
-  N2O_NonDairyOrganicFert_Direct_t <- corr_N2O * N_NonDairyOrganicFert_Direct_t * EF_1_NonDairyOrganicFert
+  N2O_OrganicFert_Direct_t <- corr_N2O * N_OrganicFert_t * EF_1_OrganicFert
 
-  return(N2O_NonDairyOrganicFert_Direct_t)
+  return(N2O_OrganicFert_Direct_t)
 
 }
 
 
-eq_fem8_CO2_LimeDol_t <- function(
+eq_fem8_CO2_Lime_t <- function(
     Lime_t, # farm data input
-    Dolomite_t, # farm data input
     Lime_pct = 0.82, # set by AIM
-    Dolomite_pct = 1, # set by AIM
     EF_Lime = 0.12, # set by AIM
+    corr_CO2 = 44 / 12 # set by AIM
+    ) {
+  
+  CO2_Lime_t <- Lime_t * Lime_pct * EF_Lime * corr_CO2
+
+  return(CO2_Lime_t)
+
+}
+
+eq_fem8_CO2_Dolomite_t <- function(
+    Dolomite_t, # farm data input
+    Dolomite_pct = 1, # set by AIM
     EF_Dolomite = 0.13, # set by AIM
     corr_CO2 = 44 / 12 # set by AIM
     ) {
   
-  CO2_LimeDol_t <- (Lime_t * Lime_pct * EF_Lime * corr_CO2) + (Dolomite_t * Dolomite_pct * EF_Dolomite * corr_CO2)
+  CO2_Dolomite_t <- Dolomite_t * Dolomite_pct * EF_Dolomite * corr_CO2
 
-  return(CO2_LimeDol_t)
+  return(CO2_Dolomite_t)
 
 }
 
