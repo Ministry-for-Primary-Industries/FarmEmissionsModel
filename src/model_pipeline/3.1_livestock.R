@@ -360,16 +360,16 @@ run_livestock_module <- function(
       
       # calculate (milking cow) effluent spread on pasture as organic fert N2O:
       
-      N_OrganicFert_kg = eq_fem7_N_OrganicFert_kg(
+      N_Effluent_Spread_kg = eq_fem7_N_Effluent_Spread_kg(
         N_Excretion_kg = N_Excretion_kg,
         DungUrine_to_Lagoon_pct = DungUrine_to_Lagoon_pct
       ),
       
-      N2O_OrganicFert_Direct_kg = eq_fem7_N2O_OrganicFert_Direct_kg(N_OrganicFert_kg = N_OrganicFert_kg),
+      N2O_Effluent_Spread_Direct_kg = eq_fem7_N2O_Effluent_Spread_Direct_kg(N_Effluent_Spread_kg = N_Effluent_Spread_kg),
       
-      N2O_OrganicFert_Leach_kg = eq_fem7_N2O_OrganicFert_Leach_kg(N_OrganicFert_kg = N_OrganicFert_kg),
+      N2O_Effluent_Spread_Leach_kg = eq_fem7_N2O_Effluent_Spread_Leach_kg(N_Effluent_Spread_kg = N_Effluent_Spread_kg),
       
-      N2O_OrganicFert_Volat_kg = eq_fem7_N2O_OrganicFert_Volat_kg(N_OrganicFert_kg = N_OrganicFert_kg)
+      N2O_Effluent_Spread_Volat_kg = eq_fem7_N2O_Effluent_Spread_Volat_kg(N_Effluent_Spread_kg = N_Effluent_Spread_kg)
     )
   
   return(livestock_calc_df2)
