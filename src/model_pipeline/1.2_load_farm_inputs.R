@@ -108,7 +108,10 @@ input_cols_type_list <- list(
     Period_End = "Date",
     N_Urea_Coated_t = "numeric",
     N_Urea_Uncoated_t = "numeric",
-    N_NonUrea_SyntheticFert_t = "numeric"
+    N_NonUrea_SyntheticFert_t = "numeric",
+    N_OrganicFert_t = "numeric",
+    Lime_t = "numeric",
+    Dolomite_t = "numeric"
   ),
   BreedingValues = list(
     Entity_ID = "character",
