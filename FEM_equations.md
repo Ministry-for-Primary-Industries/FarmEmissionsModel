@@ -1740,12 +1740,12 @@ eq_fem8_N2O_OrganicFert_Direct_t <- function(
 ``` r
 eq_fem8_CO2_Lime_t <- function(
     Lime_t, # farm data input
-    Lime_pct = 0.82, # set by AIM
+    Lime_CaCO3_pct = 0.82, # set by AIM
     EF_Lime = 0.12, # set by AIM
     corr_CO2 = 44 / 12 # set by AIM
     ) {
   
-  CO2_Lime_t <- Lime_t * Lime_pct * EF_Lime * corr_CO2
+  CO2_Lime_t <- Lime_t * Lime_CaCO3_pct * EF_Lime * corr_CO2
 
   return(CO2_Lime_t)
 
@@ -1753,12 +1753,11 @@ eq_fem8_CO2_Lime_t <- function(
 
 eq_fem8_CO2_Dolomite_t <- function(
     Dolomite_t, # farm data input
-    Dolomite_pct = 1, # set by AIM
     EF_Dolomite = 0.13, # set by AIM
     corr_CO2 = 44 / 12 # set by AIM
     ) {
   
-  CO2_Dolomite_t <- Dolomite_t * Dolomite_pct * EF_Dolomite * corr_CO2
+  CO2_Dolomite_t <- Dolomite_t * EF_Dolomite * corr_CO2
 
   return(CO2_Dolomite_t)
 
