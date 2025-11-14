@@ -273,7 +273,8 @@ run_livestock_module <- function(
       StockClass = StockClass,
       DMI_kg = DMI_kg,
       ME_Diet = ME_Diet,
-      MonthDays = MonthDays
+      MonthDays = MonthDays,
+      BV_aCH4 = BV_aCH4
     )
   ) %>% 
   

@@ -35,6 +35,7 @@ Fertiliser_df <- parse_Entity__PeriodEnd(Fertiliser_df, retain_Period_End = FALS
 Dairy_Production_df <- parse_Entity__PeriodEnd(Dairy_Production_df, retain_Period_End = FALSE)
 SuppFeed_DryMatter_df <- parse_Entity__PeriodEnd(SuppFeed_DryMatter_df, retain_Period_End = FALSE)
 SuppFeed_SectoralAllocation_df <- parse_Entity__PeriodEnd(SuppFeed_SectoralAllocation_df, retain_Period_End = FALSE)
+BreedingValues_df <- parse_Entity__PeriodEnd(BreedingValues_df, retain_Period_End = FALSE)
 
 # general prep of FarmYear_df
 
@@ -463,6 +464,13 @@ livestock_precalc_df <- StockRec_monthly_df %>%
       StockClass == "Milking Cows Mature" ~ 0,
       TRUE ~ N_Urine_Steep_pct
     )
+  ) %>% 
+  left_join(
+    BreedingValues_df,
+    by = c("Entity__PeriodEnd", "StockClass")
+  ) %>% 
+  mutate(
+    BV_aCH4 = replace_na(BV_aCH4, 0)
   ) %>% # final select for re-ordering of cols
   select(
     # core
@@ -513,5 +521,7 @@ livestock_precalc_df <- StockRec_monthly_df %>%
     # dairy production
     "Milk_Yield_Herd_L",
     "Milk_Fat_Herd_kg",
-    "Milk_Protein_Herd_kg"
+    "Milk_Protein_Herd_kg",
+    # mitigation technologies
+    "BV_aCH4"
   )
