@@ -112,6 +112,12 @@ input_cols_type_list <- list(
     N_OrganicFert_t = "numeric",
     Lime_t = "numeric",
     Dolomite_t = "numeric"
+  ),
+  BreedingValues = list(
+    Entity_ID = "character",
+    Period_End = "Date",
+    StockClass = "character",
+    BV_aCH4 = "numeric"
   )
 )
 
@@ -214,6 +220,12 @@ if (param_input_data_format == "csv") {
                                         input_cols_type_list$Fertiliser,
                                         "Fertiliser")
   
+  BreedingValues_df <- read_and_convert_csv(
+    "BreedingValues.csv",
+    input_cols_type_list$BreedingValues,
+    "BreedingValues"
+  )
+  
 } else if (param_input_data_format == "json") {
   # define JSON file name
   json_file <- file.path(param_input_path, "Farm_Data.json")
@@ -286,5 +298,11 @@ if (param_input_data_format == "csv") {
   Fertiliser_df <- convert_json_df(combined_data$Fertiliser,
                                    input_cols_type_list$Fertiliser,
                                    "Fertiliser")
+  
+  BreedingValues_df <- convert_json_df(
+    combined_data$BreedingValues,
+    input_cols_type_list$BreedingValues,
+    "BreedingValues"
+  )
   
 }
