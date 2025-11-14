@@ -36,6 +36,7 @@ Dairy_Production_df <- parse_Entity__PeriodEnd(Dairy_Production_df, retain_Perio
 SuppFeed_DryMatter_df <- parse_Entity__PeriodEnd(SuppFeed_DryMatter_df, retain_Period_End = FALSE)
 SuppFeed_SectoralAllocation_df <- parse_Entity__PeriodEnd(SuppFeed_SectoralAllocation_df, retain_Period_End = FALSE)
 BreedingValues_df <- parse_Entity__PeriodEnd(BreedingValues_df, retain_Period_End = FALSE)
+Breed_Allocation_df <- parse_Entity__PeriodEnd(Breed_Allocation_df, retain_Period_End = FALSE)
 
 # general prep of FarmYear_df
 
@@ -71,6 +72,17 @@ FarmYear_df <- FarmYear_df %>%
 
 Dairy_Production_df <- Dairy_Production_df %>%
   mutate(StockClass = "Milking Cows Mature")
+
+# prep Breed_Allocation_df
+
+Breed_Allocation_df <- Breed_Allocation_df %>% 
+  inner_join(lookup_breed_lw_factor_df, by = "Breed") %>% 
+  mutate(Breed_LW_factor_mean = Breed_Allocation * Breed_LW_factor) %>% 
+  group_by(Entity__PeriodEnd, Sector) %>% 
+  summarise(Breed_LW_factor_mean = sum(Breed_LW_factor_mean)) %>% 
+  cross_join(tibble(StockClass = c("Dairy Heifers R1",
+                                       "Dairy Heifers R2",
+                                       "Milking Cows Mature")))
 
 # Create StockLedger
 
@@ -471,6 +483,15 @@ livestock_precalc_df <- StockRec_monthly_df %>%
   ) %>% 
   mutate(
     BV_aCH4 = replace_na(BV_aCH4, 0)
+  ) %>% 
+  left_join(
+    Breed_Allocation_df,
+    by = c("Entity__PeriodEnd", "Sector", "StockClass")
+  ) %>% 
+  mutate(
+    Breed_LW_factor_mean = ifelse(is.na(Breed_LW_factor_mean), 1, Breed_LW_factor_mean),
+    LW_kg = LW_kg * Breed_LW_factor_mean,
+    LWG_kg = LWG_kg * Breed_LW_factor_mean
   ) %>% # final select for re-ordering of cols
   select(
     # core

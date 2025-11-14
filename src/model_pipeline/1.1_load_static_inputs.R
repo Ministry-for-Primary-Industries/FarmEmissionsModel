@@ -123,3 +123,16 @@ lookup_location_mapping_df <- read_csv(
     Production_Region = col_character()
   )
 )
+
+lookup_breed_lw_factor_df <- read_csv(
+  file.path(
+    "src",
+    "lookups",
+    "breed_lw_factor.csv"
+  ),
+  col_select = c("Breed", "Breed_LW_factor"),
+  col_types = list(
+    Breed = col_character(),
+    Breed_LW_factor = col_double()
+  )
+)
