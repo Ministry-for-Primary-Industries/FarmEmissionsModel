@@ -493,7 +493,9 @@ livestock_precalc_df <- StockRec_monthly_df %>%
   mutate(
     Breed_LW_factor_mean = replace_na(Breed_LW_factor_mean, 1),
     LW_kg = LW_kg * Breed_LW_factor_mean,
-    LWG_kg = LWG_kg * Breed_LW_factor_mean
+    LWG_kg = LWG_kg * Breed_LW_factor_mean,
+    FWG_kg = FWG_kg * Breed_LW_factor_mean,
+    BW_kg = BW_kg * Breed_LW_factor_mean
   ) %>% # final select for re-ordering of cols
   select(
     # core

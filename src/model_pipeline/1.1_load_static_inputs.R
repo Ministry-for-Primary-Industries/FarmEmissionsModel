@@ -128,7 +128,7 @@ lookup_breed_lw_factor_df <- read_csv(
   file.path(
     "src",
     "lookups",
-    "breed_lw_factor.csv"
+    "lookup_breed_lw_factors.csv"
   ),
   col_select = c("Breed", "Breed_LW_factor"),
   col_types = list(
