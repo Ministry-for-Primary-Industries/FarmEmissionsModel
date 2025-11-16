@@ -75,14 +75,16 @@ Dairy_Production_df <- Dairy_Production_df %>%
 
 # prep Breed_Allocation_df
 
-Breed_Allocation_df <- Breed_Allocation_df %>% 
-  inner_join(lookup_breed_lw_factor_df, by = "Breed") %>% 
-  mutate(Breed_LW_factor_mean = Breed_Allocation * Breed_LW_factor) %>% 
-  group_by(Entity__PeriodEnd, Sector) %>% 
-  summarise(Breed_LW_factor_mean = sum(Breed_LW_factor_mean)) %>% 
-  cross_join(tibble(StockClass = c("Dairy Heifers R1",
-                                       "Dairy Heifers R2",
-                                       "Milking Cows Mature")))
+Breed_Allocation_df <- Breed_Allocation_df %>%
+  inner_join(lookup_breed_lw_factor_df, by = "Breed") %>%
+  mutate(Breed_LW_factor_mean = Breed_Allocation * Breed_LW_factor) %>%
+  summarise(
+    .by = c(Entity__PeriodEnd, Sector),
+    Breed_LW_factor_mean = sum(Breed_LW_factor_mean)
+  ) %>%
+  cross_join(tibble(
+    StockClass = c("Dairy Heifers R1", "Dairy Heifers R2", "Milking Cows Mature")
+  ))
 
 # Create StockLedger
 
@@ -489,7 +491,7 @@ livestock_precalc_df <- StockRec_monthly_df %>%
     by = c("Entity__PeriodEnd", "Sector", "StockClass")
   ) %>% 
   mutate(
-    Breed_LW_factor_mean = ifelse(is.na(Breed_LW_factor_mean), 1, Breed_LW_factor_mean),
+    Breed_LW_factor_mean = replace_na(Breed_LW_factor_mean, 1),
     LW_kg = LW_kg * Breed_LW_factor_mean,
     LWG_kg = LWG_kg * Breed_LW_factor_mean
   ) %>% # final select for re-ordering of cols
@@ -513,6 +515,7 @@ livestock_precalc_df <- StockRec_monthly_df %>%
     "SRW_kg",
     "LW_kg",
     "LWG_kg",
+    "Breed_LW_factor_mean",
     "BW_kg",
     # other production
     "Velvet_Yield_kg",
