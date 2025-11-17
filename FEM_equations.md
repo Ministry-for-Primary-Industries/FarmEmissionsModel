@@ -1526,14 +1526,15 @@ eq_fem7_CH4_Effluent_Lagoon_kg <- function(
     FDM_kg, # calculated in system
     Ash_pct=0.08, # set by AIM
     B0=0.24, # set by AIM
-    MCF_AL # set by AIM
+    MCF_AL, # set by AIM
+    EcoPond_Efficacy_pct # calculated in system
 ) {
   
   # ref FEM equation 7.11
   
    feq_milkingDairyCows <- function() {
      
-     CH4_Effluent_Lagoon_kg <- FDM_kg * (1 - Ash_pct) * B0 * 0.67 * MCF_AL * DungUrine_to_Lagoon_pct
+     CH4_Effluent_Lagoon_kg <- FDM_kg * (1 - Ash_pct) * B0 * 0.67 * MCF_AL * DungUrine_to_Lagoon_pct * (1 - EcoPond_Efficacy_pct)
      
      return(CH4_Effluent_Lagoon_kg)
      

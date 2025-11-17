@@ -112,6 +112,11 @@ input_cols_type_list <- list(
     Dairy_Shed_hr = "numeric",
     Other_Structures_hr = "numeric"
   ),
+  EcoPond_Use = list(
+    Entity_ID = "character",
+    Period_End = "Date",
+    Treatment_Date = "Date"
+  ),
   Fertiliser = list(
     Entity_ID = "character",
     Period_End = "Date",
@@ -238,6 +243,11 @@ if (param_input_data_format == "csv") {
     "Effluent_Management"
   )
   
+  EcoPond_Use_df <- read_and_convert_csv(
+    "EcoPond_Use.csv", 
+    input_cols_type_list$EcoPond_Use, 
+    "EcoPond_Use")
+  
   Fertiliser_df <- read_and_convert_csv("Fertiliser.csv",
                                         input_cols_type_list$Fertiliser,
                                         "Fertiliser")
@@ -328,6 +338,11 @@ if (param_input_data_format == "csv") {
     input_cols_type_list$Effluent_Management,
     "Effluent_Management"
   )
+  
+  EcoPond_Use_df <- convert_json_df(
+    combined_data$EcoPond_Use,
+    input_cols_type_list$EcoPond_Use,
+    "EcoPond_Use")
   
   Fertiliser_df <- convert_json_df(combined_data$Fertiliser,
                                    input_cols_type_list$Fertiliser,

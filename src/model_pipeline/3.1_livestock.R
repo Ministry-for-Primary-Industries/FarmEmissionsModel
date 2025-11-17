@@ -363,7 +363,8 @@ run_livestock_module <- function(
         StockClass = StockClass,
         DungUrine_to_Lagoon_pct = DungUrine_to_Lagoon_pct,
         FDM_kg = FDM_kg,
-        MCF_AL = MCF_AL
+        MCF_AL = MCF_AL,
+        EcoPond_Efficacy_pct = EcoPond_Efficacy_pct
       ),
       
       N2O_Effluent_Lagoon_Volat_kg = eq_fem7_N2O_Effluent_Lagoon_Volat_kg(

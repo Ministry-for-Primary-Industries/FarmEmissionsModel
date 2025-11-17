@@ -34,6 +34,7 @@ StockRec_OpeningBalance_df <- parse_Entity__PeriodEnd(StockRec_OpeningBalance_df
 Fertiliser_df <- parse_Entity__PeriodEnd(Fertiliser_df, retain_Period_End = FALSE)
 Dairy_Production_df <- parse_Entity__PeriodEnd(Dairy_Production_df, retain_Period_End = FALSE)
 Effluent_Management_df <- parse_Entity__PeriodEnd(Effluent_Management_df, retain_Period_End = FALSE)
+EcoPond_Use_df <- parse_Entity__PeriodEnd(EcoPond_Use_df, retain_Period_End = FALSE)
 SuppFeed_DryMatter_df <- parse_Entity__PeriodEnd(SuppFeed_DryMatter_df, retain_Period_End = FALSE)
 SuppFeed_SectoralAllocation_df <- parse_Entity__PeriodEnd(SuppFeed_SectoralAllocation_df, retain_Period_End = FALSE)
 BreedingValues_df <- parse_Entity__PeriodEnd(BreedingValues_df, retain_Period_End = FALSE)
@@ -83,6 +84,26 @@ Dairy_Production_df <- Dairy_Production_df %>%
 Effluent_Management_df <- Effluent_Management_df %>%
   mutate(DungUrine_to_Effluent_pct = (Dairy_Shed_hr + Other_Structures_hr) / 24,
          StockClass = "Milking Cows Mature")
+
+# prep of EcoPond_Use_df
+
+EcoPond_Use_df <- EcoPond_Use_df %>% 
+  rowwise() %>% 
+  # create date sequence
+  mutate(Dates = list(seq(Treatment_Date, 
+                      Treatment_Date + 42, ## EcoPond suppression period of 6 weeks set by AIM
+                      by = "days"))) %>% 
+  unnest(Dates) %>% 
+  # remove overlaps
+  summarise(.by = c(Entity__PeriodEnd, Dates),
+            Treatment_Date = last(Treatment_Date)) %>% 
+  # get prop of the month with effective dose
+  mutate(Month = month(Dates),
+         Year = year(Dates),
+         YearMonth = ymd(paste(Year, Month, "1", sep = "-"))) %>% 
+  summarise(.by = c(Entity__PeriodEnd, YearMonth),
+            Days_EcoPond = n()) %>% 
+  mutate(Days_EcoPond_pct = Days_EcoPond / days_in_month(YearMonth))
 
 # prep Breed_Allocation_df
 
@@ -493,7 +514,13 @@ livestock_precalc_df <- StockRec_monthly_df %>%
     by = c("Entity__PeriodEnd", "Month", "StockClass")
   ) %>% # remove Solid_Separation_pct values for other stock classes
   mutate(
-    Solid_Separation_pct = ifelse(StockClass == "Milking Cows Mature", Solid_Separation_pct, NA)
+    Solid_Separation_pct = ifelse(StockClass == "Milking Cows Mature" & Milk_Yield_Herd_L > 0, Solid_Separation_pct, NA)
+  ) %>% 
+  left_join(EcoPond_Use_df,
+            by = c("Entity__PeriodEnd", "YearMonth")
+  ) %>% 
+  mutate(EcoPond_Efficacy_pct = Days_EcoPond_pct * 0.92, # EcoPond efficacy of 92% set by AIM
+         EcoPond_Efficacy_pct = ifelse(StockClass == "Milking Cows Mature" & Milk_Yield_Herd_L > 0, EcoPond_Efficacy_pct, NA)
   ) %>% # force slope to flat for mature milking cows (for edge case farms where Primary_Farm_Class is not Dairy)
   mutate(
     N_Urine_Flattish_pct = case_when(
@@ -577,6 +604,7 @@ livestock_precalc_df <- StockRec_monthly_df %>%
     # effluent management
     "DungUrine_to_Effluent_pct",
     "Solid_Separation_pct",
+    "EcoPond_Efficacy_pct",
     "MCF_AL",
     "MCF_SS",
     # mitigation technologies
