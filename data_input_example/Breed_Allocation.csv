@@ -1,0 +1,5 @@
+Entity_ID,Period_End,Sector,Breed,Breed_Allocation
+10002,2023-05-31,Dairy,Holstein-Friesian,0.25
+10002,2023-05-31,Dairy,Jersey,0.25
+10002,2023-05-31,Dairy,Holstein-Friesian Jersey Cross,0.4
+10002,2023-05-31,Dairy,Other,0.1
