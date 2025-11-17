@@ -118,6 +118,13 @@ input_cols_type_list <- list(
     Period_End = "Date",
     StockClass = "character",
     BV_aCH4 = "numeric"
+  ),
+  Breed_Allocation = list(
+    Entity_ID = "character",
+    Period_End = "Date",
+    Sector = "character",
+    Breed = "character",
+    Breed_Allocation = "numeric"
   )
 )
 
@@ -226,6 +233,12 @@ if (param_input_data_format == "csv") {
     "BreedingValues"
   )
   
+  Breed_Allocation_df <- read_and_convert_csv(
+    "Breed_Allocation.csv",
+    input_cols_type_list$Breed_Allocation,
+    "Breed_Allocation"
+  )
+  
 } else if (param_input_data_format == "json") {
   # define JSON file name
   json_file <- file.path(param_input_path, "Farm_Data.json")
@@ -303,6 +316,12 @@ if (param_input_data_format == "csv") {
     combined_data$BreedingValues,
     input_cols_type_list$BreedingValues,
     "BreedingValues"
+  )
+  
+  Breed_Allocation_df <- convert_json_df(
+    combined_data$Breed_Allocation,
+    input_cols_type_list$Breed_Allocation,
+    "Breed_Allocation"
   )
   
 }
