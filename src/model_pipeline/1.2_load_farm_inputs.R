@@ -7,7 +7,8 @@ typeset_input_cols <- function(col_old, to_type, col_name, df_name) {
     character = as.character(col_old),
     integer = as.numeric(col_old),
     numeric = as.numeric(col_old),
-    Date = as.Date(col_old)
+    Date = as.Date(col_old),
+    logical = as.logical(col_old)
   )
   
   # identify where NAs were introduced during conversion (excluding original NAs)
@@ -59,7 +60,8 @@ input_cols_type_list <- list(
     Period_Start = "Date",
     Period_End = "Date",
     Territory = "character",
-    Primary_Farm_Class = "character"
+    Primary_Farm_Class = "character",
+    Solid_Separator_Use = "logical"
   ),
   StockRec_BirthsDeaths = list(
     Entity_ID = "character",
@@ -102,6 +104,13 @@ input_cols_type_list <- list(
     Milk_Yield_Herd_L = "numeric",
     Milk_Fat_Herd_kg = "numeric",
     Milk_Protein_Herd_kg = "numeric"
+  ),
+  Effluent_Management = list(
+    Entity_ID = "character",
+    Period_End = "Date",
+    Month = "integer",
+    Dairy_Shed_hr = "numeric",
+    Other_Structures_hr = "numeric"
   ),
   Fertiliser = list(
     Entity_ID = "character",
@@ -223,6 +232,12 @@ if (param_input_data_format == "csv") {
     "Dairy_Production"
   )
   
+  Effluent_Management_df <- read_and_convert_csv(
+    "Effluent_Management.csv",
+    input_cols_type_list$Effluent_Management,
+    "Effluent_Management"
+  )
+  
   Fertiliser_df <- read_and_convert_csv("Fertiliser.csv",
                                         input_cols_type_list$Fertiliser,
                                         "Fertiliser")
@@ -306,6 +321,12 @@ if (param_input_data_format == "csv") {
     combined_data$Dairy_Production,
     input_cols_type_list$Dairy_Production,
     "Dairy_Production"
+  )
+  
+  Effluent_Management_df <- convert_json_df(
+    combined_data$Effluent_Management,
+    input_cols_type_list$Effluent_Management,
+    "Effluent_Management"
   )
   
   Fertiliser_df <- convert_json_df(combined_data$Fertiliser,

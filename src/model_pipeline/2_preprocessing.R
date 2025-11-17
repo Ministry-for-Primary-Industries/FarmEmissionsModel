@@ -33,6 +33,7 @@ StockRec_OpeningBalance_df <- parse_Entity__PeriodEnd(StockRec_OpeningBalance_df
 
 Fertiliser_df <- parse_Entity__PeriodEnd(Fertiliser_df, retain_Period_End = FALSE)
 Dairy_Production_df <- parse_Entity__PeriodEnd(Dairy_Production_df, retain_Period_End = FALSE)
+Effluent_Management_df <- parse_Entity__PeriodEnd(Effluent_Management_df, retain_Period_End = FALSE)
 SuppFeed_DryMatter_df <- parse_Entity__PeriodEnd(SuppFeed_DryMatter_df, retain_Period_End = FALSE)
 SuppFeed_SectoralAllocation_df <- parse_Entity__PeriodEnd(SuppFeed_SectoralAllocation_df, retain_Period_End = FALSE)
 BreedingValues_df <- parse_Entity__PeriodEnd(BreedingValues_df, retain_Period_End = FALSE)
@@ -65,13 +66,23 @@ FarmYear_df <- FarmYear_df %>%
     N_Urine_Steep_pct = case_when(
       Primary_Farm_Class %in% c("Dairy", "Cropping", "Orchard", "Vineyard") ~ 0,
       TRUE ~ N_Urine_Steep_pct
-    )
-  )
+    ),
+    Solid_Separation_pct = ifelse(Solid_Separator_Use, 0.95, 0)  # 95% of total phosphorus (and associated solids) partitions to the solid fraction, following Luo & Longhurst (2008) and assumed by Overseer.
+  ) %>% 
+  # add lookup regional effluent MCF
+  inner_join(lookup_regional_effluent_mcf_df,
+             by = "Region")
 
 # prep Dairy_Production_df
 
 Dairy_Production_df <- Dairy_Production_df %>%
   mutate(StockClass = "Milking Cows Mature")
+
+# prep of Effluent_Management_df
+
+Effluent_Management_df <- Effluent_Management_df %>%
+  mutate(DungUrine_to_Effluent_pct = (Dairy_Shed_hr + Other_Structures_hr) / 24,
+         StockClass = "Milking Cows Mature")
 
 # prep Breed_Allocation_df
 
@@ -412,7 +423,10 @@ livestock_precalc_df <- StockRec_monthly_df %>%
       Pasture_Region,
       Primary_Farm_Class,
       N_Urine_Flattish_pct,
-      N_Urine_Steep_pct
+      N_Urine_Steep_pct,
+      Solid_Separation_pct,
+      MCF_AL,
+      MCF_SS
     ),
     by = "Entity__PeriodEnd"
   ) %>%
@@ -468,6 +482,18 @@ livestock_precalc_df <- StockRec_monthly_df %>%
       Milk_Protein_Herd_kg
     ),
     by = c("Entity__PeriodEnd", "Month", "StockClass")
+  ) %>% 
+  left_join(
+    Effluent_Management_df %>% 
+      select(
+        Entity__PeriodEnd,
+        Month,
+        StockClass,
+        DungUrine_to_Effluent_pct),
+    by = c("Entity__PeriodEnd", "Month", "StockClass")
+  ) %>% # remove Solid_Separation_pct values for other stock classes
+  mutate(
+    Solid_Separation_pct = ifelse(StockClass == "Milking Cows Mature", Solid_Separation_pct, NA)
   ) %>% # force slope to flat for mature milking cows (for edge case farms where Primary_Farm_Class is not Dairy)
   mutate(
     N_Urine_Flattish_pct = case_when(
@@ -548,6 +574,11 @@ livestock_precalc_df <- StockRec_monthly_df %>%
     "Milk_Yield_Herd_L",
     "Milk_Fat_Herd_kg",
     "Milk_Protein_Herd_kg",
+    # effluent management
+    "DungUrine_to_Effluent_pct",
+    "Solid_Separation_pct",
+    "MCF_AL",
+    "MCF_SS",
     # mitigation technologies
     "BV_aCH4"
   )

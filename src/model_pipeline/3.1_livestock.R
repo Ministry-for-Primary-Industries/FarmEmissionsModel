@@ -286,14 +286,26 @@ run_livestock_module <- function(
       
       FDM_kg = eq_fem7_FDM_kg(DMI_kg = DMI_kg, DMD_pct_Diet = DMD_pct_Diet),
       
-      # allocate excretion to lagoon and pasture:
+      # allocate excretion to solid storage, lagoon and pasture:
+      
+      DungUrine_to_SolidS_pct = eq_fem7_DungUrine_to_SolidS_pct(
+        StockClass = StockClass,
+        Milk_Yield_kg = Milk_Yield_kg,
+        DungUrine_to_Effluent_pct = DungUrine_to_Effluent_pct,
+        Solid_Separation_pct = Solid_Separation_pct 
+      ),
       
       DungUrine_to_Lagoon_pct = eq_fem7_DungUrine_to_Lagoon_pct(
         StockClass = StockClass,
-        Milk_Yield_kg = Milk_Yield_kg
+        Milk_Yield_kg = Milk_Yield_kg,
+        DungUrine_to_Effluent_pct = DungUrine_to_Effluent_pct,
+        DungUrine_to_SolidS_pct = DungUrine_to_SolidS_pct
       ),
       
-      DungUrine_to_Pasture_pct = eq_fem7_DungUrine_to_Pasture_pct(DungUrine_to_Lagoon_pct = DungUrine_to_Lagoon_pct),
+      DungUrine_to_Pasture_pct = eq_fem7_DungUrine_to_Pasture_pct(
+        DungUrine_to_SolidS_pct = DungUrine_to_SolidS_pct,
+        DungUrine_to_Lagoon_pct = DungUrine_to_Lagoon_pct
+      ),
       
       # calculate pasture emissions:
       
@@ -345,12 +357,13 @@ run_livestock_module <- function(
         DungUrine_to_Pasture_pct = DungUrine_to_Pasture_pct
       ),
       
-      # calculate (mature milking cow) effluent emissions:
+      # calculate (mature milking cow) lagoon emissions:
       
       CH4_Effluent_Lagoon_kg = eq_fem7_CH4_Effluent_Lagoon_kg(
         StockClass = StockClass,
         DungUrine_to_Lagoon_pct = DungUrine_to_Lagoon_pct,
-        FDM_kg = FDM_kg
+        FDM_kg = FDM_kg,
+        MCF_AL = MCF_AL
       ),
       
       N2O_Effluent_Lagoon_Volat_kg = eq_fem7_N2O_Effluent_Lagoon_Volat_kg(
@@ -359,11 +372,35 @@ run_livestock_module <- function(
         N_Excretion_kg = N_Excretion_kg
       ),
       
+      # calculate (mature milking cow) solid storage emissions:
+      
+      CH4_Effluent_SolidS_kg = eq_fem7_CH4_Effluent_SolidS_kg(
+        DungUrine_to_SolidS_pct = DungUrine_to_SolidS_pct,
+        FDM_kg = FDM_kg,
+        MCF_SS = MCF_SS
+      ),
+      
+      N2O_Effluent_SolidS_Direct_kg = eq_fem7_N2O_Effluent_SolidS_Direct_kg(
+        N_Excretion_kg = N_Excretion_kg,
+        DungUrine_to_SolidS_pct = DungUrine_to_SolidS_pct
+      ),
+      
+      N2O_Effluent_SolidS_Leach_kg = eq_fem7_N2O_Effluent_SolidS_Leach_kg(
+        N_Excretion_kg = N_Excretion_kg,
+        DungUrine_to_SolidS_pct = DungUrine_to_SolidS_pct
+      ),
+      
+      N2O_Effluent_SolidS_Volat_kg = eq_fem7_N2O_Effluent_SolidS_Volat_kg(
+        N_Excretion_kg = N_Excretion_kg,
+        DungUrine_to_SolidS_pct = DungUrine_to_SolidS_pct
+      ),
+      
       # calculate (milking cow) effluent spread on pasture as organic fert N2O:
       
       N_Effluent_Spread_kg = eq_fem7_N_Effluent_Spread_kg(
         N_Excretion_kg = N_Excretion_kg,
-        DungUrine_to_Lagoon_pct = DungUrine_to_Lagoon_pct
+        DungUrine_to_Lagoon_pct = DungUrine_to_Lagoon_pct,
+        DungUrine_to_SolidS_pct = DungUrine_to_SolidS_pct
       ),
       
       N2O_Effluent_Spread_Direct_kg = eq_fem7_N2O_Effluent_Spread_Direct_kg(N_Effluent_Spread_kg = N_Effluent_Spread_kg),

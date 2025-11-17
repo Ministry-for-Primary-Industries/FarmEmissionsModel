@@ -116,11 +116,25 @@ lookup_location_mapping_df <- read_csv(
     "lookups",
     "lookup_location_mapping.csv"
   ),
-  col_select = c("Territory", "Pasture_Region", "Production_Region"),
+  col_select = c("Territory", "Region", "Pasture_Region", "Production_Region"),
   col_types = list(
     Territory = col_character(),
     Pasture_Region = col_character(),
     Production_Region = col_character()
+  )
+)
+
+lookup_regional_effluent_mcf_df <- read_csv(
+  file.path(
+    "src",
+    "lookups",
+    "lookup_regional_effluent_mcf.csv"
+  ),
+  col_select = c("Region", "MCF_AL", "MCF_SS"),
+  col_types = list(
+    Region = col_character(),
+    MCF_AL = col_double(),
+    MCF_SS = col_double()
   )
 )
 
