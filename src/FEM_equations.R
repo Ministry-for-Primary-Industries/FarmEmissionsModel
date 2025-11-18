@@ -1262,7 +1262,7 @@ eq_fem7_CH4_Effluent_Lagoon_kg <- function(
     FDM_kg, # calculated in system
     Ash_pct=0.08, # set by AIM
     B0=0.24, # set by AIM
-    MCF_AL, # set by AIM
+    MCF_AL, # regional_effluent_mcf lookup based on farm data inputs
     EcoPond_Efficacy_pct # calculated in system
 ) {
   
@@ -1314,7 +1314,7 @@ eq_fem7_CH4_Effluent_SolidS_kg <- function(
     FDM_kg, # calculated in system
     Ash_pct=0.08, # set by AIM
     B0=0.24, # set by AIM
-    MCF_SS # set by AIM
+    MCF_SS # regional_effluent_mcf lookup based on farm data inputs
 ) {
   
   # ref FEM equation xx

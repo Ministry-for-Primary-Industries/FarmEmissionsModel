@@ -1,4 +1,4 @@
 Entity_ID,Period_Start,Period_End,Territory,Primary_Farm_Class,Solid_Separator_Use
 10001,2021-07-01,2022-06-30,South Waikato District,North Island Hill Country,FALSE
-10002,2022-06-01,2023-05-31,Southland District,Dairy,TRUE
+10002,2022-06-01,2023-05-31,Southland District,Dairy,FALSE
 10003-A,2022-07-01,2023-06-30,Selwyn District,Cropping,FALSE
