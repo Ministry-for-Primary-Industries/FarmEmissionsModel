@@ -119,6 +119,7 @@ lookup_location_mapping_df <- read_csv(
   col_select = c("Territory", "Region", "Pasture_Region", "Production_Region"),
   col_types = list(
     Territory = col_character(),
+    Region = col_character(),
     Pasture_Region = col_character(),
     Production_Region = col_character()
   )
