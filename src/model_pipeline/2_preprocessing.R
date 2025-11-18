@@ -90,9 +90,11 @@ Effluent_Management_df <- Effluent_Management_df %>%
 EcoPond_Use_df <- EcoPond_Use_df %>% 
   rowwise() %>% 
   # create date sequence
-  mutate(Dates = list(seq(Treatment_Date, 
-                      Treatment_Date + 41, ## EcoPond suppression period of 6 weeks set by AIM (treatment date is counted as day 1)
-                      by = "days"))) %>% 
+  mutate(Dates = ifelse(nrow(EcoPond_Use_df) > 0,
+                        list(seq(Treatment_Date, 
+                                 Treatment_Date + 41, ## EcoPond suppression period of 6 weeks set by AIM (treatment date is counted as day 1)
+                                 by = "days")),
+                        NA)) %>% 
   unnest(Dates) %>% 
   # remove overlaps
   summarise(.by = c(Entity__PeriodEnd, Dates),
@@ -103,7 +105,8 @@ EcoPond_Use_df <- EcoPond_Use_df %>%
          YearMonth = ymd(paste(Year, Month, "1", sep = "-"))) %>% 
   summarise(.by = c(Entity__PeriodEnd, YearMonth),
             Days_EcoPond = n()) %>% 
-  mutate(Days_EcoPond_pct = Days_EcoPond / days_in_month(YearMonth))
+  mutate(Days_EcoPond_pct = Days_EcoPond / days_in_month(YearMonth)) %>% 
+  suppressWarnings() # warning is raised in ymd() if the the dataframe has no rows. Results test fine.
 
 # prep Breed_Allocation_df
 
@@ -514,13 +517,14 @@ livestock_precalc_df <- StockRec_monthly_df %>%
     by = c("Entity__PeriodEnd", "Month", "StockClass")
   ) %>% # remove Solid_Separation_pct values for other stock classes
   mutate(
-    Solid_Separation_pct = ifelse(StockClass == "Milking Cows Mature" & Milk_Yield_Herd_L > 0, Solid_Separation_pct, NA)
+    Solid_Separation_pct = ifelse(StockClass == "Milking Cows Mature", Solid_Separation_pct, NA)
   ) %>% 
   left_join(EcoPond_Use_df,
             by = c("Entity__PeriodEnd", "YearMonth")
   ) %>% 
   mutate(EcoPond_Efficacy_pct = Days_EcoPond_pct * 0.92, # EcoPond efficacy of 92% set by AIM
-         EcoPond_Efficacy_pct = ifelse(StockClass == "Milking Cows Mature" & Milk_Yield_Herd_L > 0, EcoPond_Efficacy_pct, NA)
+         EcoPond_Efficacy_pct = ifelse(StockClass == "Milking Cows Mature", EcoPond_Efficacy_pct, 0),
+         EcoPond_Efficacy_pct = replace_na(EcoPond_Efficacy_pct, 0)  # this handles empty EcoPond_Use_df
   ) %>% # force slope to flat for mature milking cows (for edge case farms where Primary_Farm_Class is not Dairy)
   mutate(
     N_Urine_Flattish_pct = case_when(
