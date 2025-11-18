@@ -290,14 +290,12 @@ run_livestock_module <- function(
       
       DungUrine_to_SolidS_pct = eq_fem7_DungUrine_to_SolidS_pct(
         StockClass = StockClass,
-        Milk_Yield_kg = Milk_Yield_kg,
         DungUrine_to_Effluent_pct = DungUrine_to_Effluent_pct,
         Solid_Separation_pct = Solid_Separation_pct 
       ),
       
       DungUrine_to_Lagoon_pct = eq_fem7_DungUrine_to_Lagoon_pct(
         StockClass = StockClass,
-        Milk_Yield_kg = Milk_Yield_kg,
         DungUrine_to_Effluent_pct = DungUrine_to_Effluent_pct,
         DungUrine_to_SolidS_pct = DungUrine_to_SolidS_pct
       ),

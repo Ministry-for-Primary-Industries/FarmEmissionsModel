@@ -1269,8 +1269,7 @@ eq_fem7_FDM_kg <- function(
 ### Allocation of Excretion to Pasture, Lagoons and Solid Storage
 
 The majority of stock classes deposit all excretion to pasture. However,
-mature milking dairy cows deposit a portion of excretion as effluent in
-the months they’re milking.
+mature milking dairy cows deposit a portion of excretion as effluent.
 
 The allocation to pasture is simply all of the excretion not deposited
 as effluent
@@ -1278,7 +1277,6 @@ as effluent
 ``` r
 eq_fem7_DungUrine_to_SolidS_pct <- function(
     StockClass, # StockClass variation
-    Milk_Yield_kg, # calculated in system
     DungUrine_to_Effluent_pct, # calculated in system
     Solid_Separation_pct # calculated in system
     ) {
@@ -1286,7 +1284,7 @@ eq_fem7_DungUrine_to_SolidS_pct <- function(
   # ref FEM equations 7.2a - 7.2b
   
   DungUrine_to_SolidS_pct = case_when(
-    StockClass == "Milking Cows Mature" & Milk_Yield_kg > 0 ~ DungUrine_to_Effluent_pct * Solid_Separation_pct,
+    StockClass == "Milking Cows Mature" ~ DungUrine_to_Effluent_pct * Solid_Separation_pct,
     TRUE ~ 0
   )
   
@@ -1296,7 +1294,6 @@ eq_fem7_DungUrine_to_SolidS_pct <- function(
 
 eq_fem7_DungUrine_to_Lagoon_pct <- function(
     StockClass, # StockClass variation
-    Milk_Yield_kg, # calculated in system
     DungUrine_to_Effluent_pct, # calculated in system
     DungUrine_to_SolidS_pct # calculated in system
     ) {
@@ -1304,7 +1301,7 @@ eq_fem7_DungUrine_to_Lagoon_pct <- function(
   # ref FEM equations 7.2a - 7.2b
   
   DungUrine_to_Lagoon_pct = case_when(
-    StockClass == "Milking Cows Mature" & Milk_Yield_kg > 0 ~ DungUrine_to_Effluent_pct - DungUrine_to_SolidS_pct,
+    StockClass == "Milking Cows Mature" ~ DungUrine_to_Effluent_pct - DungUrine_to_SolidS_pct,
     TRUE ~ 0
   )
   
