@@ -91,7 +91,7 @@ EcoPond_Use_df <- EcoPond_Use_df %>%
   rowwise() %>% 
   # create date sequence
   mutate(Dates = list(seq(Treatment_Date, 
-                      Treatment_Date + 42, ## EcoPond suppression period of 6 weeks set by AIM
+                      Treatment_Date + 41, ## EcoPond suppression period of 6 weeks set by AIM (treatment date is counted as day 1)
                       by = "days"))) %>% 
   unnest(Dates) %>% 
   # remove overlaps
