@@ -105,14 +105,14 @@ input_cols_type_list <- list(
     Milk_Fat_Herd_kg = "numeric",
     Milk_Protein_Herd_kg = "numeric"
   ),
-  Effluent_Management = list(
+  Effluent_Structure_Use = list(
     Entity_ID = "character",
     Period_End = "Date",
     Month = "integer",
-    Dairy_Shed_hr = "numeric",
-    Other_Structures_hr = "numeric"
+    Dairy_Shed_hrs_day = "numeric",
+    Other_Structures_hrs_day = "numeric"
   ),
-  EcoPond_Use = list(
+  Effluent_EcoPond_Treatments = list(
     Entity_ID = "character",
     Period_End = "Date",
     Treatment_Date = "Date"
@@ -237,16 +237,16 @@ if (param_input_data_format == "csv") {
     "Dairy_Production"
   )
   
-  Effluent_Management_df <- read_and_convert_csv(
-    "Effluent_Management.csv",
-    input_cols_type_list$Effluent_Management,
-    "Effluent_Management"
+  Effluent_Structure_Use_df <- read_and_convert_csv(
+    "Effluent_Structure_Use.csv",
+    input_cols_type_list$Effluent_Structure_Use,
+    "Effluent_Structure_Use"
   )
   
-  EcoPond_Use_df <- read_and_convert_csv(
-    "EcoPond_Use.csv", 
-    input_cols_type_list$EcoPond_Use, 
-    "EcoPond_Use")
+  Effluent_EcoPond_Treatments_df <- read_and_convert_csv(
+    "Effluent_EcoPond_Treatments.csv", 
+    input_cols_type_list$Effluent_EcoPond_Treatments, 
+    "Effluent_EcoPond_Treatments")
   
   Fertiliser_df <- read_and_convert_csv("Fertiliser.csv",
                                         input_cols_type_list$Fertiliser,
@@ -333,16 +333,16 @@ if (param_input_data_format == "csv") {
     "Dairy_Production"
   )
   
-  Effluent_Management_df <- convert_json_df(
-    combined_data$Effluent_Management,
-    input_cols_type_list$Effluent_Management,
-    "Effluent_Management"
+  Effluent_Structure_Use_df <- convert_json_df(
+    combined_data$Effluent_Structure_Use,
+    input_cols_type_list$Effluent_Structure_Use,
+    "Effluent_Structure_Use"
   )
   
-  EcoPond_Use_df <- convert_json_df(
-    combined_data$EcoPond_Use,
-    input_cols_type_list$EcoPond_Use,
-    "EcoPond_Use")
+  Effluent_EcoPond_Treatments_df <- convert_json_df(
+    combined_data$Effluent_EcoPond_Treatments,
+    input_cols_type_list$Effluent_EcoPond_Treatments,
+    "Effluent_EcoPond_Treatments")
   
   Fertiliser_df <- convert_json_df(combined_data$Fertiliser,
                                    input_cols_type_list$Fertiliser,

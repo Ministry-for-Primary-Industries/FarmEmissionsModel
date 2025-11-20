@@ -1,4 +1,4 @@
-Entity_ID,Period_End,Month,Dairy_Shed_hr,Other_Structures_hr
+Entity_ID,Period_End,Month,Dairy_Shed_hrs_day,Other_Structures_hrs_day
 10002,2023-05-31,6,2,1.2
 10002,2023-05-31,7,2,1.2
 10002,2023-05-31,8,2,1.2
