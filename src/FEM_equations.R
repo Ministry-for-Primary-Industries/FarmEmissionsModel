@@ -579,8 +579,7 @@ eq_fem3_ME_total <- function(
 
 eq_fem4_derive_farm_diet_parameters <- function(
     in_df, # livestock module intermediate calc_df after ME_totals have been calculated
-    SuppFeed_DryMatter_df, # farm data input of supplementary feed purchased
-    SuppFeed_SectoralAllocation_df, # farm data input of the % of supplementary feed purchased is relevant to sector being calculated
+    SuppFeed_DryMatter_df, # farm data input of supplementary feed purchased and it's sectoral allocation
     lookup_nutrientProfile_supplements_df, # lookup table of supplementary feed nutritional profiles
     lookup_nutrientProfile_pasture_df # lookup table of pasture nutritional profiles
 ) {
@@ -589,22 +588,27 @@ eq_fem4_derive_farm_diet_parameters <- function(
   
   # Part 1: Data Prep
   
+  filtered_Sector = in_df$Sector[1]
+  
   # pasture nutritional profiles are different for dairy vs. non-dairy: find relevant sector from in_df
-  pastureSector = case_when(
-    in_df$Sector[1] == "Dairy" ~ "Dairy",
+  pasture_Sector = case_when(
+    filtered_Sector == "Dairy" ~ "Dairy",
     TRUE ~ "NonDairy"
   )
   
   # apply sectoral allocation to supplementary feed
   supps_df <- SuppFeed_DryMatter_df %>%
-    inner_join(
-      SuppFeed_SectoralAllocation_df,
-      by="Entity__PeriodEnd"
+    select(
+      Entity__PeriodEnd,
+      SupplementName,
+      Dry_Matter_t,
+      SuppFeed_Allocation = paste0(filtered_Sector, "_Allocation")
     ) %>%
     mutate(
       SuppFeed_Allocation = replace_na(SuppFeed_Allocation, 0),
       Supp_t_annual = Dry_Matter_t * SuppFeed_Allocation
     ) %>%
+    filter(Supp_t_annual > 0 ) %>%
     select(-SuppFeed_Allocation)
   
   # Part 2: Calculation to derive farm-level diet parameters
@@ -672,10 +676,10 @@ eq_fem4_derive_farm_diet_parameters <- function(
   
   farm_diet_df3 <- farm_diet_df2 %>%
     inner_join(
-      lookup_nutrientProfile_pasture_df %>% filter(Sector == pastureSector),
+      lookup_nutrientProfile_pasture_df %>% filter(Sector == pasture_Sector),
       by=c("Month", "Pasture_Region")
     ) %>%
-    filter(Sector == pastureSector) %>%
+    filter(Sector == pasture_Sector) %>%
     select(-Sector) %>%
     mutate(
       Pasture_t = Pasture_ME_contribution_SectorTotal / (1000 * ME_Pasture),

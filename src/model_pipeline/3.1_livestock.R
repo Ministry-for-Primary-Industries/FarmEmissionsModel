@@ -2,7 +2,6 @@ run_livestock_module <- function(
     livestock_precalc_df,
      # remaining args are only passed to eq_fem4_derive_farm_diet_parameters:
      SuppFeed_DryMatter_df,
-     SuppFeed_SectoralAllocation_df,
      lookup_nutrientProfile_supplements_df,
      lookup_nutrientProfile_pasture_df) {
   
@@ -178,7 +177,6 @@ run_livestock_module <- function(
         ~ eq_fem4_derive_farm_diet_parameters(
           in_df = livestock_calc_df1 %>% filter(Sector == .x),
           SuppFeed_DryMatter_df = SuppFeed_DryMatter_df,
-          SuppFeed_SectoralAllocation_df = SuppFeed_SectoralAllocation_df %>% filter(Sector == .x),
           lookup_nutrientProfile_supplements_df = lookup_nutrientProfile_supplements_df,
           lookup_nutrientProfile_pasture_df = lookup_nutrientProfile_pasture_df
         )
@@ -380,7 +378,6 @@ run_livestock_module <- function(
 livestock_results_granular_df <- run_livestock_module(
   livestock_precalc_df,
   SuppFeed_DryMatter_df,
-  SuppFeed_SectoralAllocation_df,
   lookup_nutrientProfile_supplements_df,
   lookup_nutrientProfile_pasture_df
 )
