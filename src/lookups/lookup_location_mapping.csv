@@ -1,4 +1,4 @@
-﻿Territory,Council,Region,Island,Pasture_Region,Production_Region
+Territory,Council,Region,Island,Pasture_Region,Production_Region
 Far North District,Far North District Council,Northland,North,Northland,Northern North Island
 Whangarei District,Whangarei District Council,Northland,North,Northland,Northern North Island
 Kaipara District,Kaipara District Council,Northland,North,Northland,Northern North Island
@@ -12,7 +12,7 @@ Waipa District,Waipa District Council,Waikato,North,Waikato / Auckland,Northern 
 Otorohanga District,Otorohanga District Council,Waikato,North,Waikato / Auckland,Northern North Island
 South Waikato District,South Waikato District Council,Waikato,North,Waikato / Auckland,Northern North Island
 Waitomo District,Waitomo District Council,Waikato,North,Waikato / Auckland,Northern North Island
-Taupo District,Taup District Council,Waikato,North,Waikato / Auckland,Northern North Island
+Taupo District,Taupo District Council,Waikato,North,Waikato / Auckland,Northern North Island
 Western Bay of Plenty District,Western Bay of Plenty District Council,Bay of Plenty,North,Bay of Plenty,Northern North Island
 Tauranga City,Tauranga City Council,Bay of Plenty,North,Bay of Plenty,Northern North Island
 Rotorua District,Rotorua District Council,Bay of Plenty,North,Bay of Plenty,Northern North Island
@@ -44,11 +44,11 @@ Carterton District,Carterton District Council,Wellington,North,Wellington,Easter
 South Wairarapa District,South Wairarapa District Council,Wellington,North,Wellington,Eastern North Island
 Tasman District,Tasman District Council,Tasman,South,Tasman / Nelson / Marlborough,Northern and Central South Island
 Nelson City,Nelson City Council,Nelson,South,Tasman / Nelson / Marlborough,Northern and Central South Island
-Marlborough District,Marlborough District Council,Malborough,South,Tasman / Nelson / Marlborough,Northern and Central South Island
+Marlborough District,Marlborough District Council,Marlborough,South,Tasman / Nelson / Marlborough,Northern and Central South Island
 Buller District,Buller District Council,West Coast,South,West Coast,Northern and Central South Island
 Grey District,Grey District Council,West Coast,South,West Coast,Northern and Central South Island
 Westland District,Westland District Council,West Coast,South,West Coast,Western and Southern South Island
-Kaikoura District,Kaikura District Council,Canterbury,South,Canterbury,Northern and Central South Island
+Kaikoura District,Kaikoura District Council,Canterbury,South,Canterbury,Northern and Central South Island
 Hurunui District,Hurunui District Council,Canterbury,South,Canterbury,Northern and Central South Island
 Waimakariri District,Waimakariri District Council,Canterbury,South,Canterbury,Northern and Central South Island
 Christchurch City,Christchurch City Council,Canterbury,South,Canterbury,Northern and Central South Island
