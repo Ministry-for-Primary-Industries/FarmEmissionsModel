@@ -768,7 +768,7 @@ eq_fem4_derive_farm_diet_parameters <- function(
   supps_df <- SuppFeed_DryMatter_df %>%
     select(
       Entity__PeriodEnd,
-      SupplementName,
+      Supplement,
       Dry_Matter_t,
       SuppFeed_Allocation = paste0(filtered_Sector, "_Allocation")
     ) %>%
@@ -786,9 +786,10 @@ eq_fem4_derive_farm_diet_parameters <- function(
   supps_df <- supps_df %>% 
     inner_join(
       lookup_nutrientProfile_supplements_df,
-      by="SupplementName"
+      by="Supplement"
     ) %>%
-    select(Entity__PeriodEnd, SupplementName, ME_Supp, DMD_pct_Supp, N_pct_Supp, Supp_t_annual) %>%
+    mutate(Supp_t_annual = Supp_t_annual * Feed_Utilisation_pct) %>% 
+    select(Entity__PeriodEnd, Supplement, ME_Supp, DMD_pct_Supp, N_pct_Supp, Supp_t_annual) %>%
     group_by(Entity__PeriodEnd) %>%
     mutate(
       AllSupps_t_annual = sum(Supp_t_annual),

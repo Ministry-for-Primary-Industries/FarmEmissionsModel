@@ -86,7 +86,7 @@ input_cols_type_list <- list(
   SuppFeed_DryMatter = list(
     Entity_ID = "character",
     Period_End = "Date",
-    SupplementName = "character",
+    Supplement = "character",
     Dry_Matter_t = "numeric",
     Beef_Allocation = "numeric",
     Dairy_Allocation = "numeric",
