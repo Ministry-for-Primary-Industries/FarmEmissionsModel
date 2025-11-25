@@ -88,14 +88,12 @@ input_cols_type_list <- list(
   SuppFeed_DryMatter = list(
     Entity_ID = "character",
     Period_End = "Date",
-    SupplementName = "character",
-    Dry_Matter_t = "numeric"
-  ),
-  SuppFeed_SectoralAllocation = list(
-    Entity_ID = "character",
-    Period_End = "Date",
-    Sector = "character",
-    SuppFeed_Allocation = "numeric"
+    Supplement = "character",
+    Dry_Matter_t = "numeric",
+    Beef_Allocation = "numeric",
+    Dairy_Allocation = "numeric",
+    Deer_Allocation = "numeric",
+    Sheep_Allocation = "numeric"
   ),
   Dairy_Production = list(
     Entity_ID = "character",
@@ -225,12 +223,6 @@ if (param_input_data_format == "csv") {
     "SuppFeed_DryMatter"
   )
   
-  SuppFeed_SectoralAllocation_df <- read_and_convert_csv(
-    "SuppFeed_SectoralAllocation.csv",
-    input_cols_type_list$SuppFeed_SectoralAllocation,
-    "SuppFeed_SectoralAllocation"
-  )
-  
   Dairy_Production_df <- read_and_convert_csv(
     "Dairy_Production.csv",
     input_cols_type_list$Dairy_Production,
@@ -319,12 +311,6 @@ if (param_input_data_format == "csv") {
     combined_data$SuppFeed_DryMatter,
     input_cols_type_list$SuppFeed_DryMatter,
     "SuppFeed_DryMatter"
-  )
-  
-  SuppFeed_SectoralAllocation_df <- convert_json_df(
-    combined_data$SuppFeed_SectoralAllocation,
-    input_cols_type_list$SuppFeed_SectoralAllocation,
-    "SuppFeed_SectoralAllocation"
   )
   
   Dairy_Production_df <- convert_json_df(
