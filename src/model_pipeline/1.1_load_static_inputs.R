@@ -62,7 +62,7 @@ lookup_nutrientProfile_supplements_df <- read_csv(file.path(
     ME_Supp = col_double(),
     DMD_pct_Supp = col_double(),
     N_pct_Supp = col_double(),
-    Feed_Utilisation_pct = col_double()
+    Utilisation_Supp = col_double()
   )
 )
 

@@ -620,7 +620,7 @@ eq_fem4_derive_farm_diet_parameters <- function(
       lookup_nutrientProfile_supplements_df,
       by="Supplement"
     ) %>%
-    mutate(Supp_t_annual = Supp_t_annual * Feed_Utilisation_pct) %>% 
+    mutate(Supp_t_annual = Supp_t_annual * Utilisation_Supp) %>% 
     select(Entity__PeriodEnd, Supplement, ME_Supp, DMD_pct_Supp, N_pct_Supp, Supp_t_annual) %>%
     group_by(Entity__PeriodEnd) %>%
     mutate(
