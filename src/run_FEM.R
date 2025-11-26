@@ -8,11 +8,17 @@ param_output_path = "data_output" # this will be created if it doesn't exist
 param_output_data_format = "csv" # csv or json
 
 # set output tables to saveout, refer to README
-param_saveout_tables = c(
+param_saveout_emission_tables = c(
   "smry_livestock_annual",
   "smry_all_annual_by_emission_type",
   "smry_all_annual_by_gas"
 )
+param_saveout_mitign_delta_tables = c(
+  "smry_livestock_annual_mitign_delta",
+  "smry_all_annual_by_emission_type_mitign_delta",
+  "smry_all_annual_by_gas_mitign_delta"
+)
+param_saveout_tables = c(param_saveout_emission_tables, param_saveout_mitign_delta_tables)
 
 # load R env --------------------------------------------------------------
 
