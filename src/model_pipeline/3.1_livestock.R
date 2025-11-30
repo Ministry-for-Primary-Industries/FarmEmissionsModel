@@ -412,39 +412,13 @@ run_livestock_module <- function(
     
     livestock_calc_df2 <- livestock_calc_df2 %>% 
       mutate(
-        CH4_Enteric_excl_mitign_kg = eq_fem6_CH4_Enteric_kg(
-          Sector = Sector,
-          StockClass = StockClass,
-          DMI_kg = DMI_kg,
-          ME_Diet = ME_Diet,
-          BV_aCH4 = 0,
-          Bolus_Efficacy_pct = 0,
-          MonthDays = MonthDays
-        ),
         CH4_Enteric_excl_lm_genes_kg = eq_fem6_CH4_Enteric_kg(
           Sector = Sector,
           StockClass = StockClass,
           DMI_kg = DMI_kg,
           ME_Diet = ME_Diet,
           BV_aCH4 = 0,
-          Bolus_Efficacy_pct = Bolus_Efficacy_pct,
           MonthDays = MonthDays
-        ),
-        CH4_Enteric_excl_bolus_kg = eq_fem6_CH4_Enteric_kg(
-          Sector = Sector,
-          StockClass = StockClass,
-          DMI_kg = DMI_kg,
-          ME_Diet = ME_Diet,
-          BV_aCH4 = BV_aCH4,
-          Bolus_Efficacy_pct = 0,
-          MonthDays = MonthDays
-        ),
-        CH4_Effluent_Lagoon_excl_mitign_kg = eq_fem7_CH4_Effluent_Lagoon_kg(
-          StockClass = StockClass,
-          DungUrine_to_Lagoon_pct = DungUrine_to_Lagoon_pct + DungUrine_to_SolidS_pct,
-          FDM_kg = FDM_kg,
-          MCF_AL = MCF_AL,
-          EcoPond_Efficacy_pct = 0
         ),
         CH4_Effluent_Lagoon_excl_solids_kg = eq_fem7_CH4_Effluent_Lagoon_kg(
           StockClass = StockClass,

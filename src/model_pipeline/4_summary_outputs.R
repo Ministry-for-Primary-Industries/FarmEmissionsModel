@@ -10,14 +10,10 @@ summarise_livestock_monthly_by_StockClass <- function(df, calc_delta) {
       mutate(
         CH4_Digestion_kg = CH4_Enteric_kg * StockCount_mean,
         CH4_Effluent_kg = (CH4_Effluent_Lagoon_kg + CH4_Effluent_SolidS_kg) * StockCount_mean,
-        CH4_Digestion_excl_mitign_kg = CH4_Enteric_excl_mitign_kg * StockCount_mean,
         CH4_Digestion_excl_lm_genes_kg = CH4_Enteric_excl_lm_genes_kg * StockCount_mean,
-        CH4_Digestion_excl_bolus_kg = CH4_Enteric_excl_bolus_kg * StockCount_mean,
-        CH4_Effluent_excl_mitign_kg = CH4_Effluent_Lagoon_excl_mitign_kg * StockCount_mean,
         CH4_Effluent_excl_solids_kg = CH4_Effluent_Lagoon_excl_solids_kg * StockCount_mean,
         CH4_Effluent_excl_ecopond_kg = (CH4_Effluent_Lagoon_excl_ecopond_kg + CH4_Effluent_SolidS_kg) * StockCount_mean,
         CH4_Digestion_LMGenes_delta_kg = CH4_Digestion_kg - CH4_Digestion_excl_lm_genes_kg,
-        CH4_Digestion_Bolus_delta_kg = CH4_Digestion_kg - CH4_Digestion_excl_bolus_kg,
         CH4_Effluent_SolidSep_delta_kg = CH4_Effluent_kg - CH4_Effluent_excl_solids_kg,
         CH4_Effluent_EcoPond_delta_kg = CH4_Effluent_kg - CH4_Effluent_excl_ecopond_kg
       ) %>% 
@@ -28,7 +24,6 @@ summarise_livestock_monthly_by_StockClass <- function(df, calc_delta) {
         StockClass,
         StockCount_mean,
         CH4_Digestion_LMGenes_delta_kg,
-        CH4_Digestion_Bolus_delta_kg,
         CH4_Effluent_SolidSep_delta_kg,
         CH4_Effluent_EcoPond_delta_kg
       )
@@ -74,7 +69,6 @@ summarise_livestock_monthly_by_Sector <- function(df, calc_delta) {
       group_by(Entity__PeriodEnd, YearMonth, Sector) %>%
       summarise(
         CH4_Digestion_LMGenes_delta_kg = sum(CH4_Digestion_LMGenes_delta_kg),
-        CH4_Digestion_Bolus_delta_kg = sum(CH4_Digestion_Bolus_delta_kg),
         CH4_Effluent_SolidSep_delta_kg = sum(CH4_Effluent_SolidSep_delta_kg),
         CH4_Effluent_EcoPond_delta_kg = sum(CH4_Effluent_EcoPond_delta_kg),
         .groups = "drop"
@@ -103,7 +97,6 @@ summarise_livestock_annual_by_Sector <- function(df, calc_delta) {
       group_by(Entity__PeriodEnd, Sector) %>%
       summarise(
         CH4_Digestion_LMGenes_delta_kg = sum(CH4_Digestion_LMGenes_delta_kg),
-        CH4_Digestion_Bolus_delta_kg = sum(CH4_Digestion_Bolus_delta_kg),
         CH4_Effluent_SolidSep_delta_kg = sum(CH4_Effluent_SolidSep_delta_kg),
         CH4_Effluent_EcoPond_delta_kg = sum(CH4_Effluent_EcoPond_delta_kg),
         .groups = "drop"
@@ -133,7 +126,6 @@ summarise_livestock_annual <- function(df, calc_delta) {
       group_by(Entity__PeriodEnd) %>%
       summarise(
         CH4_Digestion_LMGenes_delta_kg = sum(CH4_Digestion_LMGenes_delta_kg),
-        CH4_Digestion_Bolus_delta_kg = sum(CH4_Digestion_Bolus_delta_kg),
         CH4_Effluent_SolidSep_delta_kg = sum(CH4_Effluent_SolidSep_delta_kg),
         CH4_Effluent_EcoPond_delta_kg = sum(CH4_Effluent_EcoPond_delta_kg),
         .groups = "drop"
@@ -208,7 +200,7 @@ summarise_all_annual_by_gas <- function(df, calc_delta) {
     out_df <- df %>%
       group_by(Entity__PeriodEnd) %>%
       summarise(
-        CH4_total_kg = sum(CH4_Digestion_LMGenes_delta_kg + CH4_Digestion_Bolus_delta_kg + CH4_Effluent_SolidSep_delta_kg + CH4_Effluent_EcoPond_delta_kg),
+        CH4_total_kg = sum(CH4_Digestion_LMGenes_delta_kg + CH4_Effluent_SolidSep_delta_kg + CH4_Effluent_EcoPond_delta_kg),
         N2O_total_kg = sum(N2O_SynthFert_UI_delta_kg),
         .groups = "drop"
       )
