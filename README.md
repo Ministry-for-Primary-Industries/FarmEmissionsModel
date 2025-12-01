@@ -49,11 +49,12 @@ Run `src/run_FEM.R`
 
 At the head of this script are configurable run parameters for setting:
 - input/output folder locations and file format (CSV/JSON)
-- output tables to saveout via `param_saveout_tables`
-    - if no saved outputs are desired this can be set to `FALSE` or an empty vector `c()`
-    - the full list of savable outputs is:
+- output tables to saveout via `param_saveout_emission_tables` and `param_saveout_mitign_delta_tables`
+    - if no saved outputs are desired these can be set to `FALSE` or an empty vector `c()`
+    - the full lists of savable outputs are:
     ```R
-    param_saveout_tables = c(
+    # emission tables including impacts of mitigations
+    param_saveout_emission_tables = c(
         # granular, per module
         "livestock_results_granular",
         "fertiliser_results_granular",
@@ -67,9 +68,25 @@ At the head of this script are configurable run parameters for setting:
         "smry_all_annual_by_emission_type",
         "smry_all_annual_by_gas"
         )
+    
+    # tables showing impacts of mitigations (difference between mitigated and unmitigated emissions)
+    param_saveout_mitign_delta_tables = c(
+        # granular, per module
+        "livestock_results_granular_mitign_delta",
+        "fertiliser_results_granular_mitign_delta",
+        # summary - detailed, per module
+        "smry_livestock_monthly_by_StockClass_mitign_delta",
+        "smry_livestock_monthly_by_Sector_mitign_delta",
+        "smry_livestock_annual_by_Sector_mitign_delta",
+        "smry_livestock_annual_mitign_delta",
+        "smry_fertiliser_annual_mitign_delta",
+        # summary - high level, all modules
+        "smry_all_annual_by_emission_type_mitign_delta",
+        "smry_all_annual_by_gas_mitign_delta"
+        )
     ```
 
-    Note if a given `Entity_ID` and `Period_End` has no farm data inputs for a specific module (e.g. fertiliser or livestock) if will have no output rows in the per module tables. It will have output rows of zeros in the high level all-module summaries.
+    Note if a given `Entity_ID` and `Period_End` has no farm data inputs for a specific module (e.g. fertiliser or livestock), it will have no output rows in the per module tables. It will have output rows of zeros in the high level all-module summaries.
 
 ## FEM Equations
 
