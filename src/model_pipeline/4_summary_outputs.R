@@ -285,3 +285,19 @@ smry_fertiliser_annual_df <- deconcat_join_key(smry_fertiliser_annual_df)
 # high level summaries
 smry_all_annual_by_emission_type_df <- deconcat_join_key(smry_all_annual_by_emission_type_df)
 smry_all_annual_by_gas_df <- deconcat_join_key(smry_all_annual_by_gas_df)
+
+# format mitigation delta tables
+if(length(param_saveout_mitign_delta_tables) > 0) {
+  # granular (per-module) outputs
+  livestock_results_granular_mitign_delta_df <- deconcat_join_key(livestock_results_granular_mitign_delta_df)
+  fertiliser_results_granular_mitign_delta_df <- deconcat_join_key(fertiliser_results_granular_mitign_delta_df)
+  # detailed (per-module) summaries
+  smry_livestock_monthly_by_StockClass_mitign_delta_df <- deconcat_join_key(smry_livestock_monthly_by_StockClass_mitign_delta_df)
+  smry_livestock_monthly_by_Sector_mitign_delta_df <- deconcat_join_key(smry_livestock_monthly_by_Sector_mitign_delta_df)
+  smry_livestock_annual_by_Sector_mitign_delta_df <- deconcat_join_key(smry_livestock_annual_by_Sector_mitign_delta_df)
+  smry_livestock_annual_mitign_delta_df <- deconcat_join_key(smry_livestock_annual_mitign_delta_df)
+  smry_fertiliser_annual_mitign_delta_df <- deconcat_join_key(smry_fertiliser_annual_mitign_delta_df)
+  # high level summaries
+  smry_all_annual_by_emission_type_mitign_delta_df <- deconcat_join_key(smry_all_annual_by_emission_type_mitign_delta_df)
+  smry_all_annual_by_gas_mitign_delta_df <- deconcat_join_key(smry_all_annual_by_gas_mitign_delta_df)
+}
