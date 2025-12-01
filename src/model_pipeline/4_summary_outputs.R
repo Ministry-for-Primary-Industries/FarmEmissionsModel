@@ -244,11 +244,13 @@ if(length(param_saveout_mitign_delta_tables) > 0) {
   smry_all_annual_by_emission_type_mitign_delta_df <- summarise_all_annual_by_emission_type(smry_livestock_annual_mitign_delta_df, smry_fertiliser_annual_mitign_delta_df)
   smry_all_annual_by_gas_mitign_delta_df <- summarise_all_annual_by_gas(smry_all_annual_by_emission_type_mitign_delta_df, calc_delta = TRUE)
   # select columns for granular output
-  livestock_results_granular_mitign_delta_df <- livestock_results_granular_df %>% select(99:106)
+  livestock_results_granular_mitign_delta_df <- livestock_results_granular_df %>% select(1:12, 99:106)
+  fertiliser_results_granular_mitign_delta_df <- fertiliser_results_granular_df %>% select(1, 15)
 }
 
 # select columns for granular output
 livestock_results_granular_df <- livestock_results_granular_df %>% select(1:98)
+fertiliser_results_granular_df <- fertiliser_results_granular_df %>% select(1:14)
 
 # Section 4: Format Outputs -----------------------------------------------
 
