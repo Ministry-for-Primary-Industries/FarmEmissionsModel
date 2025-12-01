@@ -243,7 +243,12 @@ if(length(param_saveout_mitign_delta_tables) > 0) {
   # high level summaries (all farms)
   smry_all_annual_by_emission_type_mitign_delta_df <- summarise_all_annual_by_emission_type(smry_livestock_annual_mitign_delta_df, smry_fertiliser_annual_mitign_delta_df)
   smry_all_annual_by_gas_mitign_delta_df <- summarise_all_annual_by_gas(smry_all_annual_by_emission_type_mitign_delta_df, calc_delta = TRUE)
+  # select columns for granular output
+  livestock_results_granular_mitign_delta_df <- livestock_results_granular_df %>% select(99:106)
 }
+
+# select columns for granular output
+livestock_results_granular_df <- livestock_results_granular_df %>% select(1:98)
 
 # Section 4: Format Outputs -----------------------------------------------
 
