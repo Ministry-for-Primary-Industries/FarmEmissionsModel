@@ -10,12 +10,22 @@ summarise_livestock_monthly_by_StockClass <- function(df, calc_delta) {
       mutate(
         CH4_Digestion_kg = CH4_Enteric_kg * StockCount_mean,
         CH4_Effluent_kg = (CH4_Effluent_Lagoon_kg + CH4_Effluent_SolidS_kg) * StockCount_mean,
+        N2O_Effluent_kg = ( # note we include spread on pasture with N2O_Effluent_kg
+          N2O_Effluent_Lagoon_Volat_kg + 
+            N2O_Effluent_SolidS_Direct_kg + N2O_Effluent_SolidS_Leach_kg + N2O_Effluent_SolidS_Volat_kg +
+            N2O_Effluent_Spread_Direct_kg + N2O_Effluent_Spread_Leach_kg + N2O_Effluent_Spread_Volat_kg
+        ) * StockCount_mean,
         CH4_Digestion_excl_lm_genes_kg = CH4_Enteric_excl_lm_genes_kg * StockCount_mean,
         CH4_Effluent_excl_solids_kg = CH4_Effluent_Lagoon_excl_solids_kg * StockCount_mean,
         CH4_Effluent_excl_ecopond_kg = (CH4_Effluent_Lagoon_excl_ecopond_kg + CH4_Effluent_SolidS_kg) * StockCount_mean,
+        N2O_Effluent_excl_solids_kg = ( # this is a counterfactual for delta calculation wherein no effluent goes to solid storage, therefore emissions are 0
+          N2O_Effluent_Lagoon_Volat_excl_solids_kg + 
+            N2O_Effluent_Spread_Direct_excl_solids_kg + N2O_Effluent_Spread_Leach_excl_solids_kg + N2O_Effluent_Spread_Volat_excl_solids_kg
+        ) * StockCount_mean,
         CH4_Digestion_LMGenes_delta_kg = CH4_Digestion_kg - CH4_Digestion_excl_lm_genes_kg,
         CH4_Effluent_SolidSep_delta_kg = CH4_Effluent_kg - CH4_Effluent_excl_solids_kg,
-        CH4_Effluent_EcoPond_delta_kg = CH4_Effluent_kg - CH4_Effluent_excl_ecopond_kg
+        CH4_Effluent_EcoPond_delta_kg = CH4_Effluent_kg - CH4_Effluent_excl_ecopond_kg,
+        N2O_Effluent_SolidSep_delta_kg = N2O_Effluent_kg - N2O_Effluent_excl_solids_kg
       ) %>% 
       select(
         Entity__PeriodEnd,
@@ -25,7 +35,8 @@ summarise_livestock_monthly_by_StockClass <- function(df, calc_delta) {
         StockCount_mean,
         CH4_Digestion_LMGenes_delta_kg,
         CH4_Effluent_SolidSep_delta_kg,
-        CH4_Effluent_EcoPond_delta_kg
+        CH4_Effluent_EcoPond_delta_kg,
+        N2O_Effluent_SolidSep_delta_kg
       )
   } else {
     out_df <- df %>%
@@ -71,6 +82,7 @@ summarise_livestock_monthly_by_Sector <- function(df, calc_delta) {
         CH4_Digestion_LMGenes_delta_kg = sum(CH4_Digestion_LMGenes_delta_kg),
         CH4_Effluent_SolidSep_delta_kg = sum(CH4_Effluent_SolidSep_delta_kg),
         CH4_Effluent_EcoPond_delta_kg = sum(CH4_Effluent_EcoPond_delta_kg),
+        N2O_Effluent_SolidSep_delta_kg = sum(N2O_Effluent_SolidSep_delta_kg),
         .groups = "drop"
       )
   } else {
@@ -99,6 +111,7 @@ summarise_livestock_annual_by_Sector <- function(df, calc_delta) {
         CH4_Digestion_LMGenes_delta_kg = sum(CH4_Digestion_LMGenes_delta_kg),
         CH4_Effluent_SolidSep_delta_kg = sum(CH4_Effluent_SolidSep_delta_kg),
         CH4_Effluent_EcoPond_delta_kg = sum(CH4_Effluent_EcoPond_delta_kg),
+        N2O_Effluent_SolidSep_delta_kg = sum(N2O_Effluent_SolidSep_delta_kg),
         .groups = "drop"
       )
   } else {
@@ -128,6 +141,7 @@ summarise_livestock_annual <- function(df, calc_delta) {
         CH4_Digestion_LMGenes_delta_kg = sum(CH4_Digestion_LMGenes_delta_kg),
         CH4_Effluent_SolidSep_delta_kg = sum(CH4_Effluent_SolidSep_delta_kg),
         CH4_Effluent_EcoPond_delta_kg = sum(CH4_Effluent_EcoPond_delta_kg),
+        N2O_Effluent_SolidSep_delta_kg = sum(N2O_Effluent_SolidSep_delta_kg),
         .groups = "drop"
       )
   } else {
@@ -201,7 +215,7 @@ summarise_all_annual_by_gas <- function(df, calc_delta) {
       group_by(Entity__PeriodEnd) %>%
       summarise(
         CH4_total_mitign_delta_kg = sum(CH4_Digestion_LMGenes_delta_kg + CH4_Effluent_SolidSep_delta_kg + CH4_Effluent_EcoPond_delta_kg),
-        N2O_total_mitign_delta_kg = sum(N2O_SynthFert_UI_delta_kg),
+        N2O_total_mitign_delta_kg = sum(N2O_Effluent_SolidSep_delta_kg + N2O_SynthFert_UI_delta_kg),
         CO2_total_mitign_delta_kg = 0, # this is a placeholder column for completeness (the mitigation technologies currently included in FEM do not impact CO2 emissions)
         .groups = "drop"
       )
