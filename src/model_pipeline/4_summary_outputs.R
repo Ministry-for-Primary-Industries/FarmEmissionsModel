@@ -200,8 +200,9 @@ summarise_all_annual_by_gas <- function(df, calc_delta) {
     out_df <- df %>%
       group_by(Entity__PeriodEnd) %>%
       summarise(
-        CH4_total_kg = sum(CH4_Digestion_LMGenes_delta_kg + CH4_Effluent_SolidSep_delta_kg + CH4_Effluent_EcoPond_delta_kg),
-        N2O_total_kg = sum(N2O_SynthFert_UI_delta_kg),
+        CH4_total_mitign_delta_kg = sum(CH4_Digestion_LMGenes_delta_kg + CH4_Effluent_SolidSep_delta_kg + CH4_Effluent_EcoPond_delta_kg),
+        N2O_total_mitign_delta_kg = sum(N2O_SynthFert_UI_delta_kg),
+        CO2_total_mitign_delta_kg = 0, # this is a placeholder column for completeness (the mitigation technologies currently included in FEM do not impact CO2 emissions)
         .groups = "drop"
       )
   } else {
