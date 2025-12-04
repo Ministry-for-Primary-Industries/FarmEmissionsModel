@@ -1634,7 +1634,7 @@ eq_fem7_N_Effluent_Spread_kg <- function(
   # ref FEM equation 7.13
   
   N_Effluent_Spread_kg = N_Excretion_kg * (DungUrine_to_Lagoon_pct * (1 - frac_gasMS_AL) + DungUrine_to_SolidS_pct * (1 - frac_gasMS_SS - frac_leach_SS - EF_3_SS))  # this is the N remaining after leaching, volatilisation and direct emissions from lagoon and solid storage
-
+  
   return(N_Effluent_Spread_kg)
   
 }
@@ -1647,7 +1647,7 @@ eq_fem7_N2O_Effluent_Spread_Direct_kg <- function(
   # ref FEM equation 7.14
   
   N2O_Effluent_Spread_Direct_kg = (44/28) * N_Effluent_Spread_kg * EF_1_Dairy
-
+  
   return(N2O_Effluent_Spread_Direct_kg)
   
 }
@@ -1661,7 +1661,7 @@ eq_fem7_N2O_Effluent_Spread_Leach_kg <- function(
   # ref FEM equation 7.15
   
   N2O_Effluent_Spread_Leach_kg = (44/28) * N_Effluent_Spread_kg * frac_leach_eff_spread * EF_5
-
+  
   return(N2O_Effluent_Spread_Leach_kg)
   
 }
@@ -1675,7 +1675,7 @@ eq_fem7_N2O_Effluent_Spread_Volat_kg <- function(
   # ref FEM equation 7.16
   
   N2O_Effluent_Spread_Volat_kg = (44/28) * N_Effluent_Spread_kg * frac_NOx_and_NH3 * EF_4
-
+  
   return(N2O_Effluent_Spread_Volat_kg)
   
 }

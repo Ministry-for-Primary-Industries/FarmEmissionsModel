@@ -42,6 +42,19 @@ run_SynthFert_module <- function(Fertiliser_df) {
       )
     )
   
+  # calculate emissions excluding mitigation impacts if mitigation delta tables are specified in save out
+  if(length(param_saveout_mitign_delta_tables) > 0) {
+    
+    calc_fert_df <- calc_fert_df %>% 
+      mutate(
+        N2O_SynthFert_Volat_excl_ui_t = eq_fem8_N2O_SynthFert_Volat_t(
+          N_Urea_Uncoated_t = N_Urea_Uncoated_t + N_Urea_Coated_t,
+          N_Urea_Coated_t = 0,
+          N_NonUrea_SyntheticFert_t = N_NonUrea_SyntheticFert_t
+        ),
+      )
+  }
+  
   return(calc_fert_df)
   
 }

@@ -407,6 +407,55 @@ run_livestock_module <- function(
       N2O_Effluent_Spread_Volat_kg = eq_fem7_N2O_Effluent_Spread_Volat_kg(N_Effluent_Spread_kg = N_Effluent_Spread_kg)
     )
   
+  # calculate emissions excluding mitigation impacts if mitigation delta tables are specified in save out
+  if(length(param_saveout_mitign_delta_tables) > 0) {
+    
+    livestock_calc_df2 <- livestock_calc_df2 %>% 
+      mutate(
+        CH4_Enteric_excl_lm_genes_kg = eq_fem6_CH4_Enteric_kg(
+          Sector = Sector,
+          StockClass = StockClass,
+          DMI_kg = DMI_kg,
+          ME_Diet = ME_Diet,
+          BV_aCH4 = 0,
+          MonthDays = MonthDays
+        ),
+        CH4_Effluent_Lagoon_excl_solids_kg = eq_fem7_CH4_Effluent_Lagoon_kg(
+          StockClass = StockClass,
+          DungUrine_to_Lagoon_pct = DungUrine_to_Lagoon_pct + DungUrine_to_SolidS_pct,
+          FDM_kg = FDM_kg,
+          MCF_AL = MCF_AL,
+          EcoPond_Efficacy_pct = EcoPond_Efficacy_pct
+        ),
+        CH4_Effluent_Lagoon_excl_ecopond_kg = eq_fem7_CH4_Effluent_Lagoon_kg(
+          StockClass = StockClass,
+          DungUrine_to_Lagoon_pct = DungUrine_to_Lagoon_pct,
+          FDM_kg = FDM_kg,
+          MCF_AL = MCF_AL,
+          EcoPond_Efficacy_pct = 0
+        ),
+        N2O_Effluent_Lagoon_Volat_excl_solids_kg = eq_fem7_N2O_Effluent_Lagoon_Volat_kg(
+          StockClass = StockClass,
+          DungUrine_to_Lagoon_pct = DungUrine_to_Lagoon_pct + DungUrine_to_SolidS_pct,
+          N_Excretion_kg = N_Excretion_kg
+        ),
+        
+        # calculate (milking cow) effluent spread on pasture as organic fert N2O:
+        
+        N_Effluent_Spread_excl_solids_kg = eq_fem7_N_Effluent_Spread_kg(
+          N_Excretion_kg = N_Excretion_kg,
+          DungUrine_to_Lagoon_pct = DungUrine_to_Lagoon_pct + DungUrine_to_SolidS_pct,
+          DungUrine_to_SolidS_pct = 0
+        ),
+        
+        N2O_Effluent_Spread_Direct_excl_solids_kg = eq_fem7_N2O_Effluent_Spread_Direct_kg(N_Effluent_Spread_kg = N_Effluent_Spread_excl_solids_kg),
+        
+        N2O_Effluent_Spread_Leach_excl_solids_kg = eq_fem7_N2O_Effluent_Spread_Leach_kg(N_Effluent_Spread_kg = N_Effluent_Spread_excl_solids_kg),
+        
+        N2O_Effluent_Spread_Volat_excl_solids_kg = eq_fem7_N2O_Effluent_Spread_Volat_kg(N_Effluent_Spread_kg = N_Effluent_Spread_excl_solids_kg)
+      )
+  }
+  
   return(livestock_calc_df2)
   
 }
