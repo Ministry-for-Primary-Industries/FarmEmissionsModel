@@ -1,6 +1,6 @@
-﻿Territory,Council,Region,Island,Pasture_Region,Production_Region
+Territory,Council,Region,Island,Pasture_Region,Production_Region
 Far North District,Far North District Council,Northland,North,Northland,Northern North Island
-Whangarei District,Whangārei District Council,Northland,North,Northland,Northern North Island
+Whangarei District,Whangarei District Council,Northland,North,Northland,Northern North Island
 Kaipara District,Kaipara District Council,Northland,North,Northland,Northern North Island
 Auckland,Auckland Council,Auckland,North,Waikato / Auckland,Northern North Island
 Thames-Coromandel District,Thames-Coromandel District Council,Waikato,North,Waikato / Auckland,Northern North Island
@@ -9,16 +9,16 @@ Waikato District,Waikato District Council,Waikato,North,Waikato / Auckland,North
 Matamata-Piako District,Matamata-Piako District Council,Waikato,North,Waikato / Auckland,Northern North Island
 Hamilton City,Hamilton City Council,Waikato,North,Waikato / Auckland,Northern North Island
 Waipa District,Waipa District Council,Waikato,North,Waikato / Auckland,Northern North Island
-Otorohanga District,Ōtorohanga District Council,Waikato,North,Waikato / Auckland,Northern North Island
+Otorohanga District,Otorohanga District Council,Waikato,North,Waikato / Auckland,Northern North Island
 South Waikato District,South Waikato District Council,Waikato,North,Waikato / Auckland,Northern North Island
 Waitomo District,Waitomo District Council,Waikato,North,Waikato / Auckland,Northern North Island
-Taupo District,Taupō District Council,Waikato,North,Waikato / Auckland,Northern North Island
+Taupo District,Taupo District Council,Waikato,North,Waikato / Auckland,Northern North Island
 Western Bay of Plenty District,Western Bay of Plenty District Council,Bay of Plenty,North,Bay of Plenty,Northern North Island
 Tauranga City,Tauranga City Council,Bay of Plenty,North,Bay of Plenty,Northern North Island
 Rotorua District,Rotorua District Council,Bay of Plenty,North,Bay of Plenty,Northern North Island
-Whakatane District,Whakatāne District Council,Bay of Plenty,North,Bay of Plenty,Northern North Island
+Whakatane District,Whakatane District Council,Bay of Plenty,North,Bay of Plenty,Northern North Island
 Kawerau District,Kawerau District Council,Bay of Plenty,North,Bay of Plenty,Northern North Island
-Opotiki District,Ōpōtiki District Council,Bay of Plenty,North,Bay of Plenty,Northern North Island
+Opotiki District,Opotiki District Council,Bay of Plenty,North,Bay of Plenty,Northern North Island
 Gisborne District,Gisborne District Council,Gisborne,North,Gisborne,Eastern North Island
 Wairoa District,Wairoa District Council,Hawke's Bay,North,Hawke's Bay,Eastern North Island
 Hastings District,Hastings District Council,Hawke's Bay,North,Hawke's Bay,Eastern North Island
@@ -27,14 +27,14 @@ Central Hawkes Bay District,Central Hawke's Bay District Council,Hawke's Bay,Nor
 New Plymouth District,New Plymouth District Council,Taranaki,North,Taranaki,Western North Island
 Stratford District,Stratford District Council,Taranaki,North,Taranaki,Western North Island
 South Taranaki District,South Taranaki District Council,Taranaki,North,Taranaki,Western North Island
-Ruapehu District,Ruapehu District Council,Manawatū-Whanganui,North,Manawatu-Whanganui,Northern North Island
-Whanganui District,Whanganui District Council,Manawatū-Whanganui,North,Manawatu-Whanganui,Western North Island
-Rangitikei District,Rangitikei District Council,Manawatū-Whanganui,North,Manawatu-Whanganui,Western North Island
-Manawatu District,Manawatu District Council,Manawatū-Whanganui,North,Manawatu-Whanganui,Western North Island
-Palmerston North City,Palmerston North City Council,Manawatū-Whanganui,North,Manawatu-Whanganui,Western North Island
-Tararua District,Tararua District Council,Manawatū-Whanganui,North,Manawatu-Whanganui,Eastern North Island
-Horowhenua District,Horowhenua District Council,Manawatū-Whanganui,North,Manawatu-Whanganui,Western North Island
-Kapiti Coast District,Kāpiti Coast District Council,Wellington,North,Wellington,Western North Island
+Ruapehu District,Ruapehu District Council,Manawatu-Whanganui,North,Manawatu-Whanganui,Northern North Island
+Whanganui District,Whanganui District Council,Manawatu-Whanganui,North,Manawatu-Whanganui,Western North Island
+Rangitikei District,Rangitikei District Council,Manawatu-Whanganui,North,Manawatu-Whanganui,Western North Island
+Manawatu District,Manawatu District Council,Manawatu-Whanganui,North,Manawatu-Whanganui,Western North Island
+Palmerston North City,Palmerston North City Council,Manawatu-Whanganui,North,Manawatu-Whanganui,Western North Island
+Tararua District,Tararua District Council,Manawatu-Whanganui,North,Manawatu-Whanganui,Eastern North Island
+Horowhenua District,Horowhenua District Council,Manawatu-Whanganui,North,Manawatu-Whanganui,Western North Island
+Kapiti Coast District,Kapiti Coast District Council,Wellington,North,Wellington,Western North Island
 Porirua City,Porirua City Council,Wellington,North,Wellington,Western North Island
 Upper Hutt City,Upper Hutt City Council,Wellington,North,Wellington,Western North Island
 Lower Hutt City,Hutt City Council,Wellington,North,Wellington,Western North Island
@@ -44,11 +44,11 @@ Carterton District,Carterton District Council,Wellington,North,Wellington,Easter
 South Wairarapa District,South Wairarapa District Council,Wellington,North,Wellington,Eastern North Island
 Tasman District,Tasman District Council,Tasman,South,Tasman / Nelson / Marlborough,Northern and Central South Island
 Nelson City,Nelson City Council,Nelson,South,Tasman / Nelson / Marlborough,Northern and Central South Island
-Marlborough District,Marlborough District Council,Malborough,South,Tasman / Nelson / Marlborough,Northern and Central South Island
+Marlborough District,Marlborough District Council,Marlborough,South,Tasman / Nelson / Marlborough,Northern and Central South Island
 Buller District,Buller District Council,West Coast,South,West Coast,Northern and Central South Island
 Grey District,Grey District Council,West Coast,South,West Coast,Northern and Central South Island
-Westland District,Westland District Council,West Coast,South,West Coast,Southern South Island
-Kaikoura District,Kaikōura District Council,Canterbury,South,Canterbury,Northern and Central South Island
+Westland District,Westland District Council,West Coast,South,West Coast,Western and Southern South Island
+Kaikoura District,Kaikoura District Council,Canterbury,South,Canterbury,Northern and Central South Island
 Hurunui District,Hurunui District Council,Canterbury,South,Canterbury,Northern and Central South Island
 Waimakariri District,Waimakariri District Council,Canterbury,South,Canterbury,Northern and Central South Island
 Christchurch City,Christchurch City Council,Canterbury,South,Canterbury,Northern and Central South Island
@@ -59,10 +59,10 @@ Mackenzie District,Mackenzie District Council,Canterbury,South,Canterbury,Northe
 Waimate District,Waimate District Council,Canterbury,South,Canterbury,Northern and Central South Island
 Chatham Islands Territory,Chatham Islands Council,Canterbury,South,Canterbury,Northern and Central South Island
 Waitaki District,Waitaki District Council,Canterbury,South,Canterbury,Northern and Central South Island
-Central Otago District,Central Otago District Council,Otago,South,Otago,Southern South Island
-Queenstown-Lakes District,Queenstown-Lakes District Council,Otago,South,Otago,Southern South Island
-Dunedin City,Dunedin City Council,Otago,South,Otago,Southern South Island
-Clutha District,Clutha District Council,Otago,South,Otago,Southern South Island
-Southland District,Southland District Council,Southland,South,Southland,Southern South Island
-Gore District,Gore District Council,Southland,South,Southland,Southern South Island
-Invercargill City,Invercargill City Council,Southland,South,Southland,Southern South Island
+Central Otago District,Central Otago District Council,Otago,South,Otago,Western and Southern South Island
+Queenstown-Lakes District,Queenstown-Lakes District Council,Otago,South,Otago,Western and Southern South Island
+Dunedin City,Dunedin City Council,Otago,South,Otago,Western and Southern South Island
+Clutha District,Clutha District Council,Otago,South,Otago,Western and Southern South Island
+Southland District,Southland District Council,Southland,South,Southland,Western and Southern South Island
+Gore District,Gore District Council,Southland,South,Southland,Western and Southern South Island
+Invercargill City,Invercargill City Council,Southland,South,Southland,Western and Southern South Island
