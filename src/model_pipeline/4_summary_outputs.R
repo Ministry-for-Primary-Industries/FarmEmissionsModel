@@ -10,15 +10,16 @@ summarise_livestock_monthly_by_StockClass <- function(df) {
       # calculate farmer-targeted emission categories
       CH4_Digestion_kg = CH4_Enteric_kg * StockCount_mean,
       CH4_DungUrine_kg = CH4_Pasture_Dung_kg * StockCount_mean,
-      CH4_Effluent_kg = CH4_Effluent_Lagoon_kg * StockCount_mean,
+      CH4_Effluent_kg = (CH4_Effluent_Lagoon_kg + + CH4_Effluent_SolidS_kg) * StockCount_mean,
       N2O_DungUrine_kg = (
         N2O_Pasture_Urine_Direct_kg + N2O_Pasture_Dung_Direct_kg +
           N2O_Pasture_Urine_Leach_kg + N2O_Pasture_Dung_Leach_kg +
           N2O_Pasture_Urine_Volat_kg + N2O_Pasture_Dung_Volat_kg
       ) * StockCount_mean,
       N2O_Effluent_kg = ( # note we include spread on pasture with N2O_Effluent_kg
-        N2O_Effluent_Lagoon_Volat_kg + N2O_Effluent_Spread_Direct_kg
-        + N2O_Effluent_Spread_Leach_kg + N2O_Effluent_Spread_Volat_kg
+        N2O_Effluent_Lagoon_Volat_kg + 
+          N2O_Effluent_SolidS_Direct_kg + N2O_Effluent_SolidS_Leach_kg + N2O_Effluent_SolidS_Volat_kg +
+          N2O_Effluent_Spread_Direct_kg + N2O_Effluent_Spread_Leach_kg + N2O_Effluent_Spread_Volat_kg
       ) * StockCount_mean
     ) %>% select(
       Entity__PeriodEnd,

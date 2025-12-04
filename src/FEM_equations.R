@@ -1040,16 +1040,33 @@ eq_fem7_FDM_kg <- function(
   
 }
 
+eq_fem7_DungUrine_to_SolidS_pct <- function(
+    StockClass, # StockClass variation
+    DungUrine_to_Effluent_pct, # calculated in system
+    Solid_Separation_pct # calculated in system
+    ) {
+  
+  # ref FEM equations 7.2a - 7.2b
+  
+  DungUrine_to_SolidS_pct = case_when(
+    StockClass == "Milking Cows Mature" ~ DungUrine_to_Effluent_pct * Solid_Separation_pct,
+    TRUE ~ 0
+  )
+  
+  return(DungUrine_to_SolidS_pct)
+  
+}
 
 eq_fem7_DungUrine_to_Lagoon_pct <- function(
     StockClass, # StockClass variation
-    Milk_Yield_kg # calculated in system
+    DungUrine_to_Effluent_pct, # calculated in system
+    DungUrine_to_SolidS_pct # calculated in system
     ) {
   
   # ref FEM equations 7.2a - 7.2b
   
   DungUrine_to_Lagoon_pct = case_when(
-    StockClass == "Milking Cows Mature" & Milk_Yield_kg > 0 ~ 0.094,
+    StockClass == "Milking Cows Mature" ~ DungUrine_to_Effluent_pct - DungUrine_to_SolidS_pct,
     TRUE ~ 0
   )
   
@@ -1058,12 +1075,13 @@ eq_fem7_DungUrine_to_Lagoon_pct <- function(
 }
 
 eq_fem7_DungUrine_to_Pasture_pct <- function(
+    DungUrine_to_SolidS_pct, # calculated in system
     DungUrine_to_Lagoon_pct # calculated in system
     ) {
   
   # ref FEM equation 7.3
   
-  DungUrine_to_Pasture_pct = 1 - DungUrine_to_Lagoon_pct
+  DungUrine_to_Pasture_pct = 1 - DungUrine_to_SolidS_pct - DungUrine_to_Lagoon_pct
   
   return(DungUrine_to_Pasture_pct)
   
@@ -1244,14 +1262,15 @@ eq_fem7_CH4_Effluent_Lagoon_kg <- function(
     FDM_kg, # calculated in system
     Ash_pct=0.08, # set by AIM
     B0=0.24, # set by AIM
-    MCF=0.74 # set by AIM
+    MCF_AL, # regional_effluent_mcf lookup based on farm data inputs
+    EcoPond_Efficacy_pct # calculated in system
 ) {
   
   # ref FEM equation 7.11
   
    feq_milkingDairyCows <- function() {
      
-     CH4_Effluent_Lagoon_kg <- FDM_kg * (1 - Ash_pct) * B0 * 0.67 * MCF * DungUrine_to_Lagoon_pct
+     CH4_Effluent_Lagoon_kg <- FDM_kg * (1 - Ash_pct) * B0 * 0.67 * MCF_AL * DungUrine_to_Lagoon_pct * (1 - EcoPond_Efficacy_pct)
      
      return(CH4_Effluent_Lagoon_kg)
      
@@ -1290,14 +1309,81 @@ eq_fem7_N2O_Effluent_Lagoon_Volat_kg <- function(
 }
 
 
+eq_fem7_CH4_Effluent_SolidS_kg <- function(
+    DungUrine_to_SolidS_pct, # calculated in system
+    FDM_kg, # calculated in system
+    Ash_pct=0.08, # set by AIM
+    B0=0.24, # set by AIM
+    MCF_SS # regional_effluent_mcf lookup based on farm data inputs
+) {
+  
+  # ref FEM equation xx
+  
+  CH4_Effluent_SolidS_kg <- FDM_kg * (1 - Ash_pct) * B0 * 0.67 * MCF_SS * DungUrine_to_SolidS_pct
+  
+  return(CH4_Effluent_SolidS_kg)
+
+}
+
+eq_fem7_N2O_Effluent_SolidS_Direct_kg <- function(
+    N_Excretion_kg, # calculated in system
+    DungUrine_to_SolidS_pct, # calculated in system
+    EF_3_SS=0.010 # set by AIM
+) {
+  
+  # ref FEM equation xx
+  
+  N2O_Effluent_SolidS_Direct_kg = 44/28 * EF_3_SS * DungUrine_to_SolidS_pct * N_Excretion_kg
+  
+  return(N2O_Effluent_SolidS_Direct_kg)
+  
+}
+
+eq_fem7_N2O_Effluent_SolidS_Leach_kg <- function(
+    N_Excretion_kg, # calculated in system
+    DungUrine_to_SolidS_pct, # calculated in system
+    EF_5=0.0075, # set by AIM
+    frac_leach_SS=0.02 # set by AIM
+) {
+  
+  # ref FEM equation xx
+  
+  N2O_Effluent_SolidS_Leach_kg = 44/28 * EF_5 * frac_leach_SS * DungUrine_to_SolidS_pct * N_Excretion_kg
+  
+  return(N2O_Effluent_SolidS_Leach_kg)
+  
+}
+
+eq_fem7_N2O_Effluent_SolidS_Volat_kg <- function(
+    N_Excretion_kg, # calculated in system
+    DungUrine_to_SolidS_pct, # calculated in system
+    EF_4=0.01, # set by AIM
+    frac_gasMS_SS=0.30 # set by AIM
+) {
+  
+  # ref FEM equation xx
+  
+
+  N2O_Effluent_SolidS_Volat_kg = N_Excretion_kg * DungUrine_to_SolidS_pct * EF_4 * frac_gasMS_SS * 44/28
+    
+  return(N2O_Effluent_SolidS_Volat_kg)
+
+}
+
+
 eq_fem7_N_Effluent_Spread_kg <- function(
   N_Excretion_kg, # calculated in system
-  DungUrine_to_Lagoon_pct # calculated in system
+  DungUrine_to_Lagoon_pct, # calculated in system
+  DungUrine_to_SolidS_pct, # calculated in system
+  frac_gasMS_AL=0.35, # set by AIM
+  frac_gasMS_SS=0.30, # set by AIM
+  frac_leach_SS=0.02, # set by AIM
+  EF_3_SS=0.010 # set by AIM
 ) {
   
   # ref FEM equation 7.13
   
-  N_Effluent_Spread_kg = N_Excretion_kg * DungUrine_to_Lagoon_pct
+  N_Effluent_Spread_kg = N_Excretion_kg * (DungUrine_to_Lagoon_pct * (1 - frac_gasMS_AL) + DungUrine_to_SolidS_pct * (1 - frac_gasMS_SS - frac_leach_SS - EF_3_SS))  # this is the N remaining after leaching, volatilisation and direct emissions from lagoon and solid storage
   
   return(N_Effluent_Spread_kg)
   
@@ -1305,13 +1391,12 @@ eq_fem7_N_Effluent_Spread_kg <- function(
 
 eq_fem7_N2O_Effluent_Spread_Direct_kg <- function(
   N_Effluent_Spread_kg, # calculated in system
-  frac_gasMS_AL=0.35, # set by AIM
   EF_1_Dairy=0.0025 # set by AIM
 ) {
   
   # ref FEM equation 7.14
   
-  N2O_Effluent_Spread_Direct_kg = 44/28 * ( N_Effluent_Spread_kg * (1 - frac_gasMS_AL) * EF_1_Dairy )
+  N2O_Effluent_Spread_Direct_kg = (44/28) * N_Effluent_Spread_kg * EF_1_Dairy
   
   return(N2O_Effluent_Spread_Direct_kg)
   
@@ -1319,14 +1404,13 @@ eq_fem7_N2O_Effluent_Spread_Direct_kg <- function(
 
 eq_fem7_N2O_Effluent_Spread_Leach_kg <- function(
   N_Effluent_Spread_kg, # calculated in system
-  frac_gasMS_AL=0.35, # set by AIM
   frac_leach_eff_spread=0.08, # set by AIM
   EF_5=0.0075 # set by AIM
 ) {
   
   # ref FEM equation 7.15
   
-  N2O_Effluent_Spread_Leach_kg = 44/28 * ( N_Effluent_Spread_kg * (1 - frac_gasMS_AL) * frac_leach_eff_spread * EF_5 )
+  N2O_Effluent_Spread_Leach_kg = (44/28) * N_Effluent_Spread_kg * frac_leach_eff_spread * EF_5
   
   return(N2O_Effluent_Spread_Leach_kg)
   
@@ -1334,14 +1418,13 @@ eq_fem7_N2O_Effluent_Spread_Leach_kg <- function(
 
 eq_fem7_N2O_Effluent_Spread_Volat_kg <- function(
   N_Effluent_Spread_kg, # calculated in system
-  frac_gasMS_AL=0.35, # set by AIM
   frac_NOx_and_NH3=0.1, # set by AIM
   EF_4=0.01 # set by AIM
 ) {
   
   # ref FEM equation 7.16
   
-  N2O_Effluent_Spread_Volat_kg = 44/28 * ( N_Effluent_Spread_kg * (1 - frac_gasMS_AL) * frac_NOx_and_NH3 * EF_4 )
+  N2O_Effluent_Spread_Volat_kg = (44/28) * N_Effluent_Spread_kg * frac_NOx_and_NH3 * EF_4
   
   return(N2O_Effluent_Spread_Volat_kg)
   
