@@ -17,8 +17,8 @@ summarise_livestock_monthly_by_StockClass <- function(df) {
           N2O_Pasture_Urine_Volat_kg + N2O_Pasture_Dung_Volat_kg
       ) * StockCount_mean,
       N2O_Effluent_kg = ( # note we include spread on pasture with N2O_Effluent_kg
-        N2O_Effluent_Lagoon_Volat_kg + N2O_OrganicFert_Direct_kg
-        + N2O_OrganicFert_Leach_kg + N2O_OrganicFert_Volat_kg
+        N2O_Effluent_Lagoon_Volat_kg + N2O_Effluent_Spread_Direct_kg
+        + N2O_Effluent_Spread_Leach_kg + N2O_Effluent_Spread_Volat_kg
       ) * StockCount_mean
     ) %>% select(
       Entity__PeriodEnd,
@@ -95,9 +95,12 @@ summarise_fertiliser_annual <- function(df) {
       N2O_SynthFert_kg = (
         N2O_SynthFert_Direct_t + N2O_SynthFert_Leach_t + N2O_SynthFert_Volat_t
       ) * 1000,
-      CO2_SynthFert_kg = CO2_SynthFert_t * 1000
+      CO2_SynthFert_kg = CO2_SynthFert_t * 1000,
+      N2O_OrganicFert_Direct_kg = N2O_OrganicFert_Direct_t * 1000,
+      CO2_Lime_kg = CO2_Lime_t * 1000,
+      CO2_Dolomite_kg = CO2_Dolomite_t * 1000
     ) %>%
-    select(Entity__PeriodEnd, N2O_SynthFert_kg, CO2_SynthFert_kg)
+    select(Entity__PeriodEnd, N2O_SynthFert_kg, CO2_SynthFert_kg, N2O_OrganicFert_Direct_kg, CO2_Lime_kg, CO2_Dolomite_kg)
   
 }
 
@@ -124,8 +127,8 @@ summarise_all_annual_by_gas <- function(df) {
     group_by(Entity__PeriodEnd) %>%
     summarise(
       CH4_total_kg = sum(CH4_Digestion_kg + CH4_DungUrine_kg + CH4_Effluent_kg),
-      N2O_total_kg = sum(N2O_DungUrine_kg + N2O_Effluent_kg + N2O_SynthFert_kg),
-      CO2_total_kg = sum(CO2_SynthFert_kg),
+      N2O_total_kg = sum(N2O_DungUrine_kg + N2O_Effluent_kg + N2O_SynthFert_kg + N2O_OrganicFert_Direct_kg),
+      CO2_total_kg = sum(CO2_SynthFert_kg + CO2_Lime_kg + CO2_Dolomite_kg),
       .groups = "drop"
     )
   
