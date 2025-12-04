@@ -58,10 +58,11 @@ lookup_nutrientProfile_supplements_df <- read_csv(file.path(
   "lookup_nutrientProfile_supplements.csv"
 ),
   col_types = list(
-    SupplementName = col_character(),
+    Supplement = col_character(),
     ME_Supp = col_double(),
     DMD_pct_Supp = col_double(),
-    N_pct_Supp = col_double()
+    N_pct_Supp = col_double(),
+    Utilisation_Supp = col_double()
   )
 )
 

@@ -36,7 +36,6 @@ Dairy_Production_df <- parse_Entity__PeriodEnd(Dairy_Production_df, retain_Perio
 Effluent_Structure_Use_df <- parse_Entity__PeriodEnd(Effluent_Structure_Use_df, retain_Period_End = FALSE)
 Effluent_EcoPond_Treatments_df <- parse_Entity__PeriodEnd(Effluent_EcoPond_Treatments_df, retain_Period_End = FALSE)
 SuppFeed_DryMatter_df <- parse_Entity__PeriodEnd(SuppFeed_DryMatter_df, retain_Period_End = FALSE)
-SuppFeed_SectoralAllocation_df <- parse_Entity__PeriodEnd(SuppFeed_SectoralAllocation_df, retain_Period_End = FALSE)
 BreedingValues_df <- parse_Entity__PeriodEnd(BreedingValues_df, retain_Period_End = FALSE)
 Breed_Allocation_df <- parse_Entity__PeriodEnd(Breed_Allocation_df, retain_Period_End = FALSE)
 
