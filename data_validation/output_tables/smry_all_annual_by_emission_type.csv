@@ -1,0 +1,13 @@
+Column_Title,Data_Type
+Entity_ID,str
+Period_End,date str
+CH4_Digestion_kg,float
+CH4_DungUrine_kg,float
+CH4_Effluent_kg,float
+N2O_DungUrine_kg,float
+N2O_Effluent_kg,float
+N2O_SynthFert_kg,float
+CO2_SynthFert_kg,float
+N2O_OrganicFert_Direct_kg,float
+CO2_Lime_kg,float
+CO2_Dolomite_kg,float

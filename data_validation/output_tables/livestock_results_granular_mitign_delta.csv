@@ -1,0 +1,14 @@
+Column_Title,Data_Type
+Entity_ID,str
+Period_End,date str
+YearMonth,date str
+Sector,str
+StockClass,str
+CH4_Enteric_excl_lm_genes_kg,float
+CH4_Effluent_Lagoon_excl_solids_kg,float
+CH4_Effluent_Lagoon_excl_ecopond_kg,float
+N2O_Effluent_Lagoon_Volat_excl_solids_kg,float
+N_Effluent_Spread_excl_solids_kg,float
+N2O_Effluent_Spread_Direct_excl_solids_kg,float
+N2O_Effluent_Spread_Leach_excl_solids_kg,float
+N2O_Effluent_Spread_Volat_excl_solids_kg,float

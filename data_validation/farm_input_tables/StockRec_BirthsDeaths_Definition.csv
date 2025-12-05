@@ -1,0 +1,7 @@
+Column_Title,Data_Type,Column_Rules,Definition
+Entity_ID,str,Any str up to 32 chars,See Table: FarmYear
+Period_End,date str,ISO8601 YYYY-MM-DD format,See Table: FarmYear
+Month,int,Element of [1:12],Calendar month.
+StockClass,str,Element of StockClass_list,"Category of animals defined by its sector, sex, age and if castrated. Values defined by StockClass_list."
+Births,int,>= 0,Number of live animals from relevant StockClass born. Positive values limited to newborn StockClasses.
+Deaths,int,>= 0,Number animals from relevant stockclass that died.

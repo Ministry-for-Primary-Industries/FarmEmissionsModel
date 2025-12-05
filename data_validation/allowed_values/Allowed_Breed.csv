@@ -1,0 +1,5 @@
+Breed,Definition
+Holstein-Friesian,Dairy breed whose parentage comprises greater than 12/16ths (>75%) Holstein-Friesian.
+Jersey,Dairy breed whose parentage comprises greater than 12/16ths (>75%) Jersey.
+Holstein-Friesian Jersey Cross,"Dairy breed whose parentage is comprised of Holstein-Friesian and Jersey, but with no dominant (i.e. greater than 12/16ths) breed."
+Other,"Dairy breeds that are not Holstein-Friesian, Jersey or Holstein-Friesian Jersey Cross."

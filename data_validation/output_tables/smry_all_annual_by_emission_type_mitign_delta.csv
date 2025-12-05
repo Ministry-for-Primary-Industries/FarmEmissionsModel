@@ -1,0 +1,8 @@
+Column_Title,Data_Type
+Entity_ID,str
+Period_End,date str
+CH4_Digestion_LMGenes_delta_kg,float
+CH4_Effluent_SolidSep_delta_kg,float
+CH4_Effluent_EcoPond_delta_kg,float
+N2O_Effluent_SolidSep_delta_kg,float
+N2O_SynthFert_UI_delta_kg,float

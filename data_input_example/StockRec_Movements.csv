@@ -1,6 +1,6 @@
 Entity_ID,Period_End,Transaction_Date,StockClass,Transaction_Type,Stock_Count
-10001,2022-06-30,2021-12-03,Steers R2,Purchase,120
-10001,2022-06-30,2022-01-29,Steers R2,Sale,120
+10001,2022-06-30,2022-04-03,Steers R2,Purchase,120
+10001,2022-06-30,2022-06-02,Steers R2,Sale,120
 10001,2022-06-30,2022-03-25,Lambs,Sale,390
 10001,2022-06-30,2022-04-30,Ewes Mature,Sale,100
 10001,2022-06-30,2022-04-30,Rams Mature,Sale,15
