@@ -22,7 +22,6 @@ param_saveout_tables = c(param_saveout_emission_tables, param_saveout_mitign_del
 
 # load R env --------------------------------------------------------------
 
-suppressPackageStartupMessages(library(assertthat))
 suppressPackageStartupMessages(library(dplyr))
 suppressPackageStartupMessages(library(jsonlite))
 suppressPackageStartupMessages(library(lubridate))

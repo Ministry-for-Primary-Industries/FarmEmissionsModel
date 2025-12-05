@@ -320,12 +320,9 @@ StockRec_daily_df <- StockLedger_agg_df %>%
 # this occurs when input data for a farm has a stock outflow transaction (sale, death etc.) which
 # exceeds current stock count. If this occurs, fix your input data
 
-assert_that(
-  all(StockRec_daily_df$StockCount_day >= 0),
-  msg = (
-    "Negative stock counts detected in StockRec_daily_df. To troubleshoot run: StockRec_daily_df %>% filter(StockCount_day < 0)"
-  )
-)
+if(any(StockRec_daily_df$StockCount_day < 0, na.rm = TRUE)) {
+  stop("Negative stock counts detected in StockRec_daily_df. To troubleshoot run: StockRec_daily_df %>% filter(StockCount_day < 0)")
+}
 
 StockRec_monthly_df <- StockRec_daily_df %>%
   mutate(YearMonth = floor_date(Date, unit = "month"), ) %>%
