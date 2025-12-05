@@ -10,55 +10,54 @@ Standalone it does not complete a farm-level emissions estimation
 
 This system of R functions are:
 
--   separated into self-contained modules, currently covering livestock
-    and synthetic fertiliser emissions
+- separated into self-contained modules, currently covering livestock
+  and synthetic fertiliser emissions
 
--   named in the form `eq_femD_X()` where digit `D` refers to the
-    relevant chapter in the FEM methodology and string `X` refers to the
-    output of the equation being calculated
+- named in the form `eq_femD_X()` where digit `D` refers to the relevant
+  chapter in the FEM methodology and string `X` refers to the output of
+  the equation being calculated
 
-    -   a single function may wrap multiple intermediate equations found
-        in the methodology as it calculates the output `X`
+  - a single function may wrap multiple intermediate equations found in
+    the methodology as it calculates the output `X`
 
-    -   if child functions exist within the above, they handle
-        conditional logic. For instance: sectoral variation in the
-        calculation of X. These are prefixed `feq` and suffixed with a
-        simple description of the condition(s) that apply
-        e.g. `feq_deer()` applies to deer
+  - if child functions exist within the above, they handle conditional
+    logic. For instance: sectoral variation in the calculation of X.
+    These are prefixed `feq` and suffixed with a simple description of
+    the condition(s) that apply e.g. `feq_deer()` applies to deer
 
 As this model is adapted from Ministry for Primary Industries’ national
 [Agricultural GHG Inventory
 Methodology](https://www.mpi.govt.nz/dmsdocument/13906/direct) (**AIM**)
 we note that:
 
--   any algebra typically follows the format of the AIM equations
-    (referenced in the FEM methodology). In some cases refactoring has
-    been done for clarity and/or to enable generalisation of multiple
-    AIM equations into a single function
+- any algebra typically follows the format of the AIM equations
+  (referenced in the FEM methodology). In some cases refactoring has
+  been done for clarity and/or to enable generalisation of multiple AIM
+  equations into a single function
 
--   equation parameter names generally mirror those in AIM
+- equation parameter names generally mirror those in AIM
 
 We place a high priority on parameter consistency. The equations and
 their parameters are modified from AIM where necessary to ensure
 consistent timeframes, units and representation of
 percentages/allocations/weights/proportions such that they are:
 
--   defined in per animal terms unless explicitly noted
+- defined in per animal terms unless explicitly noted
 
--   for parameters defined in terms of a time period, we use monthly
-    unless explicitly noted
+- for parameters defined in terms of a time period, we use monthly
+  unless explicitly noted
 
--   explicitly note unit of mass. Our default is kg where appropriate
+- explicitly note unit of mass. Our default is kg where appropriate
 
--   all percentage and allocation parameters explicitly contain this in
-    their names and are always in decimal form e.g. 5% = 0.05
+- all percentage and allocation parameters explicitly contain this in
+  their names and are always in decimal form e.g. 5% = 0.05
 
 Examples:
 
--   `DMI_kg` is the dry matter intake (of the farm-level diet) in kg,
-    per animal, of a given StockClass, in a given Month
--   `N_pct_Diet` is the Nitrogen percentage of the diet, for a given
-    StockClass, in a given Month
+- `DMI_kg` is the dry matter intake (of the farm-level diet) in kg, per
+  animal, of a given StockClass, in a given Month
+- `N_pct_Diet` is the Nitrogen percentage of the diet, for a given
+  StockClass, in a given Month
 
 # Global Helper Lists
 
@@ -128,14 +127,14 @@ mother stock classes
 
 This prepares farm data inputs on:
 
--   Milk Yield from L/herd to kg/animal
+- Milk Yield from L/herd to kg/animal
 
--   Milk solids content from kg/herd to percentage terms \[on a
-    mass:mass percentage basis, consistent with the academic literature
-    and how percentages are usually prescribed, but notably different
-    from the mass:volume basis form (i.e. kg milk solid / L milk) that
-    milk solid percentages are generally communicated to a farmer by
-    milk processors\]
+- Milk solids content from kg/herd to percentage terms \[on a mass:mass
+  percentage basis, consistent with the academic literature and how
+  percentages are usually prescribed, but notably different from the
+  mass:volume basis form (i.e. kg milk solid / L milk) that milk solid
+  percentages are generally communicated to a farmer by milk
+  processors\]
 
 ``` r
 eq_fem3_Milk_Yield_Herd_kg <- function(
@@ -740,9 +739,9 @@ equations are split into five sequentially numbered sections in Part 2.
 Uniquely this function **ingests multiple dataframes** and **outputs
 multiple values**, the farm-level diet parameters:
 
--   ME_Diet
--   DMD_pct_Diet
--   N_pct_Diet
+- ME_Diet
+- DMD_pct_Diet
+- N_pct_Diet
 
 ``` r
 eq_fem4_derive_farm_diet_parameters <- function(
@@ -960,15 +959,15 @@ eq_fem5_N_Intake_kg <- function(
 Depending on Sector and StockClass, some Nitrogen intake is used for
 production (and therefore non-excretion) use. These uses are:
 
--   Milk
+- Milk
 
--   Live Weight Gain
+- Live Weight Gain
 
--   Fetal Weight Gain
+- Fetal Weight Gain
 
--   Wool
+- Wool
 
--   Velvet
+- Velvet
 
 The Nitrogen utilised for the above is subtracted from Nitrogen intake
 to find Nitrogen excreted
@@ -1716,20 +1715,20 @@ eq_fem7_N2O_Effluent_Spread_Volat_kg <- function(
 
 Note there are 3 types of synthetic fertiliser considered:
 
--   Urease-inhibitor coated Urea
+- Urease-inhibitor coated Urea
 
--   Urea (uncoated)
+- Urea (uncoated)
 
--   Non-urea nitrogen-containing synthetic fertiliser (referred to in
-    shorthand as otherSynthFert)
+- Non-urea nitrogen-containing synthetic fertiliser (referred to in
+  shorthand as otherSynthFert)
 
 Only direct emission from organic fertiliser is considered. This does
 not include dairy effluent spread onto pasture, which is described in
 the previous section. There are 2 sources of organic fertiliser:
 
--   Manure (from swine and poultry)
+- Manure (from swine and poultry)
 
--   Non-manure
+- Non-manure
 
 Urea, lime and dolomite have direct pathways of CO2 emissions, the only
 emissions of CO2 across FEM

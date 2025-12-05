@@ -1,0 +1,518 @@
+Territory,Primary_Farm_Class,Type,Definition
+Far North District,North Island Hard Hill Country,Red meat,Steep hill country or low fertility soils with most farms carrying 6 to 10 stock units per hectare. While some stock are finished a significant proportion are sold in store condition.
+Far North District,North Island Hill Country,Red meat,Easier hill country or higher fertility soils than Class 3. Mostly carrying between 7 and 13 stock units per hectare. A high proportion of sale stock sold is in forward store or prime condition.
+Far North District,North Island Finishing,Red meat,Easy contour farmland with the potential for high production. Mostly carrying between 8 and 15 stock units per hectare. A high proportion of stock is sent to slaughter and replacements are often bought in.
+Far North District,Dairy,Dairy,Primarily a dairy operation.
+Far North District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Far North District,Orchard,Other,The primary output of the farm is fruit.
+Far North District,Vineyard,Other,The primary output of the farm is grapes.
+Whangarei District,North Island Hard Hill Country,Red meat,Steep hill country or low fertility soils with most farms carrying 6 to 10 stock units per hectare. While some stock are finished a significant proportion are sold in store condition.
+Whangarei District,North Island Hill Country,Red meat,Easier hill country or higher fertility soils than Class 3. Mostly carrying between 7 and 13 stock units per hectare. A high proportion of sale stock sold is in forward store or prime condition.
+Whangarei District,North Island Finishing,Red meat,Easy contour farmland with the potential for high production. Mostly carrying between 8 and 15 stock units per hectare. A high proportion of stock is sent to slaughter and replacements are often bought in.
+Whangarei District,Dairy,Dairy,Primarily a dairy operation.
+Whangarei District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Whangarei District,Orchard,Other,The primary output of the farm is fruit.
+Whangarei District,Vineyard,Other,The primary output of the farm is grapes.
+Kaipara District,North Island Hard Hill Country,Red meat,Steep hill country or low fertility soils with most farms carrying 6 to 10 stock units per hectare. While some stock are finished a significant proportion are sold in store condition.
+Kaipara District,North Island Hill Country,Red meat,Easier hill country or higher fertility soils than Class 3. Mostly carrying between 7 and 13 stock units per hectare. A high proportion of sale stock sold is in forward store or prime condition.
+Kaipara District,North Island Finishing,Red meat,Easy contour farmland with the potential for high production. Mostly carrying between 8 and 15 stock units per hectare. A high proportion of stock is sent to slaughter and replacements are often bought in.
+Kaipara District,Dairy,Dairy,Primarily a dairy operation.
+Kaipara District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Kaipara District,Orchard,Other,The primary output of the farm is fruit.
+Kaipara District,Vineyard,Other,The primary output of the farm is grapes.
+Auckland,North Island Hard Hill Country,Red meat,Steep hill country or low fertility soils with most farms carrying 6 to 10 stock units per hectare. While some stock are finished a significant proportion are sold in store condition.
+Auckland,North Island Hill Country,Red meat,Easier hill country or higher fertility soils than Class 3. Mostly carrying between 7 and 13 stock units per hectare. A high proportion of sale stock sold is in forward store or prime condition.
+Auckland,North Island Finishing,Red meat,Easy contour farmland with the potential for high production. Mostly carrying between 8 and 15 stock units per hectare. A high proportion of stock is sent to slaughter and replacements are often bought in.
+Auckland,Dairy,Dairy,Primarily a dairy operation.
+Auckland,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Auckland,Orchard,Other,The primary output of the farm is fruit.
+Auckland,Vineyard,Other,The primary output of the farm is grapes.
+Thames-Coromandel District,North Island Hard Hill Country,Red meat,Steep hill country or low fertility soils with most farms carrying 6 to 10 stock units per hectare. While some stock are finished a significant proportion are sold in store condition.
+Thames-Coromandel District,North Island Hill Country,Red meat,Easier hill country or higher fertility soils than Class 3. Mostly carrying between 7 and 13 stock units per hectare. A high proportion of sale stock sold is in forward store or prime condition.
+Thames-Coromandel District,North Island Finishing,Red meat,Easy contour farmland with the potential for high production. Mostly carrying between 8 and 15 stock units per hectare. A high proportion of stock is sent to slaughter and replacements are often bought in.
+Thames-Coromandel District,Dairy,Dairy,Primarily a dairy operation.
+Thames-Coromandel District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Thames-Coromandel District,Orchard,Other,The primary output of the farm is fruit.
+Thames-Coromandel District,Vineyard,Other,The primary output of the farm is grapes.
+Hauraki District,North Island Hard Hill Country,Red meat,Steep hill country or low fertility soils with most farms carrying 6 to 10 stock units per hectare. While some stock are finished a significant proportion are sold in store condition.
+Hauraki District,North Island Hill Country,Red meat,Easier hill country or higher fertility soils than Class 3. Mostly carrying between 7 and 13 stock units per hectare. A high proportion of sale stock sold is in forward store or prime condition.
+Hauraki District,North Island Finishing,Red meat,Easy contour farmland with the potential for high production. Mostly carrying between 8 and 15 stock units per hectare. A high proportion of stock is sent to slaughter and replacements are often bought in.
+Hauraki District,Dairy,Dairy,Primarily a dairy operation.
+Hauraki District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Hauraki District,Orchard,Other,The primary output of the farm is fruit.
+Hauraki District,Vineyard,Other,The primary output of the farm is grapes.
+Waikato District,North Island Hard Hill Country,Red meat,Steep hill country or low fertility soils with most farms carrying 6 to 10 stock units per hectare. While some stock are finished a significant proportion are sold in store condition.
+Waikato District,North Island Hill Country,Red meat,Easier hill country or higher fertility soils than Class 3. Mostly carrying between 7 and 13 stock units per hectare. A high proportion of sale stock sold is in forward store or prime condition.
+Waikato District,North Island Finishing,Red meat,Easy contour farmland with the potential for high production. Mostly carrying between 8 and 15 stock units per hectare. A high proportion of stock is sent to slaughter and replacements are often bought in.
+Waikato District,Dairy,Dairy,Primarily a dairy operation.
+Waikato District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Waikato District,Orchard,Other,The primary output of the farm is fruit.
+Waikato District,Vineyard,Other,The primary output of the farm is grapes.
+Matamata-Piako District,North Island Hard Hill Country,Red meat,Steep hill country or low fertility soils with most farms carrying 6 to 10 stock units per hectare. While some stock are finished a significant proportion are sold in store condition.
+Matamata-Piako District,North Island Hill Country,Red meat,Easier hill country or higher fertility soils than Class 3. Mostly carrying between 7 and 13 stock units per hectare. A high proportion of sale stock sold is in forward store or prime condition.
+Matamata-Piako District,North Island Finishing,Red meat,Easy contour farmland with the potential for high production. Mostly carrying between 8 and 15 stock units per hectare. A high proportion of stock is sent to slaughter and replacements are often bought in.
+Matamata-Piako District,Dairy,Dairy,Primarily a dairy operation.
+Matamata-Piako District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Matamata-Piako District,Orchard,Other,The primary output of the farm is fruit.
+Matamata-Piako District,Vineyard,Other,The primary output of the farm is grapes.
+Hamilton City,North Island Hard Hill Country,Red meat,Steep hill country or low fertility soils with most farms carrying 6 to 10 stock units per hectare. While some stock are finished a significant proportion are sold in store condition.
+Hamilton City,North Island Hill Country,Red meat,Easier hill country or higher fertility soils than Class 3. Mostly carrying between 7 and 13 stock units per hectare. A high proportion of sale stock sold is in forward store or prime condition.
+Hamilton City,North Island Finishing,Red meat,Easy contour farmland with the potential for high production. Mostly carrying between 8 and 15 stock units per hectare. A high proportion of stock is sent to slaughter and replacements are often bought in.
+Hamilton City,Dairy,Dairy,Primarily a dairy operation.
+Hamilton City,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Hamilton City,Orchard,Other,The primary output of the farm is fruit.
+Hamilton City,Vineyard,Other,The primary output of the farm is grapes.
+Waipa District,North Island Hard Hill Country,Red meat,Steep hill country or low fertility soils with most farms carrying 6 to 10 stock units per hectare. While some stock are finished a significant proportion are sold in store condition.
+Waipa District,North Island Hill Country,Red meat,Easier hill country or higher fertility soils than Class 3. Mostly carrying between 7 and 13 stock units per hectare. A high proportion of sale stock sold is in forward store or prime condition.
+Waipa District,North Island Finishing,Red meat,Easy contour farmland with the potential for high production. Mostly carrying between 8 and 15 stock units per hectare. A high proportion of stock is sent to slaughter and replacements are often bought in.
+Waipa District,Dairy,Dairy,Primarily a dairy operation.
+Waipa District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Waipa District,Orchard,Other,The primary output of the farm is fruit.
+Waipa District,Vineyard,Other,The primary output of the farm is grapes.
+Otorohanga District,North Island Hard Hill Country,Red meat,Steep hill country or low fertility soils with most farms carrying 6 to 10 stock units per hectare. While some stock are finished a significant proportion are sold in store condition.
+Otorohanga District,North Island Hill Country,Red meat,Easier hill country or higher fertility soils than Class 3. Mostly carrying between 7 and 13 stock units per hectare. A high proportion of sale stock sold is in forward store or prime condition.
+Otorohanga District,North Island Finishing,Red meat,Easy contour farmland with the potential for high production. Mostly carrying between 8 and 15 stock units per hectare. A high proportion of stock is sent to slaughter and replacements are often bought in.
+Otorohanga District,Dairy,Dairy,Primarily a dairy operation.
+Otorohanga District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Otorohanga District,Orchard,Other,The primary output of the farm is fruit.
+Otorohanga District,Vineyard,Other,The primary output of the farm is grapes.
+South Waikato District,North Island Hard Hill Country,Red meat,Steep hill country or low fertility soils with most farms carrying 6 to 10 stock units per hectare. While some stock are finished a significant proportion are sold in store condition.
+South Waikato District,North Island Hill Country,Red meat,Easier hill country or higher fertility soils than Class 3. Mostly carrying between 7 and 13 stock units per hectare. A high proportion of sale stock sold is in forward store or prime condition.
+South Waikato District,North Island Finishing,Red meat,Easy contour farmland with the potential for high production. Mostly carrying between 8 and 15 stock units per hectare. A high proportion of stock is sent to slaughter and replacements are often bought in.
+South Waikato District,Dairy,Dairy,Primarily a dairy operation.
+South Waikato District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+South Waikato District,Orchard,Other,The primary output of the farm is fruit.
+South Waikato District,Vineyard,Other,The primary output of the farm is grapes.
+Waitomo District,North Island Hard Hill Country,Red meat,Steep hill country or low fertility soils with most farms carrying 6 to 10 stock units per hectare. While some stock are finished a significant proportion are sold in store condition.
+Waitomo District,North Island Hill Country,Red meat,Easier hill country or higher fertility soils than Class 3. Mostly carrying between 7 and 13 stock units per hectare. A high proportion of sale stock sold is in forward store or prime condition.
+Waitomo District,North Island Finishing,Red meat,Easy contour farmland with the potential for high production. Mostly carrying between 8 and 15 stock units per hectare. A high proportion of stock is sent to slaughter and replacements are often bought in.
+Waitomo District,Dairy,Dairy,Primarily a dairy operation.
+Waitomo District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Waitomo District,Orchard,Other,The primary output of the farm is fruit.
+Waitomo District,Vineyard,Other,The primary output of the farm is grapes.
+Taupo District,North Island Hard Hill Country,Red meat,Steep hill country or low fertility soils with most farms carrying 6 to 10 stock units per hectare. While some stock are finished a significant proportion are sold in store condition.
+Taupo District,North Island Hill Country,Red meat,Easier hill country or higher fertility soils than Class 3. Mostly carrying between 7 and 13 stock units per hectare. A high proportion of sale stock sold is in forward store or prime condition.
+Taupo District,North Island Finishing,Red meat,Easy contour farmland with the potential for high production. Mostly carrying between 8 and 15 stock units per hectare. A high proportion of stock is sent to slaughter and replacements are often bought in.
+Taupo District,Dairy,Dairy,Primarily a dairy operation.
+Taupo District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Taupo District,Orchard,Other,The primary output of the farm is fruit.
+Taupo District,Vineyard,Other,The primary output of the farm is grapes.
+Western Bay of Plenty District,North Island Hard Hill Country,Red meat,Steep hill country or low fertility soils with most farms carrying 6 to 10 stock units per hectare. While some stock are finished a significant proportion are sold in store condition.
+Western Bay of Plenty District,North Island Hill Country,Red meat,Easier hill country or higher fertility soils than Class 3. Mostly carrying between 7 and 13 stock units per hectare. A high proportion of sale stock sold is in forward store or prime condition.
+Western Bay of Plenty District,North Island Finishing,Red meat,Easy contour farmland with the potential for high production. Mostly carrying between 8 and 15 stock units per hectare. A high proportion of stock is sent to slaughter and replacements are often bought in.
+Western Bay of Plenty District,Dairy,Dairy,Primarily a dairy operation.
+Western Bay of Plenty District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Western Bay of Plenty District,Orchard,Other,The primary output of the farm is fruit.
+Western Bay of Plenty District,Vineyard,Other,The primary output of the farm is grapes.
+Tauranga City,North Island Hard Hill Country,Red meat,Steep hill country or low fertility soils with most farms carrying 6 to 10 stock units per hectare. While some stock are finished a significant proportion are sold in store condition.
+Tauranga City,North Island Hill Country,Red meat,Easier hill country or higher fertility soils than Class 3. Mostly carrying between 7 and 13 stock units per hectare. A high proportion of sale stock sold is in forward store or prime condition.
+Tauranga City,North Island Finishing,Red meat,Easy contour farmland with the potential for high production. Mostly carrying between 8 and 15 stock units per hectare. A high proportion of stock is sent to slaughter and replacements are often bought in.
+Tauranga City,Dairy,Dairy,Primarily a dairy operation.
+Tauranga City,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Tauranga City,Orchard,Other,The primary output of the farm is fruit.
+Tauranga City,Vineyard,Other,The primary output of the farm is grapes.
+Rotorua District,North Island Hard Hill Country,Red meat,Steep hill country or low fertility soils with most farms carrying 6 to 10 stock units per hectare. While some stock are finished a significant proportion are sold in store condition.
+Rotorua District,North Island Hill Country,Red meat,Easier hill country or higher fertility soils than Class 3. Mostly carrying between 7 and 13 stock units per hectare. A high proportion of sale stock sold is in forward store or prime condition.
+Rotorua District,North Island Finishing,Red meat,Easy contour farmland with the potential for high production. Mostly carrying between 8 and 15 stock units per hectare. A high proportion of stock is sent to slaughter and replacements are often bought in.
+Rotorua District,Dairy,Dairy,Primarily a dairy operation.
+Rotorua District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Rotorua District,Orchard,Other,The primary output of the farm is fruit.
+Rotorua District,Vineyard,Other,The primary output of the farm is grapes.
+Whakatane District,North Island Hard Hill Country,Red meat,Steep hill country or low fertility soils with most farms carrying 6 to 10 stock units per hectare. While some stock are finished a significant proportion are sold in store condition.
+Whakatane District,North Island Hill Country,Red meat,Easier hill country or higher fertility soils than Class 3. Mostly carrying between 7 and 13 stock units per hectare. A high proportion of sale stock sold is in forward store or prime condition.
+Whakatane District,North Island Finishing,Red meat,Easy contour farmland with the potential for high production. Mostly carrying between 8 and 15 stock units per hectare. A high proportion of stock is sent to slaughter and replacements are often bought in.
+Whakatane District,Dairy,Dairy,Primarily a dairy operation.
+Whakatane District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Whakatane District,Orchard,Other,The primary output of the farm is fruit.
+Whakatane District,Vineyard,Other,The primary output of the farm is grapes.
+Kawerau District,North Island Hard Hill Country,Red meat,Steep hill country or low fertility soils with most farms carrying 6 to 10 stock units per hectare. While some stock are finished a significant proportion are sold in store condition.
+Kawerau District,North Island Hill Country,Red meat,Easier hill country or higher fertility soils than Class 3. Mostly carrying between 7 and 13 stock units per hectare. A high proportion of sale stock sold is in forward store or prime condition.
+Kawerau District,North Island Finishing,Red meat,Easy contour farmland with the potential for high production. Mostly carrying between 8 and 15 stock units per hectare. A high proportion of stock is sent to slaughter and replacements are often bought in.
+Kawerau District,Dairy,Dairy,Primarily a dairy operation.
+Kawerau District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Kawerau District,Orchard,Other,The primary output of the farm is fruit.
+Kawerau District,Vineyard,Other,The primary output of the farm is grapes.
+Opotiki District,North Island Hard Hill Country,Red meat,Steep hill country or low fertility soils with most farms carrying 6 to 10 stock units per hectare. While some stock are finished a significant proportion are sold in store condition.
+Opotiki District,North Island Hill Country,Red meat,Easier hill country or higher fertility soils than Class 3. Mostly carrying between 7 and 13 stock units per hectare. A high proportion of sale stock sold is in forward store or prime condition.
+Opotiki District,North Island Finishing,Red meat,Easy contour farmland with the potential for high production. Mostly carrying between 8 and 15 stock units per hectare. A high proportion of stock is sent to slaughter and replacements are often bought in.
+Opotiki District,Dairy,Dairy,Primarily a dairy operation.
+Opotiki District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Opotiki District,Orchard,Other,The primary output of the farm is fruit.
+Opotiki District,Vineyard,Other,The primary output of the farm is grapes.
+Gisborne District,North Island Hard Hill Country,Red meat,Steep hill country or low fertility soils with most farms carrying 6 to 10 stock units per hectare. While some stock are finished a significant proportion are sold in store condition.
+Gisborne District,North Island Hill Country,Red meat,Easier hill country or higher fertility soils than Class 3. Mostly carrying between 7 and 13 stock units per hectare. A high proportion of sale stock sold is in forward store or prime condition.
+Gisborne District,North Island Finishing,Red meat,Easy contour farmland with the potential for high production. Mostly carrying between 8 and 15 stock units per hectare. A high proportion of stock is sent to slaughter and replacements are often bought in.
+Gisborne District,Dairy,Dairy,Primarily a dairy operation.
+Gisborne District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Gisborne District,Orchard,Other,The primary output of the farm is fruit.
+Gisborne District,Vineyard,Other,The primary output of the farm is grapes.
+Wairoa District,North Island Hard Hill Country,Red meat,Steep hill country or low fertility soils with most farms carrying 6 to 10 stock units per hectare. While some stock are finished a significant proportion are sold in store condition.
+Wairoa District,North Island Hill Country,Red meat,Easier hill country or higher fertility soils than Class 3. Mostly carrying between 7 and 13 stock units per hectare. A high proportion of sale stock sold is in forward store or prime condition.
+Wairoa District,North Island Finishing,Red meat,Easy contour farmland with the potential for high production. Mostly carrying between 8 and 15 stock units per hectare. A high proportion of stock is sent to slaughter and replacements are often bought in.
+Wairoa District,Dairy,Dairy,Primarily a dairy operation.
+Wairoa District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Wairoa District,Orchard,Other,The primary output of the farm is fruit.
+Wairoa District,Vineyard,Other,The primary output of the farm is grapes.
+Hastings District,North Island Hard Hill Country,Red meat,Steep hill country or low fertility soils with most farms carrying 6 to 10 stock units per hectare. While some stock are finished a significant proportion are sold in store condition.
+Hastings District,North Island Hill Country,Red meat,Easier hill country or higher fertility soils than Class 3. Mostly carrying between 7 and 13 stock units per hectare. A high proportion of sale stock sold is in forward store or prime condition.
+Hastings District,North Island Finishing,Red meat,Easy contour farmland with the potential for high production. Mostly carrying between 8 and 15 stock units per hectare. A high proportion of stock is sent to slaughter and replacements are often bought in.
+Hastings District,Dairy,Dairy,Primarily a dairy operation.
+Hastings District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Hastings District,Orchard,Other,The primary output of the farm is fruit.
+Hastings District,Vineyard,Other,The primary output of the farm is grapes.
+Napier City,North Island Hard Hill Country,Red meat,Steep hill country or low fertility soils with most farms carrying 6 to 10 stock units per hectare. While some stock are finished a significant proportion are sold in store condition.
+Napier City,North Island Hill Country,Red meat,Easier hill country or higher fertility soils than Class 3. Mostly carrying between 7 and 13 stock units per hectare. A high proportion of sale stock sold is in forward store or prime condition.
+Napier City,North Island Finishing,Red meat,Easy contour farmland with the potential for high production. Mostly carrying between 8 and 15 stock units per hectare. A high proportion of stock is sent to slaughter and replacements are often bought in.
+Napier City,Dairy,Dairy,Primarily a dairy operation.
+Napier City,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Napier City,Orchard,Other,The primary output of the farm is fruit.
+Napier City,Vineyard,Other,The primary output of the farm is grapes.
+Central Hawkes Bay District,North Island Hard Hill Country,Red meat,Steep hill country or low fertility soils with most farms carrying 6 to 10 stock units per hectare. While some stock are finished a significant proportion are sold in store condition.
+Central Hawkes Bay District,North Island Hill Country,Red meat,Easier hill country or higher fertility soils than Class 3. Mostly carrying between 7 and 13 stock units per hectare. A high proportion of sale stock sold is in forward store or prime condition.
+Central Hawkes Bay District,North Island Finishing,Red meat,Easy contour farmland with the potential for high production. Mostly carrying between 8 and 15 stock units per hectare. A high proportion of stock is sent to slaughter and replacements are often bought in.
+Central Hawkes Bay District,Dairy,Dairy,Primarily a dairy operation.
+Central Hawkes Bay District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Central Hawkes Bay District,Orchard,Other,The primary output of the farm is fruit.
+Central Hawkes Bay District,Vineyard,Other,The primary output of the farm is grapes.
+New Plymouth District,North Island Hard Hill Country,Red meat,Steep hill country or low fertility soils with most farms carrying 6 to 10 stock units per hectare. While some stock are finished a significant proportion are sold in store condition.
+New Plymouth District,North Island Hill Country,Red meat,Easier hill country or higher fertility soils than Class 3. Mostly carrying between 7 and 13 stock units per hectare. A high proportion of sale stock sold is in forward store or prime condition.
+New Plymouth District,North Island Finishing,Red meat,Easy contour farmland with the potential for high production. Mostly carrying between 8 and 15 stock units per hectare. A high proportion of stock is sent to slaughter and replacements are often bought in.
+New Plymouth District,Dairy,Dairy,Primarily a dairy operation.
+New Plymouth District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+New Plymouth District,Orchard,Other,The primary output of the farm is fruit.
+New Plymouth District,Vineyard,Other,The primary output of the farm is grapes.
+Stratford District,North Island Hard Hill Country,Red meat,Steep hill country or low fertility soils with most farms carrying 6 to 10 stock units per hectare. While some stock are finished a significant proportion are sold in store condition.
+Stratford District,North Island Hill Country,Red meat,Easier hill country or higher fertility soils than Class 3. Mostly carrying between 7 and 13 stock units per hectare. A high proportion of sale stock sold is in forward store or prime condition.
+Stratford District,North Island Finishing,Red meat,Easy contour farmland with the potential for high production. Mostly carrying between 8 and 15 stock units per hectare. A high proportion of stock is sent to slaughter and replacements are often bought in.
+Stratford District,Dairy,Dairy,Primarily a dairy operation.
+Stratford District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Stratford District,Orchard,Other,The primary output of the farm is fruit.
+Stratford District,Vineyard,Other,The primary output of the farm is grapes.
+South Taranaki District,North Island Hard Hill Country,Red meat,Steep hill country or low fertility soils with most farms carrying 6 to 10 stock units per hectare. While some stock are finished a significant proportion are sold in store condition.
+South Taranaki District,North Island Hill Country,Red meat,Easier hill country or higher fertility soils than Class 3. Mostly carrying between 7 and 13 stock units per hectare. A high proportion of sale stock sold is in forward store or prime condition.
+South Taranaki District,North Island Finishing,Red meat,Easy contour farmland with the potential for high production. Mostly carrying between 8 and 15 stock units per hectare. A high proportion of stock is sent to slaughter and replacements are often bought in.
+South Taranaki District,Dairy,Dairy,Primarily a dairy operation.
+South Taranaki District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+South Taranaki District,Orchard,Other,The primary output of the farm is fruit.
+South Taranaki District,Vineyard,Other,The primary output of the farm is grapes.
+Ruapehu District,North Island Hard Hill Country,Red meat,Steep hill country or low fertility soils with most farms carrying 6 to 10 stock units per hectare. While some stock are finished a significant proportion are sold in store condition.
+Ruapehu District,North Island Hill Country,Red meat,Easier hill country or higher fertility soils than Class 3. Mostly carrying between 7 and 13 stock units per hectare. A high proportion of sale stock sold is in forward store or prime condition.
+Ruapehu District,North Island Finishing,Red meat,Easy contour farmland with the potential for high production. Mostly carrying between 8 and 15 stock units per hectare. A high proportion of stock is sent to slaughter and replacements are often bought in.
+Ruapehu District,Dairy,Dairy,Primarily a dairy operation.
+Ruapehu District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Ruapehu District,Orchard,Other,The primary output of the farm is fruit.
+Ruapehu District,Vineyard,Other,The primary output of the farm is grapes.
+Whanganui District,North Island Hard Hill Country,Red meat,Steep hill country or low fertility soils with most farms carrying 6 to 10 stock units per hectare. While some stock are finished a significant proportion are sold in store condition.
+Whanganui District,North Island Hill Country,Red meat,Easier hill country or higher fertility soils than Class 3. Mostly carrying between 7 and 13 stock units per hectare. A high proportion of sale stock sold is in forward store or prime condition.
+Whanganui District,North Island Finishing,Red meat,Easy contour farmland with the potential for high production. Mostly carrying between 8 and 15 stock units per hectare. A high proportion of stock is sent to slaughter and replacements are often bought in.
+Whanganui District,Dairy,Dairy,Primarily a dairy operation.
+Whanganui District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Whanganui District,Orchard,Other,The primary output of the farm is fruit.
+Whanganui District,Vineyard,Other,The primary output of the farm is grapes.
+Rangitikei District,North Island Hard Hill Country,Red meat,Steep hill country or low fertility soils with most farms carrying 6 to 10 stock units per hectare. While some stock are finished a significant proportion are sold in store condition.
+Rangitikei District,North Island Hill Country,Red meat,Easier hill country or higher fertility soils than Class 3. Mostly carrying between 7 and 13 stock units per hectare. A high proportion of sale stock sold is in forward store or prime condition.
+Rangitikei District,North Island Finishing,Red meat,Easy contour farmland with the potential for high production. Mostly carrying between 8 and 15 stock units per hectare. A high proportion of stock is sent to slaughter and replacements are often bought in.
+Rangitikei District,Dairy,Dairy,Primarily a dairy operation.
+Rangitikei District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Rangitikei District,Orchard,Other,The primary output of the farm is fruit.
+Rangitikei District,Vineyard,Other,The primary output of the farm is grapes.
+Manawatu District,North Island Hard Hill Country,Red meat,Steep hill country or low fertility soils with most farms carrying 6 to 10 stock units per hectare. While some stock are finished a significant proportion are sold in store condition.
+Manawatu District,North Island Hill Country,Red meat,Easier hill country or higher fertility soils than Class 3. Mostly carrying between 7 and 13 stock units per hectare. A high proportion of sale stock sold is in forward store or prime condition.
+Manawatu District,North Island Finishing,Red meat,Easy contour farmland with the potential for high production. Mostly carrying between 8 and 15 stock units per hectare. A high proportion of stock is sent to slaughter and replacements are often bought in.
+Manawatu District,Dairy,Dairy,Primarily a dairy operation.
+Manawatu District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Manawatu District,Orchard,Other,The primary output of the farm is fruit.
+Manawatu District,Vineyard,Other,The primary output of the farm is grapes.
+Palmerston North City,North Island Hard Hill Country,Red meat,Steep hill country or low fertility soils with most farms carrying 6 to 10 stock units per hectare. While some stock are finished a significant proportion are sold in store condition.
+Palmerston North City,North Island Hill Country,Red meat,Easier hill country or higher fertility soils than Class 3. Mostly carrying between 7 and 13 stock units per hectare. A high proportion of sale stock sold is in forward store or prime condition.
+Palmerston North City,North Island Finishing,Red meat,Easy contour farmland with the potential for high production. Mostly carrying between 8 and 15 stock units per hectare. A high proportion of stock is sent to slaughter and replacements are often bought in.
+Palmerston North City,Dairy,Dairy,Primarily a dairy operation.
+Palmerston North City,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Palmerston North City,Orchard,Other,The primary output of the farm is fruit.
+Palmerston North City,Vineyard,Other,The primary output of the farm is grapes.
+Tararua District,North Island Hard Hill Country,Red meat,Steep hill country or low fertility soils with most farms carrying 6 to 10 stock units per hectare. While some stock are finished a significant proportion are sold in store condition.
+Tararua District,North Island Hill Country,Red meat,Easier hill country or higher fertility soils than Class 3. Mostly carrying between 7 and 13 stock units per hectare. A high proportion of sale stock sold is in forward store or prime condition.
+Tararua District,North Island Finishing,Red meat,Easy contour farmland with the potential for high production. Mostly carrying between 8 and 15 stock units per hectare. A high proportion of stock is sent to slaughter and replacements are often bought in.
+Tararua District,Dairy,Dairy,Primarily a dairy operation.
+Tararua District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Tararua District,Orchard,Other,The primary output of the farm is fruit.
+Tararua District,Vineyard,Other,The primary output of the farm is grapes.
+Horowhenua District,North Island Hard Hill Country,Red meat,Steep hill country or low fertility soils with most farms carrying 6 to 10 stock units per hectare. While some stock are finished a significant proportion are sold in store condition.
+Horowhenua District,North Island Hill Country,Red meat,Easier hill country or higher fertility soils than Class 3. Mostly carrying between 7 and 13 stock units per hectare. A high proportion of sale stock sold is in forward store or prime condition.
+Horowhenua District,North Island Finishing,Red meat,Easy contour farmland with the potential for high production. Mostly carrying between 8 and 15 stock units per hectare. A high proportion of stock is sent to slaughter and replacements are often bought in.
+Horowhenua District,Dairy,Dairy,Primarily a dairy operation.
+Horowhenua District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Horowhenua District,Orchard,Other,The primary output of the farm is fruit.
+Horowhenua District,Vineyard,Other,The primary output of the farm is grapes.
+Kapiti Coast District,North Island Hard Hill Country,Red meat,Steep hill country or low fertility soils with most farms carrying 6 to 10 stock units per hectare. While some stock are finished a significant proportion are sold in store condition.
+Kapiti Coast District,North Island Hill Country,Red meat,Easier hill country or higher fertility soils than Class 3. Mostly carrying between 7 and 13 stock units per hectare. A high proportion of sale stock sold is in forward store or prime condition.
+Kapiti Coast District,North Island Finishing,Red meat,Easy contour farmland with the potential for high production. Mostly carrying between 8 and 15 stock units per hectare. A high proportion of stock is sent to slaughter and replacements are often bought in.
+Kapiti Coast District,Dairy,Dairy,Primarily a dairy operation.
+Kapiti Coast District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Kapiti Coast District,Orchard,Other,The primary output of the farm is fruit.
+Kapiti Coast District,Vineyard,Other,The primary output of the farm is grapes.
+Porirua City,North Island Hard Hill Country,Red meat,Steep hill country or low fertility soils with most farms carrying 6 to 10 stock units per hectare. While some stock are finished a significant proportion are sold in store condition.
+Porirua City,North Island Hill Country,Red meat,Easier hill country or higher fertility soils than Class 3. Mostly carrying between 7 and 13 stock units per hectare. A high proportion of sale stock sold is in forward store or prime condition.
+Porirua City,North Island Finishing,Red meat,Easy contour farmland with the potential for high production. Mostly carrying between 8 and 15 stock units per hectare. A high proportion of stock is sent to slaughter and replacements are often bought in.
+Porirua City,Dairy,Dairy,Primarily a dairy operation.
+Porirua City,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Porirua City,Orchard,Other,The primary output of the farm is fruit.
+Porirua City,Vineyard,Other,The primary output of the farm is grapes.
+Upper Hutt City,North Island Hard Hill Country,Red meat,Steep hill country or low fertility soils with most farms carrying 6 to 10 stock units per hectare. While some stock are finished a significant proportion are sold in store condition.
+Upper Hutt City,North Island Hill Country,Red meat,Easier hill country or higher fertility soils than Class 3. Mostly carrying between 7 and 13 stock units per hectare. A high proportion of sale stock sold is in forward store or prime condition.
+Upper Hutt City,North Island Finishing,Red meat,Easy contour farmland with the potential for high production. Mostly carrying between 8 and 15 stock units per hectare. A high proportion of stock is sent to slaughter and replacements are often bought in.
+Upper Hutt City,Dairy,Dairy,Primarily a dairy operation.
+Upper Hutt City,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Upper Hutt City,Orchard,Other,The primary output of the farm is fruit.
+Upper Hutt City,Vineyard,Other,The primary output of the farm is grapes.
+Lower Hutt City,North Island Hard Hill Country,Red meat,Steep hill country or low fertility soils with most farms carrying 6 to 10 stock units per hectare. While some stock are finished a significant proportion are sold in store condition.
+Lower Hutt City,North Island Hill Country,Red meat,Easier hill country or higher fertility soils than Class 3. Mostly carrying between 7 and 13 stock units per hectare. A high proportion of sale stock sold is in forward store or prime condition.
+Lower Hutt City,North Island Finishing,Red meat,Easy contour farmland with the potential for high production. Mostly carrying between 8 and 15 stock units per hectare. A high proportion of stock is sent to slaughter and replacements are often bought in.
+Lower Hutt City,Dairy,Dairy,Primarily a dairy operation.
+Lower Hutt City,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Lower Hutt City,Orchard,Other,The primary output of the farm is fruit.
+Lower Hutt City,Vineyard,Other,The primary output of the farm is grapes.
+Wellington City,North Island Hard Hill Country,Red meat,Steep hill country or low fertility soils with most farms carrying 6 to 10 stock units per hectare. While some stock are finished a significant proportion are sold in store condition.
+Wellington City,North Island Hill Country,Red meat,Easier hill country or higher fertility soils than Class 3. Mostly carrying between 7 and 13 stock units per hectare. A high proportion of sale stock sold is in forward store or prime condition.
+Wellington City,North Island Finishing,Red meat,Easy contour farmland with the potential for high production. Mostly carrying between 8 and 15 stock units per hectare. A high proportion of stock is sent to slaughter and replacements are often bought in.
+Wellington City,Dairy,Dairy,Primarily a dairy operation.
+Wellington City,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Wellington City,Orchard,Other,The primary output of the farm is fruit.
+Wellington City,Vineyard,Other,The primary output of the farm is grapes.
+Masterton District,North Island Hard Hill Country,Red meat,Steep hill country or low fertility soils with most farms carrying 6 to 10 stock units per hectare. While some stock are finished a significant proportion are sold in store condition.
+Masterton District,North Island Hill Country,Red meat,Easier hill country or higher fertility soils than Class 3. Mostly carrying between 7 and 13 stock units per hectare. A high proportion of sale stock sold is in forward store or prime condition.
+Masterton District,North Island Finishing,Red meat,Easy contour farmland with the potential for high production. Mostly carrying between 8 and 15 stock units per hectare. A high proportion of stock is sent to slaughter and replacements are often bought in.
+Masterton District,Dairy,Dairy,Primarily a dairy operation.
+Masterton District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Masterton District,Orchard,Other,The primary output of the farm is fruit.
+Masterton District,Vineyard,Other,The primary output of the farm is grapes.
+Carterton District,North Island Hard Hill Country,Red meat,Steep hill country or low fertility soils with most farms carrying 6 to 10 stock units per hectare. While some stock are finished a significant proportion are sold in store condition.
+Carterton District,North Island Hill Country,Red meat,Easier hill country or higher fertility soils than Class 3. Mostly carrying between 7 and 13 stock units per hectare. A high proportion of sale stock sold is in forward store or prime condition.
+Carterton District,North Island Finishing,Red meat,Easy contour farmland with the potential for high production. Mostly carrying between 8 and 15 stock units per hectare. A high proportion of stock is sent to slaughter and replacements are often bought in.
+Carterton District,Dairy,Dairy,Primarily a dairy operation.
+Carterton District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Carterton District,Orchard,Other,The primary output of the farm is fruit.
+Carterton District,Vineyard,Other,The primary output of the farm is grapes.
+South Wairarapa District,North Island Hard Hill Country,Red meat,Steep hill country or low fertility soils with most farms carrying 6 to 10 stock units per hectare. While some stock are finished a significant proportion are sold in store condition.
+South Wairarapa District,North Island Hill Country,Red meat,Easier hill country or higher fertility soils than Class 3. Mostly carrying between 7 and 13 stock units per hectare. A high proportion of sale stock sold is in forward store or prime condition.
+South Wairarapa District,North Island Finishing,Red meat,Easy contour farmland with the potential for high production. Mostly carrying between 8 and 15 stock units per hectare. A high proportion of stock is sent to slaughter and replacements are often bought in.
+South Wairarapa District,Dairy,Dairy,Primarily a dairy operation.
+South Wairarapa District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+South Wairarapa District,Orchard,Other,The primary output of the farm is fruit.
+South Wairarapa District,Vineyard,Other,The primary output of the farm is grapes.
+Tasman District,South Island High Country,Red meat,"Extensive run country located at high altitude. These farms run a diverse mix of operations which include breeding sheep, often fine wooled, breeding cows and deer. Stocking rate is typically up to three stock units per hectare. Located mainly in Marlborough, Canterbury and Otago."
+Tasman District,South Island Hill Country,Red meat,"Traditionally store stock producers with a proportion sold prime in good seasons. Carrying between two and seven stock units per hectare, they usually have a significant proportion of beef cattle."
+Tasman District,South Island Finishing,Red meat,"High producing grassland farms carrying about 9 to 14 stock units per hectare, with some cash crop. Located in Southland, South and West Otago."
+Tasman District,South Island Finishing-Breeding,Red meat,"Farms which breed or trade finishing stock, and may do some cash cropping. A proportion of stock may be sold store, especially from dryland farms. Carrying capacity ranges from 6 to 11 stock units per hectare on dryland farms and over 12 stock units per hectare on wetter or irrigated farms. Mainly in Canterbury and Otago, this is the dominant farm class in the South Island."
+Tasman District,South Island Mixed Cropping & Finishing,Red meat,"Located mainly on the Canterbury Plains. A high proportion of their revenue is derived from grain and small seed production, as well as stock finishing or grazing."
+Tasman District,Dairy,Dairy,Primarily a dairy operation.
+Tasman District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Tasman District,Orchard,Other,The primary output of the farm is fruit.
+Tasman District,Vineyard,Other,The primary output of the farm is grapes.
+Nelson City,South Island High Country,Red meat,"Extensive run country located at high altitude. These farms run a diverse mix of operations which include breeding sheep, often fine wooled, breeding cows and deer. Stocking rate is typically up to three stock units per hectare. Located mainly in Marlborough, Canterbury and Otago."
+Nelson City,South Island Hill Country,Red meat,"Traditionally store stock producers with a proportion sold prime in good seasons. Carrying between two and seven stock units per hectare, they usually have a significant proportion of beef cattle."
+Nelson City,South Island Finishing,Red meat,"High producing grassland farms carrying about 9 to 14 stock units per hectare, with some cash crop. Located in Southland, South and West Otago."
+Nelson City,South Island Finishing-Breeding,Red meat,"Farms which breed or trade finishing stock, and may do some cash cropping. A proportion of stock may be sold store, especially from dryland farms. Carrying capacity ranges from 6 to 11 stock units per hectare on dryland farms and over 12 stock units per hectare on wetter or irrigated farms. Mainly in Canterbury and Otago, this is the dominant farm class in the South Island."
+Nelson City,South Island Mixed Cropping & Finishing,Red meat,"Located mainly on the Canterbury Plains. A high proportion of their revenue is derived from grain and small seed production, as well as stock finishing or grazing."
+Nelson City,Dairy,Dairy,Primarily a dairy operation.
+Nelson City,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Nelson City,Orchard,Other,The primary output of the farm is fruit.
+Nelson City,Vineyard,Other,The primary output of the farm is grapes.
+Marlborough District,South Island High Country,Red meat,"Extensive run country located at high altitude. These farms run a diverse mix of operations which include breeding sheep, often fine wooled, breeding cows and deer. Stocking rate is typically up to three stock units per hectare. Located mainly in Marlborough, Canterbury and Otago."
+Marlborough District,South Island Hill Country,Red meat,"Traditionally store stock producers with a proportion sold prime in good seasons. Carrying between two and seven stock units per hectare, they usually have a significant proportion of beef cattle."
+Marlborough District,South Island Finishing,Red meat,"High producing grassland farms carrying about 9 to 14 stock units per hectare, with some cash crop. Located in Southland, South and West Otago."
+Marlborough District,South Island Finishing-Breeding,Red meat,"Farms which breed or trade finishing stock, and may do some cash cropping. A proportion of stock may be sold store, especially from dryland farms. Carrying capacity ranges from 6 to 11 stock units per hectare on dryland farms and over 12 stock units per hectare on wetter or irrigated farms. Mainly in Canterbury and Otago, this is the dominant farm class in the South Island."
+Marlborough District,South Island Mixed Cropping & Finishing,Red meat,"Located mainly on the Canterbury Plains. A high proportion of their revenue is derived from grain and small seed production, as well as stock finishing or grazing."
+Marlborough District,Dairy,Dairy,Primarily a dairy operation.
+Marlborough District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Marlborough District,Orchard,Other,The primary output of the farm is fruit.
+Marlborough District,Vineyard,Other,The primary output of the farm is grapes.
+Buller District,South Island High Country,Red meat,"Extensive run country located at high altitude. These farms run a diverse mix of operations which include breeding sheep, often fine wooled, breeding cows and deer. Stocking rate is typically up to three stock units per hectare. Located mainly in Marlborough, Canterbury and Otago."
+Buller District,South Island Hill Country,Red meat,"Traditionally store stock producers with a proportion sold prime in good seasons. Carrying between two and seven stock units per hectare, they usually have a significant proportion of beef cattle."
+Buller District,South Island Finishing,Red meat,"High producing grassland farms carrying about 9 to 14 stock units per hectare, with some cash crop. Located in Southland, South and West Otago."
+Buller District,South Island Finishing-Breeding,Red meat,"Farms which breed or trade finishing stock, and may do some cash cropping. A proportion of stock may be sold store, especially from dryland farms. Carrying capacity ranges from 6 to 11 stock units per hectare on dryland farms and over 12 stock units per hectare on wetter or irrigated farms. Mainly in Canterbury and Otago, this is the dominant farm class in the South Island."
+Buller District,South Island Mixed Cropping & Finishing,Red meat,"Located mainly on the Canterbury Plains. A high proportion of their revenue is derived from grain and small seed production, as well as stock finishing or grazing."
+Buller District,Dairy,Dairy,Primarily a dairy operation.
+Buller District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Buller District,Orchard,Other,The primary output of the farm is fruit.
+Buller District,Vineyard,Other,The primary output of the farm is grapes.
+Grey District,South Island High Country,Red meat,"Extensive run country located at high altitude. These farms run a diverse mix of operations which include breeding sheep, often fine wooled, breeding cows and deer. Stocking rate is typically up to three stock units per hectare. Located mainly in Marlborough, Canterbury and Otago."
+Grey District,South Island Hill Country,Red meat,"Traditionally store stock producers with a proportion sold prime in good seasons. Carrying between two and seven stock units per hectare, they usually have a significant proportion of beef cattle."
+Grey District,South Island Finishing,Red meat,"High producing grassland farms carrying about 9 to 14 stock units per hectare, with some cash crop. Located in Southland, South and West Otago."
+Grey District,South Island Finishing-Breeding,Red meat,"Farms which breed or trade finishing stock, and may do some cash cropping. A proportion of stock may be sold store, especially from dryland farms. Carrying capacity ranges from 6 to 11 stock units per hectare on dryland farms and over 12 stock units per hectare on wetter or irrigated farms. Mainly in Canterbury and Otago, this is the dominant farm class in the South Island."
+Grey District,South Island Mixed Cropping & Finishing,Red meat,"Located mainly on the Canterbury Plains. A high proportion of their revenue is derived from grain and small seed production, as well as stock finishing or grazing."
+Grey District,Dairy,Dairy,Primarily a dairy operation.
+Grey District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Grey District,Orchard,Other,The primary output of the farm is fruit.
+Grey District,Vineyard,Other,The primary output of the farm is grapes.
+Westland District,South Island High Country,Red meat,"Extensive run country located at high altitude. These farms run a diverse mix of operations which include breeding sheep, often fine wooled, breeding cows and deer. Stocking rate is typically up to three stock units per hectare. Located mainly in Marlborough, Canterbury and Otago."
+Westland District,South Island Hill Country,Red meat,"Traditionally store stock producers with a proportion sold prime in good seasons. Carrying between two and seven stock units per hectare, they usually have a significant proportion of beef cattle."
+Westland District,South Island Finishing,Red meat,"High producing grassland farms carrying about 9 to 14 stock units per hectare, with some cash crop. Located in Southland, South and West Otago."
+Westland District,South Island Finishing-Breeding,Red meat,"Farms which breed or trade finishing stock, and may do some cash cropping. A proportion of stock may be sold store, especially from dryland farms. Carrying capacity ranges from 6 to 11 stock units per hectare on dryland farms and over 12 stock units per hectare on wetter or irrigated farms. Mainly in Canterbury and Otago, this is the dominant farm class in the South Island."
+Westland District,South Island Mixed Cropping & Finishing,Red meat,"Located mainly on the Canterbury Plains. A high proportion of their revenue is derived from grain and small seed production, as well as stock finishing or grazing."
+Westland District,Dairy,Dairy,Primarily a dairy operation.
+Westland District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Westland District,Orchard,Other,The primary output of the farm is fruit.
+Westland District,Vineyard,Other,The primary output of the farm is grapes.
+Kaikoura District,South Island High Country,Red meat,"Extensive run country located at high altitude. These farms run a diverse mix of operations which include breeding sheep, often fine wooled, breeding cows and deer. Stocking rate is typically up to three stock units per hectare. Located mainly in Marlborough, Canterbury and Otago."
+Kaikoura District,South Island Hill Country,Red meat,"Traditionally store stock producers with a proportion sold prime in good seasons. Carrying between two and seven stock units per hectare, they usually have a significant proportion of beef cattle."
+Kaikoura District,South Island Finishing,Red meat,"High producing grassland farms carrying about 9 to 14 stock units per hectare, with some cash crop. Located in Southland, South and West Otago."
+Kaikoura District,South Island Finishing-Breeding,Red meat,"Farms which breed or trade finishing stock, and may do some cash cropping. A proportion of stock may be sold store, especially from dryland farms. Carrying capacity ranges from 6 to 11 stock units per hectare on dryland farms and over 12 stock units per hectare on wetter or irrigated farms. Mainly in Canterbury and Otago, this is the dominant farm class in the South Island."
+Kaikoura District,South Island Mixed Cropping & Finishing,Red meat,"Located mainly on the Canterbury Plains. A high proportion of their revenue is derived from grain and small seed production, as well as stock finishing or grazing."
+Kaikoura District,Dairy,Dairy,Primarily a dairy operation.
+Kaikoura District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Kaikoura District,Orchard,Other,The primary output of the farm is fruit.
+Kaikoura District,Vineyard,Other,The primary output of the farm is grapes.
+Hurunui District,South Island High Country,Red meat,"Extensive run country located at high altitude. These farms run a diverse mix of operations which include breeding sheep, often fine wooled, breeding cows and deer. Stocking rate is typically up to three stock units per hectare. Located mainly in Marlborough, Canterbury and Otago."
+Hurunui District,South Island Hill Country,Red meat,"Traditionally store stock producers with a proportion sold prime in good seasons. Carrying between two and seven stock units per hectare, they usually have a significant proportion of beef cattle."
+Hurunui District,South Island Finishing,Red meat,"High producing grassland farms carrying about 9 to 14 stock units per hectare, with some cash crop. Located in Southland, South and West Otago."
+Hurunui District,South Island Finishing-Breeding,Red meat,"Farms which breed or trade finishing stock, and may do some cash cropping. A proportion of stock may be sold store, especially from dryland farms. Carrying capacity ranges from 6 to 11 stock units per hectare on dryland farms and over 12 stock units per hectare on wetter or irrigated farms. Mainly in Canterbury and Otago, this is the dominant farm class in the South Island."
+Hurunui District,South Island Mixed Cropping & Finishing,Red meat,"Located mainly on the Canterbury Plains. A high proportion of their revenue is derived from grain and small seed production, as well as stock finishing or grazing."
+Hurunui District,Dairy,Dairy,Primarily a dairy operation.
+Hurunui District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Hurunui District,Orchard,Other,The primary output of the farm is fruit.
+Hurunui District,Vineyard,Other,The primary output of the farm is grapes.
+Waimakariri District,South Island High Country,Red meat,"Extensive run country located at high altitude. These farms run a diverse mix of operations which include breeding sheep, often fine wooled, breeding cows and deer. Stocking rate is typically up to three stock units per hectare. Located mainly in Marlborough, Canterbury and Otago."
+Waimakariri District,South Island Hill Country,Red meat,"Traditionally store stock producers with a proportion sold prime in good seasons. Carrying between two and seven stock units per hectare, they usually have a significant proportion of beef cattle."
+Waimakariri District,South Island Finishing,Red meat,"High producing grassland farms carrying about 9 to 14 stock units per hectare, with some cash crop. Located in Southland, South and West Otago."
+Waimakariri District,South Island Finishing-Breeding,Red meat,"Farms which breed or trade finishing stock, and may do some cash cropping. A proportion of stock may be sold store, especially from dryland farms. Carrying capacity ranges from 6 to 11 stock units per hectare on dryland farms and over 12 stock units per hectare on wetter or irrigated farms. Mainly in Canterbury and Otago, this is the dominant farm class in the South Island."
+Waimakariri District,South Island Mixed Cropping & Finishing,Red meat,"Located mainly on the Canterbury Plains. A high proportion of their revenue is derived from grain and small seed production, as well as stock finishing or grazing."
+Waimakariri District,Dairy,Dairy,Primarily a dairy operation.
+Waimakariri District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Waimakariri District,Orchard,Other,The primary output of the farm is fruit.
+Waimakariri District,Vineyard,Other,The primary output of the farm is grapes.
+Christchurch City,South Island High Country,Red meat,"Extensive run country located at high altitude. These farms run a diverse mix of operations which include breeding sheep, often fine wooled, breeding cows and deer. Stocking rate is typically up to three stock units per hectare. Located mainly in Marlborough, Canterbury and Otago."
+Christchurch City,South Island Hill Country,Red meat,"Traditionally store stock producers with a proportion sold prime in good seasons. Carrying between two and seven stock units per hectare, they usually have a significant proportion of beef cattle."
+Christchurch City,South Island Finishing,Red meat,"High producing grassland farms carrying about 9 to 14 stock units per hectare, with some cash crop. Located in Southland, South and West Otago."
+Christchurch City,South Island Finishing-Breeding,Red meat,"Farms which breed or trade finishing stock, and may do some cash cropping. A proportion of stock may be sold store, especially from dryland farms. Carrying capacity ranges from 6 to 11 stock units per hectare on dryland farms and over 12 stock units per hectare on wetter or irrigated farms. Mainly in Canterbury and Otago, this is the dominant farm class in the South Island."
+Christchurch City,South Island Mixed Cropping & Finishing,Red meat,"Located mainly on the Canterbury Plains. A high proportion of their revenue is derived from grain and small seed production, as well as stock finishing or grazing."
+Christchurch City,Dairy,Dairy,Primarily a dairy operation.
+Christchurch City,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Christchurch City,Orchard,Other,The primary output of the farm is fruit.
+Christchurch City,Vineyard,Other,The primary output of the farm is grapes.
+Selwyn District,South Island High Country,Red meat,"Extensive run country located at high altitude. These farms run a diverse mix of operations which include breeding sheep, often fine wooled, breeding cows and deer. Stocking rate is typically up to three stock units per hectare. Located mainly in Marlborough, Canterbury and Otago."
+Selwyn District,South Island Hill Country,Red meat,"Traditionally store stock producers with a proportion sold prime in good seasons. Carrying between two and seven stock units per hectare, they usually have a significant proportion of beef cattle."
+Selwyn District,South Island Finishing,Red meat,"High producing grassland farms carrying about 9 to 14 stock units per hectare, with some cash crop. Located in Southland, South and West Otago."
+Selwyn District,South Island Finishing-Breeding,Red meat,"Farms which breed or trade finishing stock, and may do some cash cropping. A proportion of stock may be sold store, especially from dryland farms. Carrying capacity ranges from 6 to 11 stock units per hectare on dryland farms and over 12 stock units per hectare on wetter or irrigated farms. Mainly in Canterbury and Otago, this is the dominant farm class in the South Island."
+Selwyn District,South Island Mixed Cropping & Finishing,Red meat,"Located mainly on the Canterbury Plains. A high proportion of their revenue is derived from grain and small seed production, as well as stock finishing or grazing."
+Selwyn District,Dairy,Dairy,Primarily a dairy operation.
+Selwyn District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Selwyn District,Orchard,Other,The primary output of the farm is fruit.
+Selwyn District,Vineyard,Other,The primary output of the farm is grapes.
+Ashburton District,South Island High Country,Red meat,"Extensive run country located at high altitude. These farms run a diverse mix of operations which include breeding sheep, often fine wooled, breeding cows and deer. Stocking rate is typically up to three stock units per hectare. Located mainly in Marlborough, Canterbury and Otago."
+Ashburton District,South Island Hill Country,Red meat,"Traditionally store stock producers with a proportion sold prime in good seasons. Carrying between two and seven stock units per hectare, they usually have a significant proportion of beef cattle."
+Ashburton District,South Island Finishing,Red meat,"High producing grassland farms carrying about 9 to 14 stock units per hectare, with some cash crop. Located in Southland, South and West Otago."
+Ashburton District,South Island Finishing-Breeding,Red meat,"Farms which breed or trade finishing stock, and may do some cash cropping. A proportion of stock may be sold store, especially from dryland farms. Carrying capacity ranges from 6 to 11 stock units per hectare on dryland farms and over 12 stock units per hectare on wetter or irrigated farms. Mainly in Canterbury and Otago, this is the dominant farm class in the South Island."
+Ashburton District,South Island Mixed Cropping & Finishing,Red meat,"Located mainly on the Canterbury Plains. A high proportion of their revenue is derived from grain and small seed production, as well as stock finishing or grazing."
+Ashburton District,Dairy,Dairy,Primarily a dairy operation.
+Ashburton District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Ashburton District,Orchard,Other,The primary output of the farm is fruit.
+Ashburton District,Vineyard,Other,The primary output of the farm is grapes.
+Timaru District,South Island High Country,Red meat,"Extensive run country located at high altitude. These farms run a diverse mix of operations which include breeding sheep, often fine wooled, breeding cows and deer. Stocking rate is typically up to three stock units per hectare. Located mainly in Marlborough, Canterbury and Otago."
+Timaru District,South Island Hill Country,Red meat,"Traditionally store stock producers with a proportion sold prime in good seasons. Carrying between two and seven stock units per hectare, they usually have a significant proportion of beef cattle."
+Timaru District,South Island Finishing,Red meat,"High producing grassland farms carrying about 9 to 14 stock units per hectare, with some cash crop. Located in Southland, South and West Otago."
+Timaru District,South Island Finishing-Breeding,Red meat,"Farms which breed or trade finishing stock, and may do some cash cropping. A proportion of stock may be sold store, especially from dryland farms. Carrying capacity ranges from 6 to 11 stock units per hectare on dryland farms and over 12 stock units per hectare on wetter or irrigated farms. Mainly in Canterbury and Otago, this is the dominant farm class in the South Island."
+Timaru District,South Island Mixed Cropping & Finishing,Red meat,"Located mainly on the Canterbury Plains. A high proportion of their revenue is derived from grain and small seed production, as well as stock finishing or grazing."
+Timaru District,Dairy,Dairy,Primarily a dairy operation.
+Timaru District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Timaru District,Orchard,Other,The primary output of the farm is fruit.
+Timaru District,Vineyard,Other,The primary output of the farm is grapes.
+Mackenzie District,South Island High Country,Red meat,"Extensive run country located at high altitude. These farms run a diverse mix of operations which include breeding sheep, often fine wooled, breeding cows and deer. Stocking rate is typically up to three stock units per hectare. Located mainly in Marlborough, Canterbury and Otago."
+Mackenzie District,South Island Hill Country,Red meat,"Traditionally store stock producers with a proportion sold prime in good seasons. Carrying between two and seven stock units per hectare, they usually have a significant proportion of beef cattle."
+Mackenzie District,South Island Finishing,Red meat,"High producing grassland farms carrying about 9 to 14 stock units per hectare, with some cash crop. Located in Southland, South and West Otago."
+Mackenzie District,South Island Finishing-Breeding,Red meat,"Farms which breed or trade finishing stock, and may do some cash cropping. A proportion of stock may be sold store, especially from dryland farms. Carrying capacity ranges from 6 to 11 stock units per hectare on dryland farms and over 12 stock units per hectare on wetter or irrigated farms. Mainly in Canterbury and Otago, this is the dominant farm class in the South Island."
+Mackenzie District,South Island Mixed Cropping & Finishing,Red meat,"Located mainly on the Canterbury Plains. A high proportion of their revenue is derived from grain and small seed production, as well as stock finishing or grazing."
+Mackenzie District,Dairy,Dairy,Primarily a dairy operation.
+Mackenzie District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Mackenzie District,Orchard,Other,The primary output of the farm is fruit.
+Mackenzie District,Vineyard,Other,The primary output of the farm is grapes.
+Waimate District,South Island High Country,Red meat,"Extensive run country located at high altitude. These farms run a diverse mix of operations which include breeding sheep, often fine wooled, breeding cows and deer. Stocking rate is typically up to three stock units per hectare. Located mainly in Marlborough, Canterbury and Otago."
+Waimate District,South Island Hill Country,Red meat,"Traditionally store stock producers with a proportion sold prime in good seasons. Carrying between two and seven stock units per hectare, they usually have a significant proportion of beef cattle."
+Waimate District,South Island Finishing,Red meat,"High producing grassland farms carrying about 9 to 14 stock units per hectare, with some cash crop. Located in Southland, South and West Otago."
+Waimate District,South Island Finishing-Breeding,Red meat,"Farms which breed or trade finishing stock, and may do some cash cropping. A proportion of stock may be sold store, especially from dryland farms. Carrying capacity ranges from 6 to 11 stock units per hectare on dryland farms and over 12 stock units per hectare on wetter or irrigated farms. Mainly in Canterbury and Otago, this is the dominant farm class in the South Island."
+Waimate District,South Island Mixed Cropping & Finishing,Red meat,"Located mainly on the Canterbury Plains. A high proportion of their revenue is derived from grain and small seed production, as well as stock finishing or grazing."
+Waimate District,Dairy,Dairy,Primarily a dairy operation.
+Waimate District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Waimate District,Orchard,Other,The primary output of the farm is fruit.
+Waimate District,Vineyard,Other,The primary output of the farm is grapes.
+Chatham Islands Territory,South Island High Country,Red meat,"Extensive run country located at high altitude. These farms run a diverse mix of operations which include breeding sheep, often fine wooled, breeding cows and deer. Stocking rate is typically up to three stock units per hectare. Located mainly in Marlborough, Canterbury and Otago."
+Chatham Islands Territory,South Island Hill Country,Red meat,"Traditionally store stock producers with a proportion sold prime in good seasons. Carrying between two and seven stock units per hectare, they usually have a significant proportion of beef cattle."
+Chatham Islands Territory,South Island Finishing,Red meat,"High producing grassland farms carrying about 9 to 14 stock units per hectare, with some cash crop. Located in Southland, South and West Otago."
+Chatham Islands Territory,South Island Finishing-Breeding,Red meat,"Farms which breed or trade finishing stock, and may do some cash cropping. A proportion of stock may be sold store, especially from dryland farms. Carrying capacity ranges from 6 to 11 stock units per hectare on dryland farms and over 12 stock units per hectare on wetter or irrigated farms. Mainly in Canterbury and Otago, this is the dominant farm class in the South Island."
+Chatham Islands Territory,South Island Mixed Cropping & Finishing,Red meat,"Located mainly on the Canterbury Plains. A high proportion of their revenue is derived from grain and small seed production, as well as stock finishing or grazing."
+Chatham Islands Territory,Dairy,Dairy,Primarily a dairy operation.
+Chatham Islands Territory,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Chatham Islands Territory,Orchard,Other,The primary output of the farm is fruit.
+Chatham Islands Territory,Vineyard,Other,The primary output of the farm is grapes.
+Waitaki District,South Island High Country,Red meat,"Extensive run country located at high altitude. These farms run a diverse mix of operations which include breeding sheep, often fine wooled, breeding cows and deer. Stocking rate is typically up to three stock units per hectare. Located mainly in Marlborough, Canterbury and Otago."
+Waitaki District,South Island Hill Country,Red meat,"Traditionally store stock producers with a proportion sold prime in good seasons. Carrying between two and seven stock units per hectare, they usually have a significant proportion of beef cattle."
+Waitaki District,South Island Finishing,Red meat,"High producing grassland farms carrying about 9 to 14 stock units per hectare, with some cash crop. Located in Southland, South and West Otago."
+Waitaki District,South Island Finishing-Breeding,Red meat,"Farms which breed or trade finishing stock, and may do some cash cropping. A proportion of stock may be sold store, especially from dryland farms. Carrying capacity ranges from 6 to 11 stock units per hectare on dryland farms and over 12 stock units per hectare on wetter or irrigated farms. Mainly in Canterbury and Otago, this is the dominant farm class in the South Island."
+Waitaki District,South Island Mixed Cropping & Finishing,Red meat,"Located mainly on the Canterbury Plains. A high proportion of their revenue is derived from grain and small seed production, as well as stock finishing or grazing."
+Waitaki District,Dairy,Dairy,Primarily a dairy operation.
+Waitaki District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Waitaki District,Orchard,Other,The primary output of the farm is fruit.
+Waitaki District,Vineyard,Other,The primary output of the farm is grapes.
+Central Otago District,South Island High Country,Red meat,"Extensive run country located at high altitude. These farms run a diverse mix of operations which include breeding sheep, often fine wooled, breeding cows and deer. Stocking rate is typically up to three stock units per hectare. Located mainly in Marlborough, Canterbury and Otago."
+Central Otago District,South Island Hill Country,Red meat,"Traditionally store stock producers with a proportion sold prime in good seasons. Carrying between two and seven stock units per hectare, they usually have a significant proportion of beef cattle."
+Central Otago District,South Island Finishing,Red meat,"High producing grassland farms carrying about 9 to 14 stock units per hectare, with some cash crop. Located in Southland, South and West Otago."
+Central Otago District,South Island Finishing-Breeding,Red meat,"Farms which breed or trade finishing stock, and may do some cash cropping. A proportion of stock may be sold store, especially from dryland farms. Carrying capacity ranges from 6 to 11 stock units per hectare on dryland farms and over 12 stock units per hectare on wetter or irrigated farms. Mainly in Canterbury and Otago, this is the dominant farm class in the South Island."
+Central Otago District,South Island Mixed Cropping & Finishing,Red meat,"Located mainly on the Canterbury Plains. A high proportion of their revenue is derived from grain and small seed production, as well as stock finishing or grazing."
+Central Otago District,Dairy,Dairy,Primarily a dairy operation.
+Central Otago District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Central Otago District,Orchard,Other,The primary output of the farm is fruit.
+Central Otago District,Vineyard,Other,The primary output of the farm is grapes.
+Queenstown-Lakes District,South Island High Country,Red meat,"Extensive run country located at high altitude. These farms run a diverse mix of operations which include breeding sheep, often fine wooled, breeding cows and deer. Stocking rate is typically up to three stock units per hectare. Located mainly in Marlborough, Canterbury and Otago."
+Queenstown-Lakes District,South Island Hill Country,Red meat,"Traditionally store stock producers with a proportion sold prime in good seasons. Carrying between two and seven stock units per hectare, they usually have a significant proportion of beef cattle."
+Queenstown-Lakes District,South Island Finishing,Red meat,"High producing grassland farms carrying about 9 to 14 stock units per hectare, with some cash crop. Located in Southland, South and West Otago."
+Queenstown-Lakes District,South Island Finishing-Breeding,Red meat,"Farms which breed or trade finishing stock, and may do some cash cropping. A proportion of stock may be sold store, especially from dryland farms. Carrying capacity ranges from 6 to 11 stock units per hectare on dryland farms and over 12 stock units per hectare on wetter or irrigated farms. Mainly in Canterbury and Otago, this is the dominant farm class in the South Island."
+Queenstown-Lakes District,South Island Mixed Cropping & Finishing,Red meat,"Located mainly on the Canterbury Plains. A high proportion of their revenue is derived from grain and small seed production, as well as stock finishing or grazing."
+Queenstown-Lakes District,Dairy,Dairy,Primarily a dairy operation.
+Queenstown-Lakes District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Queenstown-Lakes District,Orchard,Other,The primary output of the farm is fruit.
+Queenstown-Lakes District,Vineyard,Other,The primary output of the farm is grapes.
+Dunedin City,South Island High Country,Red meat,"Extensive run country located at high altitude. These farms run a diverse mix of operations which include breeding sheep, often fine wooled, breeding cows and deer. Stocking rate is typically up to three stock units per hectare. Located mainly in Marlborough, Canterbury and Otago."
+Dunedin City,South Island Hill Country,Red meat,"Traditionally store stock producers with a proportion sold prime in good seasons. Carrying between two and seven stock units per hectare, they usually have a significant proportion of beef cattle."
+Dunedin City,South Island Finishing,Red meat,"High producing grassland farms carrying about 9 to 14 stock units per hectare, with some cash crop. Located in Southland, South and West Otago."
+Dunedin City,South Island Finishing-Breeding,Red meat,"Farms which breed or trade finishing stock, and may do some cash cropping. A proportion of stock may be sold store, especially from dryland farms. Carrying capacity ranges from 6 to 11 stock units per hectare on dryland farms and over 12 stock units per hectare on wetter or irrigated farms. Mainly in Canterbury and Otago, this is the dominant farm class in the South Island."
+Dunedin City,South Island Mixed Cropping & Finishing,Red meat,"Located mainly on the Canterbury Plains. A high proportion of their revenue is derived from grain and small seed production, as well as stock finishing or grazing."
+Dunedin City,Dairy,Dairy,Primarily a dairy operation.
+Dunedin City,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Dunedin City,Orchard,Other,The primary output of the farm is fruit.
+Dunedin City,Vineyard,Other,The primary output of the farm is grapes.
+Clutha District,South Island High Country,Red meat,"Extensive run country located at high altitude. These farms run a diverse mix of operations which include breeding sheep, often fine wooled, breeding cows and deer. Stocking rate is typically up to three stock units per hectare. Located mainly in Marlborough, Canterbury and Otago."
+Clutha District,South Island Hill Country,Red meat,"Traditionally store stock producers with a proportion sold prime in good seasons. Carrying between two and seven stock units per hectare, they usually have a significant proportion of beef cattle."
+Clutha District,South Island Finishing,Red meat,"High producing grassland farms carrying about 9 to 14 stock units per hectare, with some cash crop. Located in Southland, South and West Otago."
+Clutha District,South Island Finishing-Breeding,Red meat,"Farms which breed or trade finishing stock, and may do some cash cropping. A proportion of stock may be sold store, especially from dryland farms. Carrying capacity ranges from 6 to 11 stock units per hectare on dryland farms and over 12 stock units per hectare on wetter or irrigated farms. Mainly in Canterbury and Otago, this is the dominant farm class in the South Island."
+Clutha District,South Island Mixed Cropping & Finishing,Red meat,"Located mainly on the Canterbury Plains. A high proportion of their revenue is derived from grain and small seed production, as well as stock finishing or grazing."
+Clutha District,Dairy,Dairy,Primarily a dairy operation.
+Clutha District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Clutha District,Orchard,Other,The primary output of the farm is fruit.
+Clutha District,Vineyard,Other,The primary output of the farm is grapes.
+Southland District,South Island High Country,Red meat,"Extensive run country located at high altitude. These farms run a diverse mix of operations which include breeding sheep, often fine wooled, breeding cows and deer. Stocking rate is typically up to three stock units per hectare. Located mainly in Marlborough, Canterbury and Otago."
+Southland District,South Island Hill Country,Red meat,"Traditionally store stock producers with a proportion sold prime in good seasons. Carrying between two and seven stock units per hectare, they usually have a significant proportion of beef cattle."
+Southland District,South Island Finishing,Red meat,"High producing grassland farms carrying about 9 to 14 stock units per hectare, with some cash crop. Located in Southland, South and West Otago."
+Southland District,South Island Finishing-Breeding,Red meat,"Farms which breed or trade finishing stock, and may do some cash cropping. A proportion of stock may be sold store, especially from dryland farms. Carrying capacity ranges from 6 to 11 stock units per hectare on dryland farms and over 12 stock units per hectare on wetter or irrigated farms. Mainly in Canterbury and Otago, this is the dominant farm class in the South Island."
+Southland District,South Island Mixed Cropping & Finishing,Red meat,"Located mainly on the Canterbury Plains. A high proportion of their revenue is derived from grain and small seed production, as well as stock finishing or grazing."
+Southland District,Dairy,Dairy,Primarily a dairy operation.
+Southland District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Southland District,Orchard,Other,The primary output of the farm is fruit.
+Southland District,Vineyard,Other,The primary output of the farm is grapes.
+Gore District,South Island High Country,Red meat,"Extensive run country located at high altitude. These farms run a diverse mix of operations which include breeding sheep, often fine wooled, breeding cows and deer. Stocking rate is typically up to three stock units per hectare. Located mainly in Marlborough, Canterbury and Otago."
+Gore District,South Island Hill Country,Red meat,"Traditionally store stock producers with a proportion sold prime in good seasons. Carrying between two and seven stock units per hectare, they usually have a significant proportion of beef cattle."
+Gore District,South Island Finishing,Red meat,"High producing grassland farms carrying about 9 to 14 stock units per hectare, with some cash crop. Located in Southland, South and West Otago."
+Gore District,South Island Finishing-Breeding,Red meat,"Farms which breed or trade finishing stock, and may do some cash cropping. A proportion of stock may be sold store, especially from dryland farms. Carrying capacity ranges from 6 to 11 stock units per hectare on dryland farms and over 12 stock units per hectare on wetter or irrigated farms. Mainly in Canterbury and Otago, this is the dominant farm class in the South Island."
+Gore District,South Island Mixed Cropping & Finishing,Red meat,"Located mainly on the Canterbury Plains. A high proportion of their revenue is derived from grain and small seed production, as well as stock finishing or grazing."
+Gore District,Dairy,Dairy,Primarily a dairy operation.
+Gore District,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Gore District,Orchard,Other,The primary output of the farm is fruit.
+Gore District,Vineyard,Other,The primary output of the farm is grapes.
+Invercargill City,South Island High Country,Red meat,"Extensive run country located at high altitude. These farms run a diverse mix of operations which include breeding sheep, often fine wooled, breeding cows and deer. Stocking rate is typically up to three stock units per hectare. Located mainly in Marlborough, Canterbury and Otago."
+Invercargill City,South Island Hill Country,Red meat,"Traditionally store stock producers with a proportion sold prime in good seasons. Carrying between two and seven stock units per hectare, they usually have a significant proportion of beef cattle."
+Invercargill City,South Island Finishing,Red meat,"High producing grassland farms carrying about 9 to 14 stock units per hectare, with some cash crop. Located in Southland, South and West Otago."
+Invercargill City,South Island Finishing-Breeding,Red meat,"Farms which breed or trade finishing stock, and may do some cash cropping. A proportion of stock may be sold store, especially from dryland farms. Carrying capacity ranges from 6 to 11 stock units per hectare on dryland farms and over 12 stock units per hectare on wetter or irrigated farms. Mainly in Canterbury and Otago, this is the dominant farm class in the South Island."
+Invercargill City,South Island Mixed Cropping & Finishing,Red meat,"Located mainly on the Canterbury Plains. A high proportion of their revenue is derived from grain and small seed production, as well as stock finishing or grazing."
+Invercargill City,Dairy,Dairy,Primarily a dairy operation.
+Invercargill City,Cropping,Other,"The primary output of the farm is crops for food, feed, fibre, and industrial purposes."
+Invercargill City,Orchard,Other,The primary output of the farm is fruit.
+Invercargill City,Vineyard,Other,The primary output of the farm is grapes.

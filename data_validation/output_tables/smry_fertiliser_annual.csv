@@ -1,0 +1,8 @@
+Column_Title,Data_Type
+Entity_ID,str
+Period_End,date str
+N2O_SynthFert_kg,float
+CO2_SynthFert_kg,float
+N2O_OrganicFert_Direct_kg,float
+CO2_Lime_kg,float
+CO2_Dolomite_kg,float

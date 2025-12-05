@@ -1,0 +1,4 @@
+Column_Title,Data_Type,Column_Rules,Definition
+Entity_ID,str,Any str up to 32 chars,See Table: FarmYear
+Period_End,date str,ISO8601 YYYY-MM-DD format,See Table: FarmYear
+Treatment_Date,date str,ISO8601 YYYY-MM-DD format,Date on which effluent lagoon was treated with EcoPond.

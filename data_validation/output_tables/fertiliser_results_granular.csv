@@ -1,0 +1,16 @@
+Column_Title,Data_Type
+Entity_ID,str
+Period_End,date str
+N_Urea_Coated_t,float
+N_Urea_Uncoated_t,float
+N_NonUrea_SyntheticFert_t,float
+N_OrganicFert_t,float
+Lime_t,float
+Dolomite_t,float
+N2O_SynthFert_Direct_t,float
+N2O_SynthFert_Leach_t,float
+N2O_SynthFert_Volat_t,float
+N2O_OrganicFert_Direct_t,float
+CO2_SynthFert_t,float
+CO2_Lime_t,float
+CO2_Dolomite_t,float

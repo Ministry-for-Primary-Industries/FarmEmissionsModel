@@ -1,0 +1,6 @@
+Column_Title,Data_Type,Column_Rules,Definition
+Entity_ID,str,Any str up to 32 chars,See Table: FarmYear
+Period_End,date str,ISO8601 YYYY-MM-DD format,See Table: FarmYear
+Sector,str,Element of Sector_list,Segments of the agriculture economy that revolve around livestock groups. Values defined by Sector_list.
+Breed,str,Element of Breed_list,"Genetic ancestry of an animal, generally expressed as the number of 16ths of the breed which contribute to the makeup of the animal, in line with DIGAD definitions and data standards. Values defined by Breed_list, based on fields and aggregations published by DairyNZ."
+Breed_Allocation,float,>= 0 and <= 1,Percentage of total dairy herd attributable to a given breed.

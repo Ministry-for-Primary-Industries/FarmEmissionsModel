@@ -1,0 +1,6 @@
+Column_Title,Data_Type
+Entity_ID,str
+Period_End,date str
+CH4_total_kg,float
+N2O_total_kg,float
+CO2_total_kg,float

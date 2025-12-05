@@ -1,0 +1,7 @@
+Column_Title,Data_Type,Column_Rules,Definition
+Entity_ID,str,Any str up to 32 chars,"User supplied unique identifier to represent a specific entity from within a system, database, or application."
+Period_Start,date str,ISO8601 YYYY-MM-DD format,Beginning of an assessment period. Usually relates to the beginning of an entity’s tax year but could be aligned to another annual reporting framework.
+Period_End,date str,ISO8601 YYYY-MM-DD format,Conclusion of an assessment period. Usually relates to the end of an entity’s tax year but could be aligned to another annual reporting framework.
+Territory,str,Element of Territory_list,Primary geographic area (defined by Territorial Authorities) the farm sits within. Values defined by: Territory_list
+Primary_Farm_Class,str,Element of Primary_Farm_Class_list,"Classification of farm based on sector, activity, region, geography, and grazing levels. Values defined by Primary_Farm_Class_list"
+Solid_Separator_Use,logical,TRUE or FALSE,Whether or not a solid separator is used as part of farm effluent management system.

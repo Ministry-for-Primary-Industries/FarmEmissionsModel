@@ -1,0 +1,5 @@
+﻿Transaction_Type,Definition
+Sale,Transfer of stock ownership out of the entity in return for an agreed-upon payment.
+Purchase,Transfer of stock ownership to the entity in return for an agreed-upon payment.
+Transfer In,Non-cash movement of stock into the entity.
+Transfer Out,Non-cash movement of stock out of the entity.

@@ -1,0 +1,49 @@
+Table,Complex_Rules
+FarmYear,Combination of Entity_ID and Period_End must be unique
+FarmYear,Period_End must be a month-end date equal to (Period_Start + 1 year - 1 day)
+FarmYear,Primary_Farm_Class must exist in the Production_Region which maps to the given Territory
+FarmYear,Solid_Separator_Use must be FALSE if no StockClass of Milking Cows Mature is present for the Entity_ID and Period_End
+FarmYear,Solid_Separator_Use must be FALSE if the aggregate sum of Dairy_Shed_hr and Other_Structures_hr in Effluent_Structure_Use is 0 for the Entity_ID and Period_End
+FarmYear,Solid_Separator_Use must be FALSE if Effluent_EcoPond_Treatments contains records for the Entity_ID and Period_End
+Fertiliser,Combination of Entity_ID and Period_End must be unique and exist in FarmYear
+StockRec_OpeningBalance,Combination of Entity_ID and Period_End must exist in FarmYear
+StockRec_OpeningBalance,StockClass must be unique within Entity_ID and Period_End
+StockRec_OpeningBalance,StockClass cannot be newborn (StockClass values containing R1 or Lambs)
+StockRec_BirthsDeaths,Combination of Entity_ID and Period_End must exist in FarmYear
+StockRec_BirthsDeaths,"StockClass must be unique within Month, Entity_ID and Period_End"
+StockRec_BirthsDeaths,Births can only be >= 1 for newborn StockClass (StockClass values containing R1 or Lambs)
+StockRec_BirthsDeaths,"Deaths cannot exceed the current StockClass balance for the Month, Entity_ID and Period_End"
+StockRec_Movements,Combination of Entity_ID and Period_End must exist in FarmYear
+StockRec_Movements,"Transaction_Date must be between (Period_End - 1 Year + 1 Day) and Period_End, inclusive"
+StockRec_Movements,Stock_Count cannot exceed the current StockClass balance when Transaction_Type values are Sale or Transfer Out for the Entity_ID and Period_End
+Dairy_Production,Combination of Entity_ID and Period_End must exist in FarmYear
+Dairy_Production,Month must be unique within Entity_ID and Period_End
+Dairy_Production,"Milk_L_herd must be 0 if no Milking Cows Mature are present for the Month, Entity_ID and Period_End"
+Dairy_Production,Milk_Fat_kg_herd and Milk_Protein_kg_herd must be 0 if Milk_L_herd is 0
+Dairy_Production,Milk_Fat_kg_herd must be <= 15% of Milk_L_herd
+Dairy_Production,Milk_Protein_kg_herd must be <= 15% of Milk_L_herd
+Dairy_Production,"Milk_L_Herd must be > 0 if Effluent_Structure_Use.Dairy_Shed_hrs_day > 0 for the Month, Entity_ID, and Period_End"
+Dairy_Production,"Milk_L_Herd must be 0 if Effluent_Structure_Use.Dairy_Shed_hrs_day is 0 for the Month, Entity_ID, and Period_End"
+SuppFeed_DryMatter,Combination of Entity_ID and Period_End must exist in FarmYear
+SuppFeed_DryMatter,Supplement must be unique within Entity_ID and Period_End
+SuppFeed_DryMatter,"Sum of Beef, Dairy, Deer, and Sheep Allocations must be 1 if Dry_Matter_t > 0"
+SuppFeed_DryMatter,"Sum of Beef, Dairy, Deer, and Sheep Allocations must be 0 if Dry_Matter_t is 0"
+SuppFeed_DryMatter,Allocation for a Sector must be 0 if no StockClass from that Sector is present
+BreedingValues,Combination of Entity_ID and Period_End must exist in FarmYear
+BreedingValues,StockClass must be unique within Entity_ID and Period_End
+BreedingValues,StockClass balance must be >=1 for at least 1 day for the Entity_ID and Period_End
+Breed_Allocation,Combination of Entity_ID and Period_End must exist in FarmYear
+Breed_Allocation,"Breed_Allocation records are only allowed and required for Entity_ID and Period_End with female Dairy StockClass present (Dairy Heifers R1, Dairy Heifers R2, Milking Cows Mature)"
+Breed_Allocation,Breed must be unique within Entity_ID and Period_End
+Breed_Allocation,Breed_Allocation must aggregate sum to 1 per Entity_ID and Period_End
+Effluent_EcoPond_Treatments,Combination of Entity_ID and Period_End must exist in FarmYear and their Solid_Separator_Use must be FALSE
+Effluent_EcoPond_Treatments,Treatment_Date must be unique within Entity_ID and Period_End
+Effluent_EcoPond_Treatments,Treatment_Date must be within the 2 years prior to Period_End
+Effluent_EcoPond_Treatments,"Guidance: If treatment was performed in the previous period, include the last Treatment_Date from that period"
+Effluent_Structure_Use,Combination of Entity_ID and Period_End must exist in FarmYear
+Effluent_Structure_Use,Month must be unique within Entity_ID and Period_End
+Effluent_Structure_Use,"12 rows should exist, one for every unique Month, if Milking Cows Mature are present for an Entity_ID and Period_End"
+Effluent_Structure_Use,Sum of Dairy_Shed_hrs_day and Other_Structures_hrs_day must be <= 24
+Effluent_Structure_Use,"Sum of Dairy_Shed_hrs_day and Other_Structures_hrs_day must be 0 if no Milking Cows Mature are present for Month, Entity_ID and Period_End"
+Effluent_Structure_Use,"Dairy_Shed_hrs_day must be > 0 if Dairy_Production.Milk_L_Herd is > 0 for the Month, Entity_ID and Period_End"
+Effluent_Structure_Use,"Dairy_Shed_hrs_day must be 0 if Dairy_Production.Milk_L_Herd is 0 for the Month, Entity_ID and Period_End"

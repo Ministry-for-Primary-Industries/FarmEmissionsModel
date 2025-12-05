@@ -1,0 +1,547 @@
+---
+title: "Farm Emissions Model Data Specification and Dictionary"
+output:
+  md_document:
+    variant: gfm
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library(readr)
+library(dplyr)
+library(tidyr)
+opts_knit$set(root.dir = normalizePath("../"))
+options(knitr.kable.NA = "")
+```
+
+```{r, echo=FALSE, message=FALSE}
+# read tables
+
+complex_rules <- read_csv("data_validation/farm_input_tables/Complex_Rules.csv")
+
+FarmYear <- read_csv("data_validation/farm_input_tables/FarmYear_Definition.csv")
+Fertiliser <- read_csv("data_validation/farm_input_tables/Fertiliser_Definition.csv")
+StockRec_OpeningBalance <- read_csv("data_validation/farm_input_tables/StockRec_OpeningBalance_Definition.csv")
+StockRec_BirthsDeaths <- read_csv("data_validation/farm_input_tables/StockRec_BirthsDeaths_Definition.csv")
+StockRec_Movements <- read_csv("data_validation/farm_input_tables/StockRec_Movements_Definition.csv")
+Dairy_Production <- read_csv("data_validation/farm_input_tables/Dairy_Production_Definition.csv")
+Breed_Allocation <- read_csv("data_validation/farm_input_tables/Breed_Allocation_Definition.csv")
+Effluent_Structure_Use <- read_csv("data_validation/farm_input_tables/Effluent_Structure_Use_Definition.csv")
+Effluent_EcoPond_Treatments <- read_csv("data_validation/farm_input_tables/Effluent_EcoPond_Treatments_Definition.csv")
+SuppFeed_DryMatter <- read_csv("data_validation/farm_input_tables/SuppFeed_DryMatter_Definition.csv")
+BreedingValues <- read_csv("data_validation/farm_input_tables/BreedingValues_Definition.csv")
+
+Primary_Farm_Class_by_Territory <- read_csv("data_validation/allowed_values/Allowed_Primary_Farm_Class_by_Territory.csv")
+Transaction_Type <- read_csv("data_validation/allowed_values/Allowed_Transaction_Type.csv")
+StockClass_by_Sector <- read_csv("data_validation/allowed_values/Allowed_StockClass_by_Sector.csv")
+Breeds <- read_csv("data_validation/allowed_values/Allowed_Breed.csv")
+Supplementary_Feed <- read_csv("data_validation/allowed_values/Allowed_Supplement.csv")
+
+smry_all_annual_by_gas <- read_csv("data_validation/output_tables/smry_all_annual_by_gas.csv")
+smry_all_annual_by_emission_type <- read_csv("data_validation/output_tables/smry_all_annual_by_emission_type.csv")
+smry_livestock_annual <- read_csv("data_validation/output_tables/smry_livestock_annual.csv")
+smry_livestock_annual_by_Sector <- read_csv("data_validation/output_tables/smry_livestock_annual_by_Sector.csv")
+smry_livestock_monthly_by_Sector <- read_csv("data_validation/output_tables/smry_livestock_monthly_by_Sector.csv")
+smry_livestock_monthly_by_StockClass <- read_csv("data_validation/output_tables/smry_livestock_monthly_by_StockClass.csv")
+smry_fertiliser_annual <- read_csv("data_validation/output_tables/smry_fertiliser_annual.csv")
+
+smry_all_annual_by_gas_mitign_delta <- read_csv("data_validation/output_tables/smry_all_annual_by_gas_mitign_delta.csv")
+smry_all_annual_by_emission_type_mitign_delta <- read_csv("data_validation/output_tables/smry_all_annual_by_emission_type_mitign_delta.csv")
+smry_livestock_annual_mitign_delta <- read_csv("data_validation/output_tables/smry_livestock_annual_mitign_delta.csv")
+smry_livestock_annual_by_Sector_mitign_delta <- read_csv("data_validation/output_tables/smry_livestock_annual_by_Sector_mitign_delta.csv")
+smry_livestock_monthly_by_Sector_mitign_delta <- read_csv("data_validation/output_tables/smry_livestock_monthly_by_Sector_mitign_delta.csv")
+smry_livestock_monthly_by_StockClass_mitign_delta <- read_csv("data_validation/output_tables/smry_livestock_monthly_by_StockClass_mitign_delta.csv")
+smry_fertiliser_annual_mitign_delta <- read_csv("data_validation/output_tables/smry_fertiliser_annual_mitign_delta.csv")
+```
+
+```{r, include=FALSE}
+# helper functions
+print_data_spec <- function(example_data_file, spec_table) {
+  example_data <- read_csv(paste0("data_input_example/", example_data_file, ".csv"))
+  example_data %>% 
+    mutate(across(everything(), as.character),
+           ` ` = "Example") %>% 
+    bind_rows(spec_table %>% 
+                select(1:3) %>% 
+                gather(key = " ", value = "value", 2:3) %>%
+                spread(Column_Title, value) %>%
+                arrange(desc(` `))) %>% 
+    select(` `, 1:ncol(.) - 1) %>% 
+    kable()
+    
+}
+
+print_complex_rules <- function(table_name) {
+  complex_rules %>% 
+    filter(Table == table_name) %>%
+    mutate(` ` = row_number()) %>%
+    select(` `, Complex_Rules) %>% 
+    kable()
+}
+```
+
+# Farm Emissions Model Data Specification and Dictionary
+
+This document provides a specification of the tables, fields, definitions and values required to provide valid input data into the Farm Emissions Model (FEM). This allows developers, scientists and other technical stakeholders to effectively utilise the model to support a robust estimation of on-farm emissions.
+
+## Input Data Specification
+
+### Introductory Notes
+
+Each table below specifies the FEM input data requirements. The FarmYear table can be thought of as the fundamental table that all other tables join on to (by Entity_ID and Period_End). The Fertiliser table connects to the fertiliser module of code. The remaining tables connect to the livestock module of code. Of the livestock-related tables, we have 3 StockRec tables, a Dairy_Production table and a SuppFeed_DryMatter table.
+
+Each section includes two components:
+
+- A table detailing input data requirements.
+- A list of rules applied within the FEM (note that there may be additional rules applied as part of FEM-API documentation and the On-Farm Emissions Calculator).
+
+Within the tables we supply example data for users to quickly get a sense of the expected data format. We use 3 farms with the following Entity_ID:
+
+- 10001: a sheep farm which also does some beef finishing. Note in FarmYear we enter this across 3 separated periods to illustrate multiple periods for a single entity. In other tables we only enter data for the 2022-06-30 Period_End.
+- 10002: a typical dairy farm.
+- 10003-A: an arable farm with no livestock.
+
+The example data files we supply (available from our repo README) is consistent with the examples shown in this file. These data files are provided in both CSV and JSON formats.
+
+Rules that can be determined by looking at the relevant column only are described in column rules.
+
+Rules that can only be determined by looking at multiple columns at once (potentially in multiple tables, or a derived table such as the monthly stock rec) are described in complex rules.
+
+Complex rules typically apply per row of an input table. There are exceptions and we try to convey this through clear language. Here are some examples of complex rules that apply to multiple rows at once, from the table Breed_Allocation:
+
+- Breed must be unique within Entity_ID and Period_End [this applies to all rows for a given Entity_ID and Period_End].
+- Breed_Allocation must aggregate sum to 1 per Entity_ID and Period_End [the **aggregate sum** refers to summing all provided rows per Entity_ID and Period_End].
+
+There are 4 data types used:
+
+- int: Integer number (i.e. a whole number).
+- float: Floating point number (a numerical data type that supports decimal points).
+- str: String (i.e. a combination of characters). While numbers can be a string datatype, you can only perform numerical operations like multiplication on numerical datatypes like int and float.
+- date str: A string following a specific date format. FEM always uses ISO8601 YYYY-MM-DD format
+- logical: A data type that can only be TRUE or FALSE.
+
+All specified columns within any given input table are required. No null, NA or blank values are permitted in any column of any input data table.
+
+FEM does not currently implement the validation rules aside from a basic check that the daily stock count never goes negative (e.g., from selling more stock than are on the farm). **It is the users responsibility to validate inputs.**
+
+Numerical precision in R:
+
+- R integers are by default stored as IEEE 754 double-precision floating points which can have a range of [-9007199254740992, 9007199254740992] before losing precision.
+- R floats are also stored as IEEE 754 double-precision floating points and begin to lose precision between 15-17 significant decimal digits.
+
+### FarmYear
+
+```{r, echo=FALSE, message=FALSE}
+print_data_spec("FarmYear", FarmYear)
+```
+
+```{r, echo=FALSE, message=FALSE}
+print_complex_rules("FarmYear")
+```
+
+### Fertiliser
+
+```{r, echo=FALSE, message=FALSE}
+print_data_spec("Fertiliser", Fertiliser)
+```
+
+```{r, echo=FALSE, message=FALSE}
+print_complex_rules("Fertiliser")
+```
+
+### StockRec_OpeningBalance
+
+```{r, echo=FALSE, message=FALSE}
+print_data_spec("StockRec_OpeningBalance", StockRec_OpeningBalance)
+```
+
+```{r, echo=FALSE, message=FALSE}
+print_complex_rules("StockRec_OpeningBalance")
+```
+
+### StockRec_BirthsDeaths
+
+```{r, echo=FALSE, message=FALSE}
+print_data_spec("StockRec_BirthsDeaths", StockRec_BirthsDeaths)
+```
+
+```{r, echo=FALSE, message=FALSE}
+print_complex_rules("StockRec_BirthsDeaths")
+```
+
+### StockRec_Movements
+
+```{r, echo=FALSE, message=FALSE}
+print_data_spec("StockRec_Movements", StockRec_Movements)
+```
+
+```{r, echo=FALSE, message=FALSE}
+print_complex_rules("StockRec_Movements")
+```
+
+### Dairy_Production
+
+```{r, echo=FALSE, message=FALSE}
+print_data_spec("Dairy_Production", Dairy_Production)
+```
+
+```{r, echo=FALSE, message=FALSE}
+print_complex_rules("Dairy_Production")
+```
+
+### Breed_Allocation
+
+```{r, echo=FALSE, message=FALSE}
+print_data_spec("Breed_Allocation", Breed_Allocation)
+```
+
+```{r, echo=FALSE, message=FALSE}
+print_complex_rules("Breed_Allocation")
+```
+
+### Effluent_Structure_Use
+
+```{r, echo=FALSE, message=FALSE}
+print_data_spec("Effluent_Structure_Use", Effluent_Structure_Use)
+```
+
+```{r, echo=FALSE, message=FALSE}
+print_complex_rules("Effluent_Structure_Use")
+```
+
+### Effluent_EcoPond_Treatments
+
+```{r, echo=FALSE, message=FALSE}
+print_data_spec("Effluent_EcoPond_Treatments", Effluent_EcoPond_Treatments)
+```
+
+```{r, echo=FALSE, message=FALSE}
+print_complex_rules("Effluent_EcoPond_Treatments")
+```
+
+### SuppFeed_DryMatter
+
+```{r, echo=FALSE, message=FALSE}
+print_data_spec("SuppFeed_DryMatter", SuppFeed_DryMatter)
+```
+
+```{r, echo=FALSE, message=FALSE}
+print_complex_rules("SuppFeed_DryMatter")
+```
+
+### BreedingValues
+
+```{r, echo=FALSE, message=FALSE}
+print_data_spec("BreedingValues", BreedingValues)
+```
+
+```{r, echo=FALSE, message=FALSE}
+print_complex_rules("BreedingValues")
+```
+
+## Minimum Data Inputs to Run FEM
+
+Minimum required input data tables to complete an emissions estimation are laid out below.
+
+Required inputs are tables with rows needed for the model to successfully run. **All input data relevant to a given farm should be entered to estimate emissions accurately.**
+
+The `FarmYear` table is the core table and is always required.
+
+Either the `Fertiliser` table or at least one of three livestock StockRec tables are also required:
+
+- `StockRec_OpeningBalance`
+- `StockRec_BirthsDeaths`
+- `StockRec_Movements`
+
+This ensures at least one of the emissions modules, currently Fertiliser and Livestock, are activated.
+
+The following livestock related tables are conditionally required:
+
+- `Breed_Allocation`
+    - required if a farm has any female Dairy cattle (i.e. `StockClass` values containing `Dairy Heifers` or `Milking Cows Mature`) present during the period, based on the three StockRec tables.
+
+- `Effluent_Structure_Use` required if a farm has any `StockClass` of `Milking Cows Mature` present during the period, based on the three StockRec tables.
+
+- `Dairy_Production` and `Effluent_Structure_Use`
+    - These both take data inputs on `Mature Milking Cows` being in the milking shed and therefore should be consistent with one another: If either `Dairy_Production.Milk_Yield_L` or `Effluent_Structure_Use.Dairy_Shed_hrs_day` are supplied and any of these values are postive, both tables are required.
+
+The remaining livestock related tables are not required to complete an emissions estimation:
+
+- `SuppFeed_DryMatter`
+- `BreedingValues`
+- `Effluent_EcoPond_Treatments`
+
+## Input Data Column Definitions
+
+Definitions of each column in every input table are provided below.
+
+### FarmYear
+
+```{r, echo=FALSE, message=FALSE}
+kable(FarmYear %>% select(-2, -3))
+```
+
+References:
+
+- Territory as geographically defined by [Stats NZ Territorial Authority](https://datafinder.stats.govt.nz/layer/111194-territorial-authority-2023-generalised]).
+
+- Primary_Farm_Class: Red meat classes use [Beef & Lamb farm class definitions](https://beeflambnz.com/industry-data/farm-data-and-industry-production/farm-classes).
+
+### Fertiliser
+
+Note the definitions here use tonnes **purchased**, not applied. This approach minimises cost of compliance and maximises traceability.
+
+```{r, echo=FALSE, message=FALSE}
+kable(Fertiliser %>% select(-2, -3))
+```
+
+### StockRec_OpeningBalance
+
+```{r, echo=FALSE, message=FALSE}
+kable(StockRec_OpeningBalance %>% select(-2, -3))
+```
+
+Note the approach of:
+
+- `Opening_Balance` should be the same as the closing balance for the previous reporting period.
+
+- As per data specification rules for this table, a **newborn** `StockClass` (R1s or Lambs) can not have an `Opening_Balance`. Either stock is aged-up or it has not been born yet.
+
+Which is aligned to accepted Stock valuation approaches from Inland Revenue (NAMV and NSC).
+
+### StockRec_BirthsDeaths
+
+```{r, echo=FALSE, message=FALSE}
+kable(StockRec_BirthsDeaths %>% select(-2, -3))
+```
+
+Note:
+
+- As per data specification rules for this table, only newborn StockClass (R1s or Lambs) can be have positive births.
+
+- `Births` and `Deaths` should be entered in the `Month` they occur, not as Period_End values to adjust balances.
+
+### StockRec_Movements
+
+```{r, echo=FALSE, message=FALSE}
+kable(StockRec_Movements %>% select(-2, -3))
+```
+
+### Dairy_Production
+
+```{r, echo=FALSE, message=FALSE}
+kable(Dairy_Production %>% select(-2, -3))
+```
+
+### Breed_Allocation
+
+```{r, echo=FALSE, message=FALSE}
+kable(Breed_Allocation %>% select(-2, -3))
+```
+
+Note as per data specification rules for this table, `Breed` is currently only for female Dairy cattle.
+
+Breed & DIGAD references:
+
+1. <https://www.dairynz.co.nz/media/g1tbbhqq/core_database_fields.pdf>
+2. <https://www.dairynz.co.nz/media/oqzc5k3m/dds-parentage-breed-recording-and-genetic-testing-may-2024.pdf>
+3. <https://www.dairynz.co.nz/media/bywm13d4/dairy-statistics-2023-24.pdf>
+
+### Effluent_Structure_Use
+
+```{r, echo=FALSE, message=FALSE}
+kable(Effluent_Structure_Use %>% select(-2, -3))
+```
+
+### Effluent_EcoPond_Treatments
+
+```{r, echo=FALSE, message=FALSE}
+kable(Effluent_EcoPond_Treatments %>% select(-2, -3))
+```
+
+EcoPond treatments are effective in FEM for 6 weeks from the `Treatment_Date`. Therefore, treatments from the previous period may be required to calculate efficacy in this period.
+
+### SuppFeed_DryMatter
+
+```{r, echo=FALSE, message=FALSE}
+kable(SuppFeed_DryMatter %>% select(-2, -3))
+```
+
+### BreedingValues
+
+```{r, echo=FALSE, message=FALSE}
+kable(BreedingValues %>% select(-2, -3))
+```
+
+Note:
+
+- As per data specification rules for this table, `BV_aCH4` is currently only for Sheep stock classes.
+
+- Science underpinning breeding values and adjustments for sheep administered by [Beef+Lamb NZ Genetics Coolsheep Programme](https://www.blnzgenetics.com/cool-sheep-programme/about-the-programme-2). A negative value will represent a decrease in expected methane production.
+
+## Allowed Value Lists and Definitions
+
+Some columns in the Input Data Specification tables have rules requiring values to be from a list of allowed values. These lists are set out below and definitions are provided where appropriate.
+
+### Territory_list
+
+These are geographically defined by [Stats NZ](https://datafinder.stats.govt.nz/layer/111194-territorial-authority-2023-generalised/):
+
+```{r, echo=FALSE, message=FALSE}
+kable(Primary_Farm_Class_by_Territory %>% 
+        select(Territory) %>% 
+        distinct() %>% 
+        bind_cols(data.frame(Split = c(rep("col1", 23), rep("col2", 23), rep("col3", 21)), 
+                             Placeholder = c(c(1:23), c(1:23), c(1:21)))) %>% 
+        spread(key = Split, value = Territory) %>% 
+        select(-Placeholder),
+      col.names = NULL)
+```
+
+### Primary_Farm_Class_list
+
+```{r, echo=FALSE, message=FALSE}
+kable(Primary_Farm_Class_by_Territory %>% 
+        select(2:4) %>% 
+        distinct())
+```
+
+Note if a farm could be described by multiple farm classes (e.g. it has both dairy cows and sheep), farm revenue should be used as the primary determinant, followed by stocking rate.
+
+### Transaction_Type_list
+
+```{r, echo=FALSE, message=FALSE}
+kable(Transaction_Type)
+```
+
+### Sector_list
+
+```{r, echo=FALSE, message=FALSE}
+kable(StockClass_by_Sector %>% 
+        select(Sector, Definition = Definition_Sector) %>% 
+        distinct())
+```
+
+### StockClass_list
+
+```{r, echo=FALSE, message=FALSE}
+kable(StockClass_by_Sector %>% 
+        select(-Definition_Sector, Definition = Definition_StockClass))
+```
+
+### Breed_list
+
+```{r, echo=FALSE, message=FALSE}
+kable(Breeds)
+```
+
+### Supplement_list
+
+```{r, echo=FALSE, message=FALSE}
+kable(Supplementary_Feed)
+```
+
+## Output Data Specification
+
+In this section the columns and data types of FEM's outputs are specified.
+
+Configuring FEM to generate and save output tables is described in the README.
+
+### Emission Outputs
+
+The tables below contain varying levels of aggregation of emission outputs in kg of gas. Granular livestock emission table is aggregated annually or monthly and by sector or stock class, while granular fertiliser emission table is aggregated annually. Annually aggregated livestock and fertiliser tables are joined and aggregated by gas.
+
+#### smry_all_annual_by_gas
+
+```{r, echo=FALSE, message=FALSE}
+kable(smry_all_annual_by_gas)
+```
+
+#### smry_all_annual_by_emission_type
+
+```{r, echo=FALSE, message=FALSE}
+kable(smry_all_annual_by_emission_type)
+```
+
+#### smry_livestock_annual
+
+```{r, echo=FALSE, message=FALSE}
+kable(smry_livestock_annual)
+```
+
+#### smry_livestock_annual_by_Sector
+
+```{r, echo=FALSE, message=FALSE}
+kable(smry_livestock_annual_by_Sector)
+```
+
+#### smry_livestock_monthly_by_Sector
+
+```{r, echo=FALSE, message=FALSE}
+kable(smry_livestock_monthly_by_Sector)
+```
+
+#### smry_livestock_monthly_by_StockClass
+
+```{r, echo=FALSE, message=FALSE}
+kable(smry_livestock_monthly_by_StockClass)
+```
+
+#### smry_fertiliser_annual
+
+```{r, echo=FALSE, message=FALSE}
+kable(smry_fertiliser_annual)
+```
+
+### Mitigation Impact Outputs
+
+The tables below show the emission impacts (in kg of gas) of mitigation technologies in varying levels of aggregation. There are four mitigation technologies supported in the model:
+
+- Urease inhibitor coated urea fertiliser.
+- Low methane animal genetics.
+- EcoPond effluent treatment.
+- Solid separator effluent systems.
+
+The mitigation impact of a particular technology is the mitigated emissions minus the emissions without the impact of that technology. Please refer to the FEM's Methodology for further details.
+
+#### smry_all_annual_by_gas_mitign_delta
+
+```{r, echo=FALSE, message=FALSE}
+kable(smry_all_annual_by_gas_mitign_delta)
+```
+
+#### smry_all_annual_by_emission_type_mitign_delta
+
+```{r, echo=FALSE, message=FALSE}
+kable(smry_all_annual_by_emission_type_mitign_delta)
+```
+
+#### smry_livestock_annual_mitign_delta
+
+```{r, echo=FALSE, message=FALSE}
+kable(smry_livestock_annual_mitign_delta)
+```
+
+#### smry_livestock_annual_by_Sector_mitign_delta
+
+```{r, echo=FALSE, message=FALSE}
+kable(smry_livestock_annual_by_Sector_mitign_delta)
+```
+
+#### smry_livestock_monthly_by_Sector_mitign_delta
+
+```{r, echo=FALSE, message=FALSE}
+kable(smry_livestock_monthly_by_Sector_mitign_delta)
+```
+
+#### smry_livestock_monthly_by_StockClass_mitign_delta
+
+```{r, echo=FALSE, message=FALSE}
+kable(smry_livestock_monthly_by_StockClass_mitign_delta)
+```
+
+#### smry_fertiliser_annual_mitign_delta
+
+```{r, echo=FALSE, message=FALSE}
+kable(smry_fertiliser_annual_mitign_delta)
+```

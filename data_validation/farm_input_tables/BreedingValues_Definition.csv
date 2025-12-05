@@ -1,0 +1,5 @@
+Column_Title,Data_Type,Column_Rules,Definition
+Entity_ID,str,Any str up to 32 chars,See Table: FarmYear
+Period_End,date str,ISO8601 YYYY-MM-DD format,See Table: FarmYear
+StockClass,str,Element of StockClass list,"Category of animals defined by its sector, sex, age and if castrated. Values defined by StockClass_list."
+BV_aCH4,float,>= -0.4 and <= 1,"Breeding value expressing methane reduction, adjusted for liveweight. Expressed as a percentage reduction, and, estimated from an appropriate genetics database or tool (e.g., nProve)."

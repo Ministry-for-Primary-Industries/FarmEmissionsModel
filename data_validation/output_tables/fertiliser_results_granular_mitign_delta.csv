@@ -1,0 +1,4 @@
+Column_Title,Data_Type
+Entity_ID,str
+Period_End,date str
+N2O_SynthFert_Volat_excl_ui_t,float

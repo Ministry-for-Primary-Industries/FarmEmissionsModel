@@ -1,6 +1,6 @@
 Entity_ID,Period_End,Supplement,Dry_Matter_t,Beef_Allocation,Dairy_Allocation,Deer_Allocation,Sheep_Allocation
 10001,2022-06-30,"Pasture, Hay",5,0,0,0,1
-10001,2022-06-30,"Pasture, Silage",15,0,0,0,1
-10001,2022-06-30,"Maize Grain, Concentrate",13,0.6,0,0,0.4
-10002,2023-05-31,"Palm Kernel Extract, Concentrate",10,0,1,0,0
-10002,2023-05-31,"Swede, Forage (Whole Crop)",15,0,1,0,0
+10001,2022-06-30,"Pasture, Silage",10,0,0,0,1
+10001,2022-06-30,"Maize Grain, Concentrate",5,0.7,0,0,0.3
+10002,2023-05-31,"Palm Kernel Extract, Concentrate",9.52,0,1,0,0
+10002,2023-05-31,"Swede, Forage",15.3,0,1,0,0
