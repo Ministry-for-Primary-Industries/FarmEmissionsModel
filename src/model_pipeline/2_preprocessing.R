@@ -316,12 +316,46 @@ StockRec_daily_df <- StockLedger_agg_df %>%
   group_by(Entity__PeriodEnd, StockClass) %>%
   mutate(StockCount_day = cumsum(Stock_Change))
 
-# basic validation check for negative stock counts
-# this occurs when input data for a farm has a stock outflow transaction (sale, death etc.) which
-# exceeds current stock count. If this occurs, fix your input data
+# FEM level validation 1/7: Verify daily stock rec is never negative
+# this occurs when input data for a farm has a stock outflow transaction (sale, death etc.) which exceeds current stock count. 
+# if this occurs, fix your input data
 
-if(any(StockRec_daily_df$StockCount_day < 0, na.rm = TRUE)) {
-  stop("Negative stock counts detected in StockRec_daily_df. To troubleshoot run: StockRec_daily_df %>% filter(StockCount_day < 0)")
+if("stockrec_stockcount_not_negative" %in% param_validations) {
+  
+  StockRec_daily_newborns_altadjusted_df <- StockLedger_df %>% 
+    # derive new stock ledger with newborns alternatively adjusted as below:
+    # create new Transaction_Date_altadj which simply sets births to first day of month
+    # this catches scenarios not caught by the standard adjustment e.g.: first newborn transaction in StockLedger is a sale before any births occur
+    # while permitting situations like: first 2 transactions for a stockclass as e.g.: 100 births in August and selling 100 before mid August
+    mutate(Transaction_Date_adj = case_when(StockClass %in% stockClassList_newborns ~ Transaction_Date,
+                                            TRUE ~ Transaction_Date_adj),
+           Transaction_Date_adj = case_when(StockClass %in% stockClassList_newborns &  Transaction_Type == "Births" ~ floor_date(Transaction_Date, unit = "month"),
+                                            TRUE ~ Transaction_Date_adj)) %>% 
+    group_by(Entity__PeriodEnd, StockClass, Date = Transaction_Date_adj) %>%
+    summarise(Stock_Change = sum(Stock_Count), .groups = "drop") %>% 
+    select(Entity__PeriodEnd, StockClass) %>%
+    distinct() %>%
+    # create daily stock rec
+    left_join(FarmYear_dates_df %>% select(Entity__PeriodEnd, Date),
+              by = "Entity__PeriodEnd") %>%
+    unnest(Date) %>%
+    left_join(StockLedger_agg_df,
+              by = c("Entity__PeriodEnd", "StockClass", "Date")) %>%
+    mutate(Stock_Change = replace_na(Stock_Change, 0)) %>%
+    group_by(Entity__PeriodEnd, StockClass) %>%
+    mutate(StockCount_day = cumsum(Stock_Change)) %>% 
+    # find the first offending row
+    filter(StockCount_day < 0) %>%
+    slice(1) %>% 
+    mutate(Entity__PeriodEnd__StockClass__Date = paste0(Entity__PeriodEnd, " (on ", Date, " for ", StockClass, ")"))
+  
+  if(nrow(StockRec_daily_newborns_altadjusted_df) > 0) {
+    assert_that(nrow(StockRec_daily_newborns_altadjusted_df) == 0,
+                msg = paste0("Derived daily Stock Rec negative on the following farms, first observed for the specified StockClass: ",
+                             paste(StockRec_daily_newborns_altadjusted_df$Entity__PeriodEnd__StockClass__Date, collapse = ", "), 
+                             ". Stock outflows (e.g. sales, deaths) on this date exceed stock on farm."))
+  }
+  
 }
 
 StockRec_monthly_df <- StockRec_daily_df %>%
@@ -338,6 +372,87 @@ StockRec_monthly_df <- StockRec_daily_df %>%
       # we needed zero counts (if present) to calculate StockCount_mean above, now they can be removed
       StockCount_mean > 0 
     )
+
+# FEM level validation 2/7: Verify Milking Cows are present in all months dairy milk is produced
+
+if("dairy_production_cows_present" %in% param_validations) {
+  
+  if(any(Dairy_Production_df$Milk_Yield_Herd_L > 0, na.rm = TRUE)) {
+    
+    months_milk_produced_no_cows_df <- setdiff(Dairy_Production_df %>%
+                                                 filter(Milk_Yield_Herd_L > 0) %>%
+                                                 select(Entity__PeriodEnd, Month), 
+                                               StockRec_monthly_df %>%
+                                                 filter(StockClass == "Milking Cows Mature") %>%
+                                                 select(Entity__PeriodEnd, Month)) %>% 
+      group_by(Entity__PeriodEnd) %>% 
+      summarise(Month = paste(Month, collapse = ", "),
+                .groups = "drop") %>% 
+      mutate(Entity__PeriodEnd__Month = paste0(Entity__PeriodEnd, " (Month ", Month, ")"))
+    
+    assert_that(nrow(months_milk_produced_no_cows_df) == 0,
+                msg = (paste0("Milking Cows not present on the following farms in the calendar months dairy milk was produced: ", 
+                              paste(months_milk_produced_no_cows_df$Entity__PeriodEnd__Month, collapse = ", "))))
+  }
+  
+}
+
+# FEM level validation 3/7: Verify monthly effluent structure use inputs are unique and complete
+
+if("structure_use_month_complete" %in% param_validations) {
+  
+  if(any(StockRec_monthly_df[which(StockRec_monthly_df$StockClass == "Milking Cows Mature"), ]$StockCount_mean > 0, na.rm = TRUE)) {
+    
+    months_effluent_structure_df <- StockRec_monthly_df %>% 
+      filter(StockClass == "Milking Cows Mature") %>% 
+      select(Entity__PeriodEnd) %>% 
+      distinct() %>% 
+      mutate(Month = list(c(1:12))) %>% 
+      unnest(Month)
+    
+    months_effluent_structure_missing_df <- setdiff(months_effluent_structure_df,
+                                                    Effluent_Structure_Use_df %>% 
+                                                      select(Entity__PeriodEnd, Month)) %>% 
+      group_by(Entity__PeriodEnd) %>% 
+      summarise(Month = paste(Month, collapse = ", "),
+                .groups = "drop") %>% 
+      mutate(Entity__PeriodEnd__Month = paste0(Entity__PeriodEnd, " (Month ", Month, ")"))
+    
+    months_effluent_structure_extra_df <- setdiff(Effluent_Structure_Use_df %>% 
+                                                    select(Entity__PeriodEnd, Month),
+                                                  months_effluent_structure_df) %>% 
+      group_by(Entity__PeriodEnd) %>% 
+      summarise(Month = paste(Month, collapse = ", "),
+                .groups = "drop") %>% 
+      mutate(Entity__PeriodEnd__Month = paste0(Entity__PeriodEnd, " (Month ", Month, ")"))
+    
+    months_effluent_structure_duplicate_df <- Effluent_Structure_Use_df %>% 
+      group_by(Entity__PeriodEnd, Month) %>% 
+      summarise(n = n(),
+                .groups = "drop") %>% 
+      filter(n > 1) %>% 
+      group_by(Entity__PeriodEnd) %>% 
+      summarise(Month = paste(Month, collapse = ", "),
+                .groups = "drop") %>% 
+      mutate(Entity__PeriodEnd__Month = paste0(Entity__PeriodEnd, " (Month ", Month, ")"))
+      
+    
+    assert_that(nrow(months_effluent_structure_missing_df) == 0,
+                msg = (paste0("Some months in Effluent_Structure_Use.csv are missing for the following farms: ", 
+                              paste(months_effluent_structure_missing_df$Entity__PeriodEnd__Month, collapse = ", "))))
+    
+    assert_that(nrow(months_effluent_structure_extra_df) == 0,
+                msg = (paste0("Extra (invalid) months in Effluent_Structure_Use.csv are found for the following farms: ", 
+                              paste(months_effluent_structure_extra_df$Entity__PeriodEnd__Month, collapse = ", "))))
+    
+    assert_that(nrow(months_effluent_structure_duplicate_df) == 0,
+                msg = (paste0("Duplicate months in Effluent_Structure_Use.csv are found for the following farms: ", 
+                              paste(months_effluent_structure_duplicate_df$Entity__PeriodEnd__Month, collapse = ", "))))
+    
+  }
+  
+}
+
 
 # preprocessing: newborns
 
@@ -610,3 +725,39 @@ livestock_precalc_df <- StockRec_monthly_df %>%
     # mitigation technologies
     "BV_aCH4"
   )
+
+
+# FEM level validation 4/7: Verify stock for a given sector is present for any allocated supplementary feed
+
+if("suppfeed_sector_present" %in% param_validations) {
+  
+  if(any(SuppFeed_DryMatter_df$Dry_Matter_t > 0, na.rm=TRUE)) {
+    
+    sectors_fed_supps_without_stock_df <- setdiff(SuppFeed_DryMatter_df %>%
+                                                    select(Entity__PeriodEnd, 4:7) %>% 
+                                                    gather(key = "Sector", value = "Allocation", 2:5) %>% 
+                                                    mutate(Sector = gsub('.{11}$', '', Sector)) %>% 
+                                                    group_by(Entity__PeriodEnd, Sector) %>% 
+                                                    summarise(Allocation = sum(Allocation),
+                                                              .groups = "drop") %>% 
+                                                    filter(Allocation > 0) %>%
+                                                    select(Entity__PeriodEnd, Sector), 
+                                                  livestock_precalc_df %>%
+                                                    select(Entity__PeriodEnd, Sector) %>%
+                                                    distinct()) %>% 
+      group_by(Entity__PeriodEnd) %>% 
+      summarise(Sector = paste(Sector, collapse = ", "),
+                .groups = "drop") %>% 
+      mutate(Entity__PeriodEnd__Sector = paste0(Entity__PeriodEnd, " (", Sector, ")"))
+    
+    assert_that(nrow(sectors_fed_supps_without_stock_df) == 0,
+                msg = (paste0("The following farms have sectors with supplementary feed allocated but no stock present: ", 
+                              paste(sectors_fed_supps_without_stock_df$Entity__PeriodEnd__Sector, collapse = ", "))))
+
+  }
+  
+}
+
+
+# FEM level validation 5/7: 
+

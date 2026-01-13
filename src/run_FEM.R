@@ -20,6 +20,22 @@ param_saveout_mitign_delta_tables = c(
 )
 param_saveout_tables = c(param_saveout_emission_tables, param_saveout_mitign_delta_tables)
 
+# set validations to run
+# each validation is described before the validation code in 2_preprocessing.R
+param_validations = c(
+  # these are model-level validations (i.e., require intermediate model outputs)
+  "stockrec_stockcount_not_negative",
+  "dairy_production_cows_present",
+  "structure_use_month_complete",
+  "structure_use_cows_present",
+  "suppfeed_sector_present",
+  "bv_stockclass_present",
+  "breed_allocation_stockclass_present"
+  
+  # these are input validations (i.e., only require model inputs)
+  
+)
+
 # load R env --------------------------------------------------------------
 
 suppressPackageStartupMessages(library(dplyr))
@@ -28,6 +44,7 @@ suppressPackageStartupMessages(library(lubridate))
 suppressPackageStartupMessages(library(purrr))
 suppressPackageStartupMessages(library(readr))
 suppressPackageStartupMessages(library(tidyr))
+suppressPackageStartupMessages(library(assertthat))
 
 # run pipeline -------------------------------------------------------------
 
