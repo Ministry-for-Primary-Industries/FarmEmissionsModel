@@ -384,7 +384,8 @@ if("dairy_production_cows_present" %in% param_validations) {
                                                  filter(Milk_Yield_Herd_L > 0) %>%
                                                  select(Entity__PeriodEnd, Month), 
                                                StockRec_monthly_df %>%
-                                                 filter(StockClass == "Milking Cows Mature") %>%
+                                                 filter(StockClass == "Milking Cows Mature",
+                                                        StockCount_mean > 0) %>%
                                                  select(Entity__PeriodEnd, Month)) %>% 
       group_by(Entity__PeriodEnd) %>% 
       summarise(Month = paste(Month, collapse = ", "),
@@ -468,7 +469,8 @@ if("structure_use_cows_present" %in% param_validations) {
                                               filter(Structures_hrs_day > 0) %>% 
                                               pull(Entity__PeriodEnd),
                                             StockRec_monthly_df %>%
-                                              filter(StockClass == "Milking Cows Mature") %>%
+                                              filter(StockClass == "Milking Cows Mature",
+                                                     StockCount_mean > 0) %>%
                                               select(Entity__PeriodEnd) %>% 
                                               pull(Entity__PeriodEnd) %>% 
                                               unique())
@@ -477,6 +479,57 @@ if("structure_use_cows_present" %in% param_validations) {
                 msg = (paste0("Milking Cows not present on the following farms where effluent structures were used: ", 
                               paste(farms_structure_used_no_cows, collapse = ", "))))
                 
+  }
+  
+}
+
+# FEM level validation 5/7: Verify that stock is present on the farm if breeding values are provided for that StockClass
+
+if("bv_stockclass_present" %in% param_validations) {
+  
+  if(nrow(BreedingValues_df > 0)) {
+    
+    stockclass_with_bv_no_stock_df <- setdiff(BreedingValues_df %>% 
+                                                select(Entity__PeriodEnd, StockClass),
+                                              StockRec_monthly_df %>%
+                                                filter(StockCount_mean > 0) %>%
+                                                select(Entity__PeriodEnd, StockClass) %>% 
+                                                distinct()) %>% 
+      group_by(Entity__PeriodEnd) %>% 
+      summarise(StockClass = paste(StockClass, collapse = ", "),
+                .groups = "drop") %>% 
+      mutate(Entity__PeriodEnd__StockClass = paste0(Entity__PeriodEnd, " (StockClass: ", StockClass, ")"))
+      
+    assert_that(nrow(stockclass_with_bv_no_stock_df) == 0,
+                msg = (paste0("BVs for some StockClass are provided but there are no stock on the following farms: ", 
+                              paste(stockclass_with_bv_no_stock_df$Entity__PeriodEnd__StockClass, collapse = ", "))))
+    
+  }
+  
+}
+
+# FEM level validation 6/7: Verify that female dairy StockClass are present on the farm if breed allocation are provided
+
+if("breed_allocation_stockclass_present" %in% param_validations) {
+  
+  if(nrow(Breed_Allocation_df > 0)) {
+    
+    stockclass_with_breed_allocation_no_stock_df <- setdiff(Breed_Allocation_df %>% 
+                                                select(Entity__PeriodEnd, StockClass),
+                                              StockRec_monthly_df %>%
+                                                filter(StockClass %in% c("Dairy Heifers R1", "Dairy Heifers R2", "Milking Cows Mature"),
+                                                       StockCount_mean > 0) %>%
+                                                select(Entity__PeriodEnd, StockClass) %>% 
+                                                distinct()) %>% 
+      group_by(Entity__PeriodEnd) %>% 
+      summarise(StockClass = paste(StockClass, collapse = ", "),
+                .groups = "drop") %>% 
+      mutate(Entity__PeriodEnd__StockClass = paste0(Entity__PeriodEnd, " (StockClass: ", StockClass, ")"))
+    
+    assert_that(nrow(stockclass_with_breed_allocation_no_stock_df) == 0,
+                msg = (paste0("Breed allocation for some StockClass are provided but there are no stock on the following farms (or StockClass provided is not a female dairy StockClass): ", 
+                              paste(stockclass_with_bv_no_stock_df$Entity__PeriodEnd__StockClass, collapse = ", "))))
+    
   }
   
 }
@@ -755,7 +808,7 @@ livestock_precalc_df <- StockRec_monthly_df %>%
   )
 
 
-# FEM level validation 5/7: Verify stock for a given sector is present for any allocated supplementary feed
+# FEM level validation 7/7: Verify stock for a given sector is present for any allocated supplementary feed
 
 if("suppfeed_sector_present" %in% param_validations) {
   
@@ -785,8 +838,3 @@ if("suppfeed_sector_present" %in% param_validations) {
   }
   
 }
-
-
-# FEM level validation 6/7: 
-
-# FEM level validation 7/7: 
