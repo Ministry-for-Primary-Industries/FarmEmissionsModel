@@ -81,7 +81,8 @@ Dairy_Production_df <- Dairy_Production_df %>%
 # prep of Effluent_Structure_Use_df
 
 Effluent_Structure_Use_df <- Effluent_Structure_Use_df %>%
-  mutate(DungUrine_to_Effluent_pct = (Dairy_Shed_hrs_day + Other_Structures_hrs_day) / 24,
+  mutate(Structures_hrs_day = Dairy_Shed_hrs_day + Other_Structures_hrs_day,
+         DungUrine_to_Effluent_pct = Structures_hrs_day / 24,
          StockClass = "Milking Cows Mature")
 
 # prep of Effluent_EcoPond_Treatments_df
@@ -438,17 +439,44 @@ if("structure_use_month_complete" %in% param_validations) {
       
     
     assert_that(nrow(months_effluent_structure_missing_df) == 0,
-                msg = (paste0("Some months in Effluent_Structure_Use.csv are missing for the following farms: ", 
+                msg = (paste0("Some months in Effluent_Structure_Use.csv are missing for the following farms with milking cows: ", 
                               paste(months_effluent_structure_missing_df$Entity__PeriodEnd__Month, collapse = ", "))))
     
     assert_that(nrow(months_effluent_structure_extra_df) == 0,
-                msg = (paste0("Extra (invalid) months in Effluent_Structure_Use.csv are found for the following farms: ", 
+                msg = (paste0("Extra (invalid) months in Effluent_Structure_Use.csv are found for the following farms with milking cows: ", 
                               paste(months_effluent_structure_extra_df$Entity__PeriodEnd__Month, collapse = ", "))))
     
     assert_that(nrow(months_effluent_structure_duplicate_df) == 0,
-                msg = (paste0("Duplicate months in Effluent_Structure_Use.csv are found for the following farms: ", 
+                msg = (paste0("Duplicate months in Effluent_Structure_Use.csv are found for the following farms with milking cows: ", 
                               paste(months_effluent_structure_duplicate_df$Entity__PeriodEnd__Month, collapse = ", "))))
     
+  }
+  
+}
+
+
+# FEM level validation 4/7: Verify that effluent structures are not used if there are no milking cows on the farm
+
+if("structure_use_cows_present" %in% param_validations) {
+  
+  if(any(Effluent_Structure_Use_df$Structures_hrs_day > 0, na.rm = TRUE)) {
+    
+    farms_structure_used_no_cows <- setdiff(Effluent_Structure_Use_df %>%
+                                              group_by(Entity__PeriodEnd) %>% 
+                                              summarise(Structures_hrs_day = sum(Structures_hrs_day),
+                                                        .groups = "drop") %>% 
+                                              filter(Structures_hrs_day > 0) %>% 
+                                              pull(Entity__PeriodEnd),
+                                            StockRec_monthly_df %>%
+                                              filter(StockClass == "Milking Cows Mature") %>%
+                                              select(Entity__PeriodEnd) %>% 
+                                              pull(Entity__PeriodEnd) %>% 
+                                              unique())
+                                                 
+    assert_that(length(farms_structure_used_no_cows) == 0,
+                msg = (paste0("Milking Cows not present on the following farms where effluent structures were used: ", 
+                              paste(farms_structure_used_no_cows, collapse = ", "))))
+                
   }
   
 }
@@ -727,7 +755,7 @@ livestock_precalc_df <- StockRec_monthly_df %>%
   )
 
 
-# FEM level validation 4/7: Verify stock for a given sector is present for any allocated supplementary feed
+# FEM level validation 5/7: Verify stock for a given sector is present for any allocated supplementary feed
 
 if("suppfeed_sector_present" %in% param_validations) {
   
@@ -759,5 +787,6 @@ if("suppfeed_sector_present" %in% param_validations) {
 }
 
 
-# FEM level validation 5/7: 
+# FEM level validation 6/7: 
 
+# FEM level validation 7/7: 
