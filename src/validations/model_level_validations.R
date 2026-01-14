@@ -37,10 +37,11 @@ stockrec_stockcount_not_negative <- function() {
       slice(1) %>% 
       mutate(Entity__PeriodEnd__StockClass__Date = paste0(Entity__PeriodEnd, " (on ", Date, " for ", StockClass, ")"))
     
-    assert_that(nrow(negative_stockcount_newborns_altadjusted_df) == 0,
-                msg = paste0("Derived daily Stock Rec negative on the following farms, first observed for the specified StockClass: ",
-                             paste(negative_stockcount_newborns_altadjusted_df$Entity__PeriodEnd__StockClass__Date, collapse = ", "), 
-                             ". Stock outflows (e.g. sales, deaths) on this date exceed stock on farm."))
+    if(nrow(negative_stockcount_newborns_altadjusted_df) > 0) {
+      stop(paste0("Derived daily Stock Rec negative on the following farms, first observed for the specified StockClass: ",
+                  paste(negative_stockcount_newborns_altadjusted_df$Entity__PeriodEnd__StockClass__Date, collapse = ", "), 
+                  ". Stock outflows (e.g. sales, deaths) on this date exceed stock on farm."))
+    }
     
   }
   
@@ -65,9 +66,11 @@ dairy_production_cows_present <- function() {
                 .groups = "drop") %>% 
       mutate(Entity__PeriodEnd__Month = paste0(Entity__PeriodEnd, " (Month ", Month, ")"))
     
-    assert_that(nrow(months_milk_produced_no_cows_df) == 0,
-                msg = (paste0("Milking Cows not present on the following farms in the calendar months dairy milk was produced: ", 
-                              paste(months_milk_produced_no_cows_df$Entity__PeriodEnd__Month, collapse = ", "))))
+    if(nrow(months_milk_produced_no_cows_df) > 0) {
+      stop(paste0("Milking Cows not present on the following farms in the calendar months dairy milk was produced: ", 
+                  paste(months_milk_produced_no_cows_df$Entity__PeriodEnd__Month, collapse = ", ")))
+    }
+    
   }
   
 }
@@ -90,9 +93,10 @@ structure_use_month_complete <- function() {
                 .groups = "drop") %>% 
       mutate(Entity__PeriodEnd__Month = paste0(Entity__PeriodEnd, " (Month ", Month, ")"))
     
-    assert_that(nrow(months_cows_present_no_structures_df) == 0,
-                msg = (paste0("No effluent structure use input (including 0s) on some months on the following farms where Milking Cows were present: ", 
-                              paste(months_cows_present_no_structures_df$Entity__PeriodEnd__Month, collapse = ", "))))
+    if(nrow(months_cows_present_no_structures_df) > 0) {
+      stop((paste0("No effluent structure use input (including 0s) on some months on the following farms where Milking Cows were present: ", 
+                   paste(months_cows_present_no_structures_df$Entity__PeriodEnd__Month, collapse = ", "))))
+    }
     
   }
   
@@ -118,9 +122,10 @@ structure_use_cows_present <- function() {
                 .groups = "drop") %>% 
       mutate(Entity__PeriodEnd__Month = paste0(Entity__PeriodEnd, " (Month ", Month, ")"))
     
-    assert_that(nrow(months_structure_used_no_cows_df) == 0,
-                msg = (paste0("Milking Cows not present on some months on the following farms where effluent structures were used: ", 
-                              paste(months_structure_used_no_cows_df$Entity__PeriodEnd__Month, collapse = ", "))))
+    if(nrow(months_structure_used_no_cows_df) > 0) {
+      stop((paste0("Milking Cows not present on some months on the following farms where effluent structures were used: ", 
+                   paste(months_structure_used_no_cows_df$Entity__PeriodEnd__Month, collapse = ", "))))
+    }
     
   }
   
@@ -142,9 +147,10 @@ solid_separator_use_cows_present <- function() {
                                                      pull(Entity__PeriodEnd) %>% 
                                                      unique())
     
-    assert_that(length(months_solid_separator_used_no_cows) == 0,
-                msg = (paste0("Milking Cows not present on the following farms where solid separator was used: ", 
-                              paste(months_solid_separator_used_no_cows, collapse = ", "))))
+    if(length(months_solid_separator_used_no_cows) > 0) {
+      stop((paste0("Milking Cows not present on the following farms where solid separator was used: ", 
+                   paste(months_solid_separator_used_no_cows, collapse = ", "))))
+    }
     
   }
   
@@ -168,9 +174,10 @@ bv_stockclass_present <- function() {
                 .groups = "drop") %>% 
       mutate(Entity__PeriodEnd__StockClass = paste0(Entity__PeriodEnd, " (StockClass: ", StockClass, ")"))
     
-    assert_that(nrow(stockclass_with_bv_no_stock_df) == 0,
-                msg = (paste0("BVs for some StockClass are provided but there are no stock on the following farms: ", 
-                              paste(stockclass_with_bv_no_stock_df$Entity__PeriodEnd__StockClass, collapse = ", "))))
+    if(nrow(stockclass_with_bv_no_stock_df) > 0) {
+      stop((paste0("BVs for some StockClass are provided but there are no stock on the following farms: ", 
+                   paste(stockclass_with_bv_no_stock_df$Entity__PeriodEnd__StockClass, collapse = ", "))))
+    }
     
   }
   
@@ -195,9 +202,10 @@ breed_allocation_stockclass_present <- function() {
                 .groups = "drop") %>% 
       mutate(Entity__PeriodEnd__StockClass = paste0(Entity__PeriodEnd, " (StockClass: ", StockClass, ")"))
     
-    assert_that(nrow(stockclass_with_breed_allocation_no_stock_df) == 0,
-                msg = (paste0("Breed allocation for some StockClass are provided but there are no stock on the following farms (or StockClass provided is not a female dairy StockClass): ", 
-                              paste(stockclass_with_breed_allocation_no_stock_df$Entity__PeriodEnd__StockClass, collapse = ", "))))
+    if(nrow(stockclass_with_breed_allocation_no_stock_df) > 0) {
+      stop((paste0("Breed allocation for some StockClass are provided but there are no stock on the following farms (or StockClass provided is not a female dairy StockClass): ", 
+                   paste(stockclass_with_breed_allocation_no_stock_df$Entity__PeriodEnd__StockClass, collapse = ", "))))
+    }
     
   }
   
@@ -227,9 +235,10 @@ suppfeed_sector_present <-function() {
                 .groups = "drop") %>% 
       mutate(Entity__PeriodEnd__Sector = paste0(Entity__PeriodEnd, " (", Sector, ")"))
     
-    assert_that(nrow(sectors_fed_supps_without_stock_df) == 0,
-                msg = (paste0("The following farms have sectors with supplementary feed allocated but no stock present: ", 
-                              paste(sectors_fed_supps_without_stock_df$Entity__PeriodEnd__Sector, collapse = ", "))))
+    if(nrow(sectors_fed_supps_without_stock_df) > 0) {
+      stop(paste0("The following farms have sectors with supplementary feed allocated but no stock present: ", 
+                  paste(sectors_fed_supps_without_stock_df$Entity__PeriodEnd__Sector, collapse = ", ")))
+    }
     
   }
   
