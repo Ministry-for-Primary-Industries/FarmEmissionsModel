@@ -2,7 +2,7 @@
 
 # configure run parameters ------------------------------------------------
 
-param_input_path = "data_input_example" # folder where farm data is located
+param_input_path = "data_input" # folder where farm data is located
 param_input_data_format = "csv" # csv or json
 param_output_path = "data_output" # this will be created if it doesn't exist
 param_output_data_format = "csv" # csv or json
@@ -20,21 +20,16 @@ param_saveout_mitign_delta_tables = c(
 )
 param_saveout_tables = c(param_saveout_emission_tables, param_saveout_mitign_delta_tables)
 
-# set validations to run
-# each validation is described before the validation code in 2_preprocessing.R
+# set validations to run, refer to README
 param_validations = c(
-  # these are model-level validations (i.e., require intermediate model outputs)
   "stockrec_stockcount_not_negative",
   "dairy_production_cows_present",
   "structure_use_month_complete",
   "structure_use_cows_present",
   "solid_separator_use_cows_present",
-  "suppfeed_sector_present",
   "bv_stockclass_present",
-  "breed_allocation_stockclass_present"
-  
-  # these are input-level validations (i.e., only require model inputs)
-  
+  "breed_allocation_stockclass_present",
+  "suppfeed_sector_present"
 )
 
 # load R env --------------------------------------------------------------

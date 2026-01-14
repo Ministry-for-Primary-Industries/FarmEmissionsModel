@@ -1,37 +1,42 @@
 
-# FEM level validation 1/7: Verify daily stock rec is never negative
+# Verify daily stock rec is never negative
 # this occurs when input data for a farm has a stock outflow transaction (sale, death etc.) which exceeds current stock count. 
 
 stockrec_stockcount_not_negative <- function() {
   
-  negative_stockcount_newborns_altadjusted_df <- StockLedger_df %>% 
-    # derive new stock ledger with newborns alternatively adjusted as below:
-    # create new Transaction_Date_altadj which simply sets births to first day of month
-    # this catches scenarios not caught by the standard adjustment e.g.: first newborn transaction in StockLedger is a sale before any births occur
-    # while permitting situations like: first 2 transactions for a stockclass as e.g.: 100 births in August and selling 100 before mid August
-    mutate(Transaction_Date_adj = case_when(StockClass %in% stockClassList_newborns ~ Transaction_Date,
-                                            TRUE ~ Transaction_Date_adj),
-           Transaction_Date_adj = case_when(StockClass %in% stockClassList_newborns &  Transaction_Type == "Births" ~ floor_date(Transaction_Date, unit = "month"),
-                                            TRUE ~ Transaction_Date_adj)) %>% 
-    group_by(Entity__PeriodEnd, StockClass, Date = Transaction_Date_adj) %>%
-    summarise(Stock_Change = sum(Stock_Count), .groups = "drop") %>% 
-    select(Entity__PeriodEnd, StockClass) %>%
-    distinct() %>%
+  if (nrow(StockLedger_df > 0)) {
+    
+    StockLedger_agg_altadjusted_df <- StockLedger_df %>% 
+      # derive new stock ledger with newborns alternatively adjusted as below:
+      # create new Transaction_Date_altadj which simply sets births to first day of month
+      # these alternatively adjusted births are referenced from Transaction_Date (farm birth date) rather than adjusted birthdate in the StockLedger_df
+      # this catches scenarios not caught by the standard adjustment e.g.: first newborn transaction in StockLedger is a sale before any births occur
+      # while permitting situations like: first 2 transactions for a stockclass as e.g.: 100 births in August and selling 100 before mid August
+      # note in pre-processing, standard adjustment transfers all birthed newborn births/deaths/movements dates before Farm_Birthdate_max to Farm_Birthdate_mean
+      mutate(Transaction_Date_adj = case_when(StockClass %in% stockClassList_newborns ~ Transaction_Date,
+                                              TRUE ~ Transaction_Date_adj),
+             Transaction_Date_adj = case_when(StockClass %in% stockClassList_newborns & Transaction_Type == "Births" ~ floor_date(Transaction_Date, unit = "month"),
+                                              TRUE ~ Transaction_Date_adj)) %>% 
+      group_by(Entity__PeriodEnd, StockClass, Date = Transaction_Date_adj) %>%
+      summarise(Stock_Change = sum(Stock_Count), .groups = "drop") 
+    
     # create daily stock rec
-    left_join(FarmYear_dates_df %>% select(Entity__PeriodEnd, Date),
-              by = "Entity__PeriodEnd") %>%
-    unnest(Date) %>%
-    left_join(StockLedger_agg_df,
-              by = c("Entity__PeriodEnd", "StockClass", "Date")) %>%
-    mutate(Stock_Change = replace_na(Stock_Change, 0)) %>%
-    group_by(Entity__PeriodEnd, StockClass) %>%
-    mutate(StockCount_day = cumsum(Stock_Change)) %>% 
-    # find the first offending row
-    filter(StockCount_day < 0) %>%
-    slice(1) %>% 
-    mutate(Entity__PeriodEnd__StockClass__Date = paste0(Entity__PeriodEnd, " (on ", Date, " for ", StockClass, ")"))
-  
-  if(nrow(negative_stockcount_newborns_altadjusted_df) > 0) {
+    negative_stockcount_newborns_altadjusted_df <- StockLedger_agg_altadjusted_df %>% 
+      select(Entity__PeriodEnd, StockClass) %>%
+      distinct() %>% 
+      left_join(FarmYear_dates_df %>% select(Entity__PeriodEnd, Date),
+                by = "Entity__PeriodEnd") %>%
+      unnest(Date) %>%
+      left_join(StockLedger_agg_altadjusted_df,
+                by = c("Entity__PeriodEnd", "StockClass", "Date")) %>%
+      mutate(Stock_Change = replace_na(Stock_Change, 0)) %>%
+      group_by(Entity__PeriodEnd, StockClass) %>%
+      mutate(StockCount_day = cumsum(Stock_Change)) %>% 
+      # find the first offending row
+      filter(StockCount_day < 0) %>%
+      slice(1) %>% 
+      mutate(Entity__PeriodEnd__StockClass__Date = paste0(Entity__PeriodEnd, " (on ", Date, " for ", StockClass, ")"))
+    
     assert_that(nrow(negative_stockcount_newborns_altadjusted_df) == 0,
                 msg = paste0("Derived daily Stock Rec negative on the following farms, first observed for the specified StockClass: ",
                              paste(negative_stockcount_newborns_altadjusted_df$Entity__PeriodEnd__StockClass__Date, collapse = ", "), 
@@ -42,7 +47,7 @@ stockrec_stockcount_not_negative <- function() {
 }
 
 
-# FEM level validation 2/7: Verify Milking Cows are present in all months dairy milk is produced
+# Verify Milking Cows are present in all months dairy milk is produced
 
 dairy_production_cows_present <- function() {
   
@@ -67,7 +72,8 @@ dairy_production_cows_present <- function() {
   
 }
 
-# FEM level validation 3/7: Verify that effluent structures are used if there are milking cows on the farm for a particular month
+
+# Verify that effluent structures are used (or a 0 input is provided) if there are milking cows on the farm for a particular month
 
 structure_use_month_complete <- function() {
   
@@ -93,7 +99,7 @@ structure_use_month_complete <- function() {
 }
 
 
-# FEM level validation 4/7: Verify that effluent structures are not used if there are no milking cows on the farm for a particular month
+# Verify that effluent structures are not used (0 input or not provided) if there are no milking cows on the farm for a particular month
 # prerequisite input-level validations: Effluent_Structure_Use_df$Month is unique within Entity_ID and Period_End and is an element of c(1:12)
 
 structure_use_cows_present <- function() {
@@ -121,7 +127,7 @@ structure_use_cows_present <- function() {
 }
 
 
-# FEM level validation 1/7: Verify that solid separators are not used if there are no milking cows on the farm
+# Verify that solid separators are not used if there are no milking cows on the farm
 
 solid_separator_use_cows_present <- function() {
   
@@ -144,7 +150,8 @@ solid_separator_use_cows_present <- function() {
   
 }
 
-# FEM level validation 5/7: Verify that stock is present on the farm if breeding values are provided for that StockClass
+
+# Verify that stock is present on the farm if breeding values are provided for that StockClass
 
 bv_stockclass_present <- function() {
   
@@ -170,7 +177,7 @@ bv_stockclass_present <- function() {
 }
 
 
-# FEM level validation 6/7: Verify that female dairy StockClass are present on the farm if breed allocation are provided
+# Verify that female dairy StockClass are present on the farm if breed allocation are provided
 
 breed_allocation_stockclass_present <- function() {
   
@@ -197,7 +204,7 @@ breed_allocation_stockclass_present <- function() {
 }
 
 
-# FEM level validation 7/7: Verify stock for a given sector is present for any allocated supplementary feed
+# Verify stock for a given sector is present for any allocated supplementary feed
 
 suppfeed_sector_present <-function() {
   

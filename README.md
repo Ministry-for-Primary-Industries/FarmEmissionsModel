@@ -52,6 +52,7 @@ At the head of this script are configurable run parameters for setting:
 - output tables to saveout via `param_saveout_emission_tables` and `param_saveout_mitign_delta_tables`
     - if no saved outputs are desired these can be set to `FALSE` or an empty vector `c()`
     - the full lists of savable outputs are:
+    
     ```R
     # emission tables including impacts of mitigations
     param_saveout_emission_tables = c(
@@ -87,6 +88,22 @@ At the head of this script are configurable run parameters for setting:
     ```
 
     Note if a given `Entity_ID` and `Period_End` has no farm data inputs for a specific module (e.g. fertiliser or livestock), it will have no output rows in the per module tables. It will have output rows of zeros in the high level all-module summaries.
+
+- validations to run via `param_validations`
+    ```R
+    param_validations = c(
+      # these are model-level validations (i.e., require intermediate model outputs)
+      "stockrec_stockcount_not_negative",  # Verify daily stock rec is never negative
+      "dairy_production_cows_present",  # Verify Milking Cows are present in all months dairy milk is produced
+      "structure_use_month_complete",  # Verify that effluent structures are used if there are milking cows on the farm for a particular month
+      "structure_use_cows_present",  # Verify that effluent structures are not used if there are no milking cows on the farm for a particular month
+      "solid_separator_use_cows_present",  # Verify that solid separators are not used if there are no milking cows on the farm
+      "bv_stockclass_present",  # Verify that stock is present on the farm if breeding values are provided for that StockClass
+      "breed_allocation_stockclass_present"  # Verify that female dairy StockClass are present on the farm if breed allocation are provided
+      "suppfeed_sector_present",  # Verify stock for a given sector is present for any allocated supplementary feed
+      )
+    ```
+  
 
 ## FEM Equations
 
