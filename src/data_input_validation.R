@@ -3,7 +3,7 @@
 
 # --- Verify and process param_validations
 
-param_validatons <- local(
+param_validations <- local(
   
   {
     
