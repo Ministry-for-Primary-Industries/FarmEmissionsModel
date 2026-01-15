@@ -1,3 +1,56 @@
+# Based on configuration in run_FEM.R, enables the model pipeline to validate
+# input farm data is consistent with FEM data specification
+
+# --- Verify and process param_validations
+
+param_validatons <- local(
+  
+  {
+    
+    allowed_validations <- c(
+      "stockrec_stockcount_not_negative",
+      "dairy_production_cows_present",
+      "structure_use_month_complete",
+      "structure_use_cows_present",
+      "solid_separator_use_cows_present",
+      "bv_stockclass_present",
+      "breed_allocation_stockclass_present",
+      "suppfeed_sector_present"
+    )
+    
+    # load validations
+    if(length(param_validations) == 0) {
+      
+      configured_validations <- param_validations
+      
+    } else if(identical(param_validations, "all")) {
+      
+      # set param_validations to all allowed
+      configured_validations <- allowed_validations
+      
+    } else {
+      
+      # check param_validations are allowed
+      
+      invalid_validations <- setdiff(param_validations, allowed_validations)
+      
+      if(length(invalid_validations) > 0) {
+        stop(paste0(
+          "Invalid values entered for 'param_validations': ", paste(invalid_validations, collapse = ", ")
+        ))
+      }
+      
+      configured_validations <- param_validations
+      
+    }
+    
+    return(configured_validations)
+    
+  }
+  
+)
+
+# --- Complex validations that require R model preproc
 
 # Verify daily stock rec is never negative
 # this occurs when input data for a farm has a stock outflow transaction (sale, death etc.) which exceeds current stock count. 

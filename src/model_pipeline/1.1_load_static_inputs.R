@@ -1,3 +1,7 @@
+# load configured validations
+
+source(file.path("src", "data_input_validation.R"))
+
 # load equations
 
 source(file.path("src", "FEM_equations.R"))

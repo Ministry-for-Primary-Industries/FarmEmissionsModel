@@ -47,11 +47,6 @@ FarmYear_df <- FarmYear_df %>%
 
 # Section 2: Livestock preproc and additional farm data validation --------
 
-# load validations (validations will be run after relevant preprocessing steps)
-if(length(param_validations > 0)) {
-  source(file.path("src", "validations", "model_level_validations.R"))
-}
-
 helper_StockClass_by_Sector_df <- lookup_assumedParameters_df %>%
   select(Sector, StockClass) %>%
   distinct()
