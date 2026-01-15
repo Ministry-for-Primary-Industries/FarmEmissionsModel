@@ -8,14 +8,14 @@ param_validations <- local(
   {
     
     allowed_validations <- c(
-      "stockrec_stockcount_not_negative",
-      "dairy_production_cows_present",
-      "structure_use_month_complete",
-      "structure_use_cows_present",
-      "solid_separator_use_cows_present",
-      "bv_stockclass_present",
-      "breed_allocation_stockclass_present",
-      "suppfeed_sector_present"
+      "val_StockRec_StockCount_not_negative",
+      "val_Dairy_Production_cows_present",
+      "val_Effluent_Structure_Use_Month_complete",
+      "val_Effluent_Structure_Use_cows_present",
+      "val_Solid_Separator_Use_cows_present",
+      "val_BreedingValues_StockClass_present",
+      "val_Breed_Allocation_StockClass_present",
+      "val_SuppFeed_DryMatter_Sector_present"
     )
     
     # load validations
@@ -55,7 +55,7 @@ param_validations <- local(
 # Verify daily stock rec is never negative
 # this occurs when input data for a farm has a stock outflow transaction (sale, death etc.) which exceeds current stock count. 
 
-stockrec_stockcount_not_negative <- function() {
+val_StockRec_StockCount_not_negative <- function() {
   
   if (nrow(StockLedger_df > 0)) {
     
@@ -103,7 +103,7 @@ stockrec_stockcount_not_negative <- function() {
 
 # Verify Milking Cows are present in all months dairy milk is produced
 
-dairy_production_cows_present <- function() {
+val_Dairy_Production_cows_present <- function() {
   
   if(any(Dairy_Production_df$Milk_Yield_Herd_L > 0, na.rm = TRUE)) {
     
@@ -131,7 +131,7 @@ dairy_production_cows_present <- function() {
 
 # Verify that effluent structures are used (or a 0 input is provided) if there are milking cows on the farm for a particular month
 
-structure_use_month_complete <- function() {
+val_Effluent_Structure_Use_Month_complete <- function() {
   
   if(any(StockRec_monthly_df[which(StockRec_monthly_df$StockClass == "Milking Cows Mature"), ]$StockCount_mean > 0, na.rm = TRUE)) {
     
@@ -147,8 +147,8 @@ structure_use_month_complete <- function() {
       mutate(Entity__PeriodEnd__Month = paste0(Entity__PeriodEnd, " (Month ", Month, ")"))
     
     if(nrow(months_cows_present_no_structures_df) > 0) {
-      stop((paste0("No effluent structure use input (including 0s) on some months on the following farms where Milking Cows were present: ", 
-                   paste(months_cows_present_no_structures_df$Entity__PeriodEnd__Month, collapse = ", "))))
+      stop(paste0("No effluent structure use input (including 0s) on some months on the following farms where Milking Cows were present: ", 
+                  paste(months_cows_present_no_structures_df$Entity__PeriodEnd__Month, collapse = ", ")))
     }
     
   }
@@ -159,7 +159,7 @@ structure_use_month_complete <- function() {
 # Verify that effluent structures are not used (0 input or not provided) if there are no milking cows on the farm for a particular month
 # prerequisite input-level validations: Effluent_Structure_Use_df$Month is unique within Entity_ID and Period_End and is an element of c(1:12)
 
-structure_use_cows_present <- function() {
+val_Effluent_Structure_Use_cows_present <- function() {
   
   if(any(Effluent_Structure_Use_df$Structures_hrs_day > 0, na.rm = TRUE)) {
     
@@ -176,8 +176,8 @@ structure_use_cows_present <- function() {
       mutate(Entity__PeriodEnd__Month = paste0(Entity__PeriodEnd, " (Month ", Month, ")"))
     
     if(nrow(months_structure_used_no_cows_df) > 0) {
-      stop((paste0("Milking Cows not present on some months on the following farms where effluent structures were used: ", 
-                   paste(months_structure_used_no_cows_df$Entity__PeriodEnd__Month, collapse = ", "))))
+      stop(paste0("Milking Cows not present on some months on the following farms where effluent structures were used: ", 
+                  paste(months_structure_used_no_cows_df$Entity__PeriodEnd__Month, collapse = ", ")))
     }
     
   }
@@ -187,7 +187,7 @@ structure_use_cows_present <- function() {
 
 # Verify that solid separators are not used if there are no milking cows on the farm
 
-solid_separator_use_cows_present <- function() {
+val_Solid_Separator_Use_cows_present <- function() {
   
   if(any(FarmYear_df$Solid_Separator_Use, na.rm = TRUE)) {
     
@@ -201,8 +201,8 @@ solid_separator_use_cows_present <- function() {
                                                      unique())
     
     if(length(months_solid_separator_used_no_cows) > 0) {
-      stop((paste0("Milking Cows not present on the following farms where solid separator was used: ", 
-                   paste(months_solid_separator_used_no_cows, collapse = ", "))))
+      stop(paste0("Milking Cows not present on the following farms where solid separator was used: ", 
+                  paste(months_solid_separator_used_no_cows, collapse = ", ")))
     }
     
   }
@@ -212,7 +212,7 @@ solid_separator_use_cows_present <- function() {
 
 # Verify that stock is present on the farm if breeding values are provided for that StockClass
 
-bv_stockclass_present <- function() {
+val_BreedingValues_StockClass_present <- function() {
   
   if(nrow(BreedingValues_df > 0)) {
     
@@ -228,8 +228,8 @@ bv_stockclass_present <- function() {
       mutate(Entity__PeriodEnd__StockClass = paste0(Entity__PeriodEnd, " (StockClass: ", StockClass, ")"))
     
     if(nrow(stockclass_with_bv_no_stock_df) > 0) {
-      stop((paste0("BVs for some StockClass are provided but there are no stock on the following farms: ", 
-                   paste(stockclass_with_bv_no_stock_df$Entity__PeriodEnd__StockClass, collapse = ", "))))
+      stop(paste0("BVs for some StockClass are provided but there are no stock on the following farms: ", 
+                  paste(stockclass_with_bv_no_stock_df$Entity__PeriodEnd__StockClass, collapse = ", ")))
     }
     
   }
@@ -239,7 +239,7 @@ bv_stockclass_present <- function() {
 
 # Verify that female dairy StockClass are present on the farm if breed allocation are provided
 
-breed_allocation_stockclass_present <- function() {
+val_Breed_Allocation_StockClass_present <- function() {
   
   if(nrow(Breed_Allocation_df > 0)) {
     
@@ -256,8 +256,8 @@ breed_allocation_stockclass_present <- function() {
       mutate(Entity__PeriodEnd__StockClass = paste0(Entity__PeriodEnd, " (StockClass: ", StockClass, ")"))
     
     if(nrow(stockclass_with_breed_allocation_no_stock_df) > 0) {
-      stop((paste0("Breed allocation for some StockClass are provided but there are no stock on the following farms (or StockClass provided is not a female dairy StockClass): ", 
-                   paste(stockclass_with_breed_allocation_no_stock_df$Entity__PeriodEnd__StockClass, collapse = ", "))))
+      stop(paste0("Breed allocation for some StockClass are provided but there are no stock on the following farms (or StockClass provided is not a female dairy StockClass): ", 
+                  paste(stockclass_with_breed_allocation_no_stock_df$Entity__PeriodEnd__StockClass, collapse = ", ")))
     }
     
   }
@@ -267,9 +267,9 @@ breed_allocation_stockclass_present <- function() {
 
 # Verify stock for a given sector is present for any allocated supplementary feed
 
-suppfeed_sector_present <-function() {
+val_SuppFeed_DryMatter_Sector_present <-function() {
   
-  if(any(SuppFeed_DryMatter_df$Dry_Matter_t > 0, na.rm=TRUE)) {
+  if(any(SuppFeed_DryMatter_df$Dry_Matter_t > 0, na.rm = TRUE)) {
     
     sectors_fed_supps_without_stock_df <- setdiff(SuppFeed_DryMatter_df %>%
                                                     select(Entity__PeriodEnd, 4:7) %>% 

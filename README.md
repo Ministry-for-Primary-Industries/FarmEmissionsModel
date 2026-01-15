@@ -93,17 +93,18 @@ At the head of this script are configurable run parameters for setting:
     ```R
     param_validations = c(
       # these are model-level validations (i.e., require intermediate model outputs)
-      "stockrec_stockcount_not_negative",  # Verify daily stock rec is never negative
-      "dairy_production_cows_present",  # Verify Milking Cows are present in all months dairy milk is produced
-      "structure_use_month_complete",  # Verify that effluent structures are used if there are milking cows on the farm for a particular month
-      "structure_use_cows_present",  # Verify that effluent structures are not used if there are no milking cows on the farm for a particular month
-      "solid_separator_use_cows_present",  # Verify that solid separators are not used if there are no milking cows on the farm
-      "bv_stockclass_present",  # Verify that stock is present on the farm if breeding values are provided for that StockClass
-      "breed_allocation_stockclass_present"  # Verify that female dairy StockClass are present on the farm if breed allocation are provided
+      "val_StockRec_StockCount_not_negative",  # Verify daily stock rec is never negative
+      "val_Dairy_Production_cows_present",  # Verify Milking Cows are present in all months dairy milk is produced
+      "val_Effluent_Structure_Use_Month_complete",  # Verify that effluent structures are used if there are milking cows on the farm for a particular month
+      "val_Effluent_Structure_Use_cows_present",  # Verify that effluent structures are not used if there are no milking cows on the farm for a particular month
+      "val_Solid_Separator_Use_cows_present",  # Verify that solid separators are not used if there are no milking cows on the farm
+      "val_BreedingValues_StockClass_present",  # Verify that stock is present on the farm if breeding values are provided for that StockClass
+      "val_Breed_Allocation_StockClass_present"  # Verify that female dairy StockClass are present on the farm if breed allocation are provided
       "suppfeed_sector_present",  # Verify stock for a given sector is present for any allocated supplementary feed
+      # dafault value (this turns on all validations):
+      "all"
       )
     ```
-  
 
 ## FEM Equations
 

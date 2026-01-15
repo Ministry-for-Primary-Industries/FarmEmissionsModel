@@ -318,7 +318,7 @@ StockRec_daily_df <- StockLedger_agg_df %>%
   mutate(StockCount_day = cumsum(Stock_Change))
 
 # Verify daily stock rec is never negative
-if("stockrec_stockcount_not_negative" %in% param_validations) {stockrec_stockcount_not_negative()}
+if("val_StockRec_StockCount_not_negative" %in% param_validations) {val_StockRec_StockCount_not_negative()}
 
 StockRec_monthly_df <- StockRec_daily_df %>%
   mutate(YearMonth = floor_date(Date, unit = "month"), ) %>%
@@ -336,22 +336,22 @@ StockRec_monthly_df <- StockRec_daily_df %>%
     )
 
 # Verify Milking Cows are present in all months dairy milk is produced
-if("dairy_production_cows_present" %in% param_validations) {dairy_production_cows_present()}
+if("val_Dairy_Production_cows_present" %in% param_validations) {val_Dairy_Production_cows_present()}
 
 # Verify that effluent structures are used if there are milking cows on the farm for a particular month
-if("structure_use_month_complete" %in% param_validations) {structure_use_month_complete()}
+if("val_Effluent_Structure_Use_Month_complete" %in% param_validations) {val_Effluent_Structure_Use_Month_complete()}
 
 # Verify that effluent structures are not used if there are no milking cows on the farm for a particular month
-if("structure_use_cows_present" %in% param_validations) {structure_use_cows_present()}
+if("val_Effluent_Structure_Use_cows_present" %in% param_validations) {val_Effluent_Structure_Use_cows_present()}
 
 # Verify that solid separators are not used if there are no milking cows on the farm
-if("solid_separator_use_cows_present" %in% param_validations) {solid_separator_use_cows_present()}
+if("val_Solid_Separator_Use_cows_present" %in% param_validations) {val_Solid_Separator_Use_cows_present()}
 
 # Verify that stock is present on the farm if breeding values are provided for that StockClass
-if("bv_stockclass_present" %in% param_validations) {bv_stockclass_present()}
+if("val_BreedingValues_StockClass_present" %in% param_validations) {val_BreedingValues_StockClass_present()}
 
 # Verify that female dairy StockClass are present on the farm if breed allocation are provided
-if("breed_allocation_stockclass_present" %in% param_validations) {breed_allocation_stockclass_present()}
+if("val_Breed_Allocation_StockClass_present" %in% param_validations) {val_Breed_Allocation_StockClass_present()}
 
 
 # preprocessing: newborns
@@ -627,4 +627,4 @@ livestock_precalc_df <- StockRec_monthly_df %>%
   )
 
 # Verify stock for a given sector is present for any allocated supplementary feed
-if("suppfeed_sector_present" %in% param_validations) {suppfeed_sector_present()}
+if("val_SuppFeed_DryMatter_Sector_present" %in% param_validations) {val_SuppFeed_DryMatter_Sector_present()}
