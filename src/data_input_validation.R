@@ -8,7 +8,7 @@ param_validations <- local(
   {
     
     allowed_validations <- c(
-      "val_StockRec_StockCount_not_negative",
+      "val_StockLedger_StockCount_not_negative",
       "val_Dairy_Production_cows_present",
       "val_Effluent_Structure_Use_Month_complete",
       "val_Effluent_Structure_Use_cows_present",
@@ -83,7 +83,8 @@ val_StockLedger_StockCount_not_negative <- function() {
     if(nrow(negative_stockcount_newborns_altadjusted_df) > 0) {
       stop(paste0("Derived daily StockCount negative on the following farms, first observed for the specified StockClass: ",
                   paste(negative_stockcount_newborns_altadjusted_df$Entity__PeriodEnd__StockClass__Date, collapse = ", "), 
-                  ". Stock outflows (e.g. sales, deaths) on this date exceed stock on farm."))
+                  ". Stock outflows (e.g. sales, deaths) on this date exceed stock on farm."),
+           call. = FALSE)
     }
     
   }
@@ -137,7 +138,7 @@ val_Effluent_Structure_Use_Month_complete <- function() {
       mutate(Entity__PeriodEnd__Month = paste0(Entity__PeriodEnd, " (Month ", Month, ")"))
     
     if(nrow(months_cows_present_no_structures_df) > 0) {
-      stop(paste0("No effluent structure use input (including 0s) on some months on the following farms where Milking Cows were present: ", 
+      stop(paste0("No Effluent_Structure_Use input rows (including 0 inputs) found on months where Milking Cows were present on the following farms: ", 
                   paste(months_cows_present_no_structures_df$Entity__PeriodEnd__Month, collapse = ", ")))
     }
     
