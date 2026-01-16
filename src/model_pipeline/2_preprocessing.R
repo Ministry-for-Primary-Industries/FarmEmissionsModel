@@ -318,7 +318,7 @@ StockRec_daily_df <- StockLedger_agg_df %>%
   mutate(StockCount_day = cumsum(Stock_Change))
 
 # Verify daily stock rec is never negative
-if("val_StockRec_StockCount_not_negative" %in% param_validations) {val_StockRec_StockCount_not_negative()}
+if("val_StockLedger_StockCount_not_negative" %in% param_validations) {val_StockLedger_StockCount_not_negative()}
 
 StockRec_monthly_df <- StockRec_daily_df %>%
   mutate(YearMonth = floor_date(Date, unit = "month"), ) %>%

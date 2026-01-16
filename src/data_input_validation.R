@@ -55,11 +55,11 @@ param_validations <- local(
 # Verify daily stock rec is never negative
 # this occurs when input data for a farm has a stock outflow transaction (sale, death etc.) which exceeds current stock count. 
 
-val_StockRec_StockCount_not_negative <- function() {
+val_StockLedger_StockCount_not_negative <- function() {
   
   if (nrow(StockLedger_df > 0)) {
     
-    StockLedger_agg_altadjusted_df <- StockLedger_df %>% 
+    negative_stockcount_newborns_altadjusted_df <- StockLedger_df %>% 
       # derive new stock ledger with newborns alternatively adjusted as below:
       # create new Transaction_Date_altadj which simply sets births to first day of month
       # these alternatively adjusted births are referenced from Transaction_Date (farm birth date) rather than adjusted birthdate in the StockLedger_df
@@ -71,17 +71,7 @@ val_StockRec_StockCount_not_negative <- function() {
              Transaction_Date_adj = case_when(StockClass %in% stockClassList_newborns & Transaction_Type == "Births" ~ floor_date(Transaction_Date, unit = "month"),
                                               TRUE ~ Transaction_Date_adj)) %>% 
       group_by(Entity__PeriodEnd, StockClass, Date = Transaction_Date_adj) %>%
-      summarise(Stock_Change = sum(Stock_Count), .groups = "drop") 
-    
-    # create daily stock rec
-    negative_stockcount_newborns_altadjusted_df <- StockLedger_agg_altadjusted_df %>% 
-      select(Entity__PeriodEnd, StockClass) %>%
-      distinct() %>% 
-      left_join(FarmYear_dates_df %>% select(Entity__PeriodEnd, Date),
-                by = "Entity__PeriodEnd") %>%
-      unnest(Date) %>%
-      left_join(StockLedger_agg_altadjusted_df,
-                by = c("Entity__PeriodEnd", "StockClass", "Date")) %>%
+      summarise(Stock_Change = sum(Stock_Count), .groups = "drop") %>% 
       mutate(Stock_Change = replace_na(Stock_Change, 0)) %>%
       group_by(Entity__PeriodEnd, StockClass) %>%
       mutate(StockCount_day = cumsum(Stock_Change)) %>% 
@@ -91,7 +81,7 @@ val_StockRec_StockCount_not_negative <- function() {
       mutate(Entity__PeriodEnd__StockClass__Date = paste0(Entity__PeriodEnd, " (on ", Date, " for ", StockClass, ")"))
     
     if(nrow(negative_stockcount_newborns_altadjusted_df) > 0) {
-      stop(paste0("Derived daily Stock Rec negative on the following farms, first observed for the specified StockClass: ",
+      stop(paste0("Derived daily StockCount negative on the following farms, first observed for the specified StockClass: ",
                   paste(negative_stockcount_newborns_altadjusted_df$Entity__PeriodEnd__StockClass__Date, collapse = ", "), 
                   ". Stock outflows (e.g. sales, deaths) on this date exceed stock on farm."))
     }

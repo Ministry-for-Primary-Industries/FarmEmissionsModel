@@ -93,7 +93,7 @@ At the head of this script are configurable run parameters for setting:
     ```R
     param_validations = c(
       # these are model-level validations (i.e., require intermediate model outputs)
-      "val_StockRec_StockCount_not_negative",  # Verify daily stock rec is never negative
+      "val_StockLedger_StockCount_not_negative",  # Verify daily StockCount is never negative
       "val_Dairy_Production_cows_present",  # Verify Milking Cows are present in all months dairy milk is produced
       "val_Effluent_Structure_Use_Month_complete",  # Verify that effluent structures are used if there are milking cows on the farm for a particular month
       "val_Effluent_Structure_Use_cows_present",  # Verify that effluent structures are not used if there are no milking cows on the farm for a particular month
