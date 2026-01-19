@@ -7,6 +7,9 @@ param_input_data_format = "csv" # csv or json
 param_output_path = "data_output" # this will be created if it doesn't exist
 param_output_data_format = "csv" # csv or json
 
+# set validations to run, refer to README
+param_validations = "all"
+
 # set output tables to saveout, refer to README
 param_saveout_emission_tables = c(
   "smry_livestock_annual",

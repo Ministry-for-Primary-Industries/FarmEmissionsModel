@@ -81,7 +81,8 @@ Dairy_Production_df <- Dairy_Production_df %>%
 # prep of Effluent_Structure_Use_df
 
 Effluent_Structure_Use_df <- Effluent_Structure_Use_df %>%
-  mutate(DungUrine_to_Effluent_pct = (Dairy_Shed_hrs_day + Other_Structures_hrs_day) / 24,
+  mutate(Structures_hrs_day = Dairy_Shed_hrs_day + Other_Structures_hrs_day,
+         DungUrine_to_Effluent_pct = Structures_hrs_day / 24,
          StockClass = "Milking Cows Mature")
 
 # prep of Effluent_EcoPond_Treatments_df
@@ -316,13 +317,8 @@ StockRec_daily_df <- StockLedger_agg_df %>%
   group_by(Entity__PeriodEnd, StockClass) %>%
   mutate(StockCount_day = cumsum(Stock_Change))
 
-# basic validation check for negative stock counts
-# this occurs when input data for a farm has a stock outflow transaction (sale, death etc.) which
-# exceeds current stock count. If this occurs, fix your input data
-
-if(any(StockRec_daily_df$StockCount_day < 0, na.rm = TRUE)) {
-  stop("Negative stock counts detected in StockRec_daily_df. To troubleshoot run: StockRec_daily_df %>% filter(StockCount_day < 0)")
-}
+# Verify daily stock rec is never negative
+if("val_StockLedger_StockCount_not_negative" %in% param_validations) {val_StockLedger_StockCount_not_negative()}
 
 StockRec_monthly_df <- StockRec_daily_df %>%
   mutate(YearMonth = floor_date(Date, unit = "month"), ) %>%
@@ -338,6 +334,25 @@ StockRec_monthly_df <- StockRec_daily_df %>%
       # we needed zero counts (if present) to calculate StockCount_mean above, now they can be removed
       StockCount_mean > 0 
     )
+
+# Verify Milking Cows are present in all months dairy milk is produced
+if("val_Dairy_Production_cows_present" %in% param_validations) {val_Dairy_Production_cows_present()}
+
+# Verify that effluent structures are used if there are milking cows on the farm for a particular month
+if("val_Effluent_Structure_Use_Month_complete" %in% param_validations) {val_Effluent_Structure_Use_Month_complete()}
+
+# Verify that effluent structures are not used if there are no milking cows on the farm for a particular month
+if("val_Effluent_Structure_Use_cows_present" %in% param_validations) {val_Effluent_Structure_Use_cows_present()}
+
+# Verify that solid separators are not used if there are no milking cows on the farm
+if("val_Solid_Separator_Use_cows_present" %in% param_validations) {val_Solid_Separator_Use_cows_present()}
+
+# Verify that stock is present on the farm if breeding values are provided for that StockClass
+if("val_BreedingValues_StockClass_present" %in% param_validations) {val_BreedingValues_StockClass_present()}
+
+# Verify that female dairy StockClass are present on the farm if breed allocation are provided
+if("val_Breed_Allocation_StockClass_present" %in% param_validations) {val_Breed_Allocation_StockClass_present()}
+
 
 # preprocessing: newborns
 
@@ -610,3 +625,6 @@ livestock_precalc_df <- StockRec_monthly_df %>%
     # mitigation technologies
     "BV_aCH4"
   )
+
+# Verify stock for a given sector is present for any allocated supplementary feed
+if("val_SuppFeed_DryMatter_Sector_present" %in% param_validations) {val_SuppFeed_DryMatter_Sector_present()}
