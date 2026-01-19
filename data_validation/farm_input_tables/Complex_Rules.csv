@@ -42,8 +42,8 @@ Effluent_EcoPond_Treatments,Treatment_Date must be within the 2 years prior to P
 Effluent_EcoPond_Treatments,"Guidance: If treatment was performed in the previous period, include the last Treatment_Date from that period"
 Effluent_Structure_Use,Combination of Entity_ID and Period_End must exist in FarmYear
 Effluent_Structure_Use,Month must be unique within Entity_ID and Period_End
-Effluent_Structure_Use,"12 rows should exist, one for every unique Month, if Milking Cows Mature are present for an Entity_ID and Period_End"
+Effluent_Structure_Use,"A row must exist for every Month that Milking Cows Mature are present for an Entity_ID and Period_End"
 Effluent_Structure_Use,Sum of Dairy_Shed_hrs_day and Other_Structures_hrs_day must be <= 24
-Effluent_Structure_Use,"Sum of Dairy_Shed_hrs_day and Other_Structures_hrs_day must be 0 if no Milking Cows Mature are present for Month, Entity_ID and Period_End"
+Effluent_Structure_Use,"Sum of Dairy_Shed_hrs_day and Other_Structures_hrs_day must be 0 or no row must exist for Months that no Milking Cows Mature are present for an Entity_ID and Period_End"
 Effluent_Structure_Use,"Dairy_Shed_hrs_day must be > 0 if Dairy_Production.Milk_L_Herd is > 0 for the Month, Entity_ID and Period_End"
 Effluent_Structure_Use,"Dairy_Shed_hrs_day must be 0 if Dairy_Production.Milk_L_Herd is 0 for the Month, Entity_ID and Period_End"

@@ -245,9 +245,9 @@ Numerical precision in R:
 |---:|:---|
 | 1 | Combination of Entity_ID and Period_End must exist in FarmYear |
 | 2 | Month must be unique within Entity_ID and Period_End |
-| 3 | 12 rows should exist, one for every unique Month, if Milking Cows Mature are present for an Entity_ID and Period_End |
+| 3 | A row must exist for every Month that Milking Cows Mature are present for an Entity_ID and Period_End |
 | 4 | Sum of Dairy_Shed_hrs_day and Other_Structures_hrs_day must be \<= 24 |
-| 5 | Sum of Dairy_Shed_hrs_day and Other_Structures_hrs_day must be 0 if no Milking Cows Mature are present for Month, Entity_ID and Period_End |
+| 5 | Sum of Dairy_Shed_hrs_day and Other_Structures_hrs_day must be 0 or no row must exist for Months that no Milking Cows Mature are present for an Entity_ID and Period_End |
 | 6 | Dairy_Shed_hrs_day must be \> 0 if Dairy_Production.Milk_L_Herd is \> 0 for the Month, Entity_ID and Period_End |
 | 7 | Dairy_Shed_hrs_day must be 0 if Dairy_Production.Milk_L_Herd is 0 for the Month, Entity_ID and Period_End |
 
