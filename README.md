@@ -100,7 +100,7 @@ At the head of this script are configurable run parameters for setting:
       "val_Solid_Separator_Use_cows_present",  # Verify that solid separators are not used if there are no milking cows on the farm
       "val_BreedingValues_StockClass_present",  # Verify that stock is present on the farm if breeding values are provided for that StockClass
       "val_Breed_Allocation_StockClass_present"  # Verify that female dairy StockClass are present on the farm if breed allocation are provided
-      "suppfeed_sector_present",  # Verify stock for a given sector is present for any allocated supplementary feed
+      "val_SuppFeed_DryMatter_Sector_present",  # Verify stock for a given sector is present for any allocated supplementary feed
       # dafault value (this turns on all validations):
       "all"
       )
