@@ -29,6 +29,7 @@ suppressPackageStartupMessages(library(lubridate))
 suppressPackageStartupMessages(library(purrr))
 suppressPackageStartupMessages(library(readr))
 suppressPackageStartupMessages(library(tidyr))
+suppressPackageStartupMessages(library(jsonlite))
 
 # run pipeline -------------------------------------------------------------
 
