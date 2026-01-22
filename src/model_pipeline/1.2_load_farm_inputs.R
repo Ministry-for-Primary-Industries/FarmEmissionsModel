@@ -159,191 +159,87 @@ read_and_convert_csv <- function(file_name, df_specs, df_name) {
   return(df_converted)
 }
 
-# helper function to convert JSON dataframes using typeset_input_cols
-convert_json_df <- function(df_data, df_specs, df_name) {
-  converted_df <- as_tibble(df_data) %>%
-    mutate(across(
-      .cols = names(df_specs),
-      .fns = ~ typeset_input_cols(.x, df_specs[[cur_column()]], cur_column(), df_name)
-    ))
-  
-  return(converted_df)
-}
-
-# validate param_input_data_format
-if (!param_input_data_format %in% c("csv", "json")) {
-  stop("Invalid input data format. Choose either 'csv' or 'json'.")
-}
-
 # validate param_input_path
 if (!dir.exists(param_input_path)) {
   stop("The specified input path does not exist: ", param_input_path)
 }
 
 # main data loading Logic
-if (param_input_data_format == "csv") {
-  
-  # define required CSV files
-  required_csv_files <- names(input_cols_type_list)
-  required_csv_files <- paste0(required_csv_files, ".csv")
-  
-  # check for missing CSV files
-  missing_files <- required_csv_files[!file.exists(file.path(param_input_path, required_csv_files))]
-  if (length(missing_files) > 0) {
-    stop(
-      "The following required CSV files are missing: ",
-      paste(missing_files, collapse = ", ")
-    )
-  }
-  
-  # read and convert each CSV file using column specs
-  FarmYear_df <- read_and_convert_csv("FarmYear.csv", input_cols_type_list$FarmYear, "FarmYear")
-  
-  StockRec_BirthsDeaths_df <- read_and_convert_csv(
-    "StockRec_BirthsDeaths.csv",
-    input_cols_type_list$StockRec_BirthsDeaths,
-    "StockRec_BirthsDeaths"
+# define required CSV files
+required_csv_files <- names(input_cols_type_list)
+required_csv_files <- paste0(required_csv_files, ".csv")
+
+# check for missing CSV files
+missing_files <- required_csv_files[!file.exists(file.path(param_input_path, required_csv_files))]
+if (length(missing_files) > 0) {
+  stop(
+    "The following required CSV files are missing: ",
+    paste(missing_files, collapse = ", ")
   )
-  
-  StockRec_Movements_df <- read_and_convert_csv(
-    "StockRec_Movements.csv",
-    input_cols_type_list$StockRec_Movements,
-    "StockRec_Movements"
-  )
-  
-  StockRec_OpeningBalance_df <- read_and_convert_csv(
-    "StockRec_OpeningBalance.csv",
-    input_cols_type_list$StockRec_OpeningBalance,
-    "StockRec_OpeningBalance"
-  )
-  
-  SuppFeed_DryMatter_df <- read_and_convert_csv(
-    "SuppFeed_DryMatter.csv",
-    input_cols_type_list$SuppFeed_DryMatter,
-    "SuppFeed_DryMatter"
-  )
-  
-  Dairy_Production_df <- read_and_convert_csv(
-    "Dairy_Production.csv",
-    input_cols_type_list$Dairy_Production,
-    "Dairy_Production"
-  )
-  
-  Effluent_Structure_Use_df <- read_and_convert_csv(
-    "Effluent_Structure_Use.csv",
-    input_cols_type_list$Effluent_Structure_Use,
-    "Effluent_Structure_Use"
-  )
-  
-  Effluent_EcoPond_Treatments_df <- read_and_convert_csv(
-    "Effluent_EcoPond_Treatments.csv", 
-    input_cols_type_list$Effluent_EcoPond_Treatments, 
-    "Effluent_EcoPond_Treatments")
-  
-  Fertiliser_df <- read_and_convert_csv("Fertiliser.csv",
-                                        input_cols_type_list$Fertiliser,
-                                        "Fertiliser")
-  
-  BreedingValues_df <- read_and_convert_csv(
-    "BreedingValues.csv",
-    input_cols_type_list$BreedingValues,
-    "BreedingValues"
-  )
-  
-  Breed_Allocation_df <- read_and_convert_csv(
-    "Breed_Allocation.csv",
-    input_cols_type_list$Breed_Allocation,
-    "Breed_Allocation"
-  )
-  
-} else if (param_input_data_format == "json") {
-  # define JSON file name
-  json_file <- file.path(param_input_path, "Farm_Data.json")
-  
-  # check if JSON file exists
-  if (!file.exists(json_file)) {
-    stop("JSON file not found: ", json_file)
-  }
-  
-  # Read JSON file
-  combined_data <- tryCatch({
-    fromJSON(json_file)
-  }, error = function(e) {
-    stop("FAILED reading JSON file of farm data: ", e$message)
-  })
-  
-  # list of dfs expected in JSON
-  expected_json_dfs <- names(input_cols_type_list)
-  
-  # check if all expected df are present in JSON
-  missing_json_dfs <- expected_json_dfs[!expected_json_dfs %in% names(combined_data)]
-  if (length(missing_json_dfs) > 0) {
-    stop(
-      "The following dataframes are missing in the JSON file: ",
-      paste(missing_json_dfs, collapse = ", ")
-    )
-  }
-  
-  # convert each df from JSON using col specs
-  FarmYear_df <- convert_json_df(combined_data$FarmYear,
-                                 input_cols_type_list$FarmYear,
-                                 "FarmYear")
-  
-  StockRec_BirthsDeaths_df <- convert_json_df(
-    combined_data$StockRec_BirthsDeaths,
-    input_cols_type_list$StockRec_BirthsDeaths,
-    "StockRec_BirthsDeaths"
-  )
-  
-  StockRec_Movements_df <- convert_json_df(
-    combined_data$StockRec_Movements,
-    input_cols_type_list$StockRec_Movements,
-    "StockRec_Movements"
-  )
-  
-  StockRec_OpeningBalance_df <- convert_json_df(
-    combined_data$StockRec_OpeningBalance,
-    input_cols_type_list$StockRec_OpeningBalance,
-    "StockRec_OpeningBalance"
-  )
-  
-  SuppFeed_DryMatter_df <- convert_json_df(
-    combined_data$SuppFeed_DryMatter,
-    input_cols_type_list$SuppFeed_DryMatter,
-    "SuppFeed_DryMatter"
-  )
-  
-  Dairy_Production_df <- convert_json_df(
-    combined_data$Dairy_Production,
-    input_cols_type_list$Dairy_Production,
-    "Dairy_Production"
-  )
-  
-  Effluent_Structure_Use_df <- convert_json_df(
-    combined_data$Effluent_Structure_Use,
-    input_cols_type_list$Effluent_Structure_Use,
-    "Effluent_Structure_Use"
-  )
-  
-  Effluent_EcoPond_Treatments_df <- convert_json_df(
-    combined_data$Effluent_EcoPond_Treatments,
-    input_cols_type_list$Effluent_EcoPond_Treatments,
-    "Effluent_EcoPond_Treatments")
-  
-  Fertiliser_df <- convert_json_df(combined_data$Fertiliser,
-                                   input_cols_type_list$Fertiliser,
-                                   "Fertiliser")
-  
-  BreedingValues_df <- convert_json_df(
-    combined_data$BreedingValues,
-    input_cols_type_list$BreedingValues,
-    "BreedingValues"
-  )
-  
-  Breed_Allocation_df <- convert_json_df(
-    combined_data$Breed_Allocation,
-    input_cols_type_list$Breed_Allocation,
-    "Breed_Allocation"
-  )
-  
 }
+
+# read and convert each CSV file using column specs
+FarmYear_df <- read_and_convert_csv(
+  "FarmYear.csv", 
+  input_cols_type_list$FarmYear, 
+  "FarmYear"
+)
+
+StockRec_BirthsDeaths_df <- read_and_convert_csv(
+  "StockRec_BirthsDeaths.csv",
+  input_cols_type_list$StockRec_BirthsDeaths,
+  "StockRec_BirthsDeaths"
+)
+
+StockRec_Movements_df <- read_and_convert_csv(
+  "StockRec_Movements.csv",
+  input_cols_type_list$StockRec_Movements,
+  "StockRec_Movements"
+)
+
+StockRec_OpeningBalance_df <- read_and_convert_csv(
+  "StockRec_OpeningBalance.csv",
+  input_cols_type_list$StockRec_OpeningBalance,
+  "StockRec_OpeningBalance"
+)
+
+SuppFeed_DryMatter_df <- read_and_convert_csv(
+  "SuppFeed_DryMatter.csv",
+  input_cols_type_list$SuppFeed_DryMatter,
+  "SuppFeed_DryMatter"
+)
+
+Dairy_Production_df <- read_and_convert_csv(
+  "Dairy_Production.csv",
+  input_cols_type_list$Dairy_Production,
+  "Dairy_Production"
+)
+
+Effluent_Structure_Use_df <- read_and_convert_csv(
+  "Effluent_Structure_Use.csv",
+  input_cols_type_list$Effluent_Structure_Use,
+  "Effluent_Structure_Use"
+)
+
+Effluent_EcoPond_Treatments_df <- read_and_convert_csv(
+  "Effluent_EcoPond_Treatments.csv", 
+  input_cols_type_list$Effluent_EcoPond_Treatments, 
+  "Effluent_EcoPond_Treatments")
+
+Fertiliser_df <- read_and_convert_csv(
+  "Fertiliser.csv",
+  input_cols_type_list$Fertiliser,
+  "Fertiliser"
+)
+
+BreedingValues_df <- read_and_convert_csv(
+  "BreedingValues.csv",
+  input_cols_type_list$BreedingValues,
+  "BreedingValues"
+)
+
+Breed_Allocation_df <- read_and_convert_csv(
+  "Breed_Allocation.csv",
+  input_cols_type_list$Breed_Allocation,
+  "Breed_Allocation"
+)

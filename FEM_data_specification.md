@@ -38,7 +38,7 @@ Entity_ID:
 
 The example data files we supply (available from our repo README) is
 consistent with the examples shown in this file. These data files are
-provided in both CSV and JSON formats.
+provided in CSV format.
 
 Rules that can be determined by looking at the relevant column only are
 described in column rules.

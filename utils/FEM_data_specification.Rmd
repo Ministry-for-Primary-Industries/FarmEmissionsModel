@@ -101,7 +101,7 @@ Within the tables we supply example data for users to quickly get a sense of the
 - 10002: a typical dairy farm.
 - 10003-A: an arable farm with no livestock.
 
-The example data files we supply (available from our repo README) is consistent with the examples shown in this file. These data files are provided in both CSV and JSON formats.
+The example data files we supply (available from our repo README) is consistent with the examples shown in this file. These data files are provided in CSV format.
 
 Rules that can be determined by looking at the relevant column only are described in column rules.
 
