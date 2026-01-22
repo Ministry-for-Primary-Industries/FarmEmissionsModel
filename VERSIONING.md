@@ -81,15 +81,13 @@ FEM comprises a set of components which include and extend beyond the codebase.
 
 ### Components published via Github
 
-- The codebase is to be git tagged and released on GitHub.
+- The codebase is git tagged and released on GitHub.
 
 Git tags within the codebase enable developers to easily checkout to different versions as required. They also enable users building downstream applications to automate updates via the GitHub REST API.
 
 ### Components published via MPI Website
 
 - The FEM Methodology
-- FEM Data Specification
-- FEM Data Dictionary
 
 ## Synchronisation of Versions Across Components
 
