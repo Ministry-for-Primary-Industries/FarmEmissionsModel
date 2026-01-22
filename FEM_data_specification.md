@@ -104,7 +104,7 @@ Numerical precision in R:
 | 3 | Primary_Farm_Class must exist in the Production_Region which maps to the given Territory |
 | 4 | Solid_Separator_Use must be FALSE if no StockClass of Milking Cows Mature is present for the Entity_ID and Period_End |
 | 5 | Solid_Separator_Use must be FALSE if the aggregate sum of Dairy_Shed_hr and Other_Structures_hr in Effluent_Structure_Use is 0 for the Entity_ID and Period_End |
-| 6 | Solid_Separator_Use must be FALSE if Effluent_EcoPond_Treatments contains records for the Entity_ID and Period_End |
+| 6 | Guidance: Solid_Separator_Use must be FALSE if Effluent_EcoPond_Treatments contains records for the Entity_ID and Period_End |
 
 ### Fertiliser
 
@@ -220,7 +220,7 @@ Numerical precision in R:
 | 1 | Combination of Entity_ID and Period_End must exist in FarmYear |
 | 2 | Breed_Allocation records are only allowed and required for Entity_ID and Period_End with female Dairy StockClass present (Dairy Heifers R1, Dairy Heifers R2, Milking Cows Mature) |
 | 3 | Breed must be unique within Entity_ID and Period_End |
-| 4 | Breed_Allocation must aggregate sum to 1 per Entity_ID and Period_End |
+| 4 | Breed_Allocation must aggregate sum to 1 per Entity_ID and Period_End (Guidance: A tolerance range of 0.999-1.001 is acceptable) |
 
 ### Effluent_Structure_Use
 
@@ -291,7 +291,7 @@ Numerical precision in R:
 |---:|:---|
 | 1 | Combination of Entity_ID and Period_End must exist in FarmYear |
 | 2 | Supplement must be unique within Entity_ID and Period_End |
-| 3 | Sum of Beef, Dairy, Deer, and Sheep Allocations must be 1 if Dry_Matter_t \> 0 |
+| 3 | Sum of Beef, Dairy, Deer, and Sheep Allocations must be 1 if Dry_Matter_t \> 0 (Guidance: A tolerance range of 0.999-1.001 is acceptable) |
 | 4 | Sum of Beef, Dairy, Deer, and Sheep Allocations must be 0 if Dry_Matter_t is 0 |
 | 5 | Allocation for a Sector must be 0 if no StockClass from that Sector is present |
 
