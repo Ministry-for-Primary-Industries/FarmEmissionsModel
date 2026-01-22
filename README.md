@@ -22,9 +22,9 @@ We recommend starting with the latest final release for the latest available yea
 
 ### 2. Install R Environment
 
-This codebase is built with and intended to be run on R v4.4.3. The R environment is managed with [renv](https://rstudio.github.io/renv/).
+This codebase is built with and intended to be run on R v4.5.2. The R environment is managed with [renv](https://rstudio.github.io/renv/).
 
-- Install R v4.4.3
+- Install R v4.5.2
 - (Optional) Install RStudio and launch via `FarmEmissionsModel.Rproj`
 - Run the following in the R console to install dependencies:
     ```R
