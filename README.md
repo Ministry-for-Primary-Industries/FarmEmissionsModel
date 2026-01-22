@@ -37,9 +37,9 @@ This codebase is built with and intended to be run on R v4.4.3. The R environmen
 
 Farm data inputs must conform to the FEM data specification, available for download as an asset with the associated release on the [releases page](https://github.com/Ministry-for-Primary-Industries/FarmEmissionsModel/releases). A supporting data dictionary is also available here providing detailed data definitions.
 
-Add conformant CSV or JSON data into an appropriate folder (default location: `FarmEmissionsModel/data_input/`).
+Add conformant CSV data into an appropriate folder (default location: `FarmEmissionsModel/data_input/`).
 
-We recommend starting with the example data available in `FarmEmissionsModel/data_input_example/`. This is supplied in both CSV and JSON formats.
+We recommend starting with the example data available in `FarmEmissionsModel/data_input_example/`. This is supplied in CSV format.
 
 *Note there is currently limited validation performed on input data in FEM. It is the users responsibility to apply the validation rules contained in the FEM data specification, prior to passing data through FEM.*
 
@@ -48,7 +48,8 @@ We recommend starting with the example data available in `FarmEmissionsModel/dat
 Run `src/run_FEM.R`
 
 At the head of this script are configurable run parameters for setting:
-- input/output folder locations and file format (CSV/JSON)
+- input folder location 
+- output folder location and file format (CSV/JSON)
 - output tables to saveout via `param_saveout_emission_tables` and `param_saveout_mitign_delta_tables`
     - if no saved outputs are desired these can be set to `FALSE` or an empty vector `c()`
     - the full lists of savable outputs are:
