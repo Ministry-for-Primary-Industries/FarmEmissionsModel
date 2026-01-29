@@ -57,7 +57,7 @@ param_validations <- local(
 
 val_StockLedger_StockCount_not_negative <- function() {
   
-  if (nrow(StockLedger_df > 0)) {
+  if (nrow(StockLedger_df) > 0) {
     
     negative_stockcount_newborns_altadjusted_df <- StockLedger_df %>% 
       # derive new stock ledger with newborns alternatively adjusted as below:
@@ -205,7 +205,7 @@ val_Solid_Separator_Use_cows_present <- function() {
 
 val_BreedingValues_StockClass_present <- function() {
   
-  if(nrow(BreedingValues_df > 0)) {
+  if(nrow(BreedingValues_df) > 0) {
     
     stockclass_with_bv_no_stock_df <- setdiff(BreedingValues_df %>% 
                                                 select(Entity__PeriodEnd, StockClass),
@@ -232,7 +232,7 @@ val_BreedingValues_StockClass_present <- function() {
 
 val_Breed_Allocation_StockClass_present <- function() {
   
-  if(nrow(Breed_Allocation_df > 0)) {
+  if(nrow(Breed_Allocation_df) > 0) {
     
     stockclass_with_breed_allocation_no_stock_df <- setdiff(Breed_Allocation_df %>% 
                                                               select(Entity__PeriodEnd, StockClass),
