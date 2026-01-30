@@ -267,8 +267,10 @@ birthdates_birthless_df <- StockLedger_df %>%
 # warning is raised in summarise below if the above filter resolves to no rows. Results test fine. Suppressing:
 birthdates_birthless_df <- suppressWarnings(
   birthdates_birthless_df %>%
-  summarise(Birthless_Date_min = min(Transaction_Date),
-            .groups = "drop", .)
+  summarise(
+    Birthless_Date_min = min(Transaction_Date),
+    .groups = "drop"
+  )
 )
 
 birthdates_birthless_df <- birthdates_birthless_df %>%
@@ -321,7 +323,7 @@ StockRec_daily_df <- StockLedger_agg_df %>%
 if("val_StockLedger_StockCount_not_negative" %in% param_validations) {val_StockLedger_StockCount_not_negative()}
 
 StockRec_monthly_df <- StockRec_daily_df %>%
-  mutate(YearMonth = floor_date(Date, unit = "month"), ) %>%
+  mutate(YearMonth = floor_date(Date, unit = "month")) %>%
   # calculate monthly average StockCount
   group_by(Entity__PeriodEnd, YearMonth, StockClass) %>%
   summarise(
