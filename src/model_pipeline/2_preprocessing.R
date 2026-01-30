@@ -269,8 +269,9 @@ birthdates_birthless_df <- suppressWarnings(
   birthdates_birthless_df %>%
   summarise(
     Birthless_Date_min = min(Transaction_Date),
-    .groups = "drop")
+    .groups = "drop"
   )
+)
 
 birthdates_birthless_df <- birthdates_birthless_df %>%
   inner_join(
