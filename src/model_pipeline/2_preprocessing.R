@@ -321,7 +321,7 @@ StockRec_daily_df <- StockLedger_agg_df %>%
 if("val_StockLedger_StockCount_not_negative" %in% param_validations) {val_StockLedger_StockCount_not_negative()}
 
 StockRec_monthly_df <- StockRec_daily_df %>%
-  mutate(YearMonth = floor_date(Date, unit = "month"), ) %>%
+  mutate(YearMonth = floor_date(Date, unit = "month")) %>%
   # calculate monthly average StockCount
   group_by(Entity__PeriodEnd, YearMonth, StockClass) %>%
   summarise(
