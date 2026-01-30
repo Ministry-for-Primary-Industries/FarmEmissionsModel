@@ -267,9 +267,10 @@ birthdates_birthless_df <- StockLedger_df %>%
 # warning is raised in summarise below if the above filter resolves to no rows. Results test fine. Suppressing:
 birthdates_birthless_df <- suppressWarnings(
   birthdates_birthless_df %>%
-  summarise(Birthless_Date_min = min(Transaction_Date),
-            .groups = "drop", .)
-)
+  summarise(
+    Birthless_Date_min = min(Transaction_Date),
+    .groups = "drop")
+  )
 
 birthdates_birthless_df <- birthdates_birthless_df %>%
   inner_join(
