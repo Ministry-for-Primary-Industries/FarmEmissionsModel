@@ -51,7 +51,7 @@ run_SynthFert_module <- function(Fertiliser_df) {
           N_Urea_Uncoated_t = N_Urea_Uncoated_t + N_Urea_Coated_t,
           N_Urea_Coated_t = 0,
           N_NonUrea_SyntheticFert_t = N_NonUrea_SyntheticFert_t
-        ),
+        )
       )
   }
   
