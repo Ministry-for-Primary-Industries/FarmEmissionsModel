@@ -234,21 +234,18 @@ val_Breed_Allocation_StockClass_present <- function() {
   
   if(nrow(Breed_Allocation_df) > 0) {
     
-    stockclass_with_breed_allocation_no_stock_df <- setdiff(Breed_Allocation_df %>% 
-                                                              select(Entity__PeriodEnd, StockClass),
-                                                            StockRec_monthly_df %>%
-                                                              filter(StockClass %in% c("Dairy Heifers R1", "Dairy Heifers R2", "Milking Cows Mature"),
-                                                                     StockCount_mean > 0) %>%
-                                                              select(Entity__PeriodEnd, StockClass) %>% 
-                                                              distinct()) %>% 
-      group_by(Entity__PeriodEnd) %>% 
-      summarise(StockClass = paste(StockClass, collapse = ", "),
-                .groups = "drop") %>% 
-      mutate(Entity__PeriodEnd__StockClass = paste0(Entity__PeriodEnd, " (StockClass: ", StockClass, ")"))
-    
-    if(nrow(stockclass_with_breed_allocation_no_stock_df) > 0) {
-      stop(paste0("Breed allocation for some StockClass are provided but there are no stock on the following farms (or StockClass provided is not a female dairy StockClass): ", 
-                  paste(stockclass_with_breed_allocation_no_stock_df$Entity__PeriodEnd__StockClass, collapse = ", ")))
+    farms_with_breed_allocation_no_stock <- setdiff(Breed_Allocation_df %>% 
+                                                      pull(Entity__PeriodEnd) %>% 
+                                                      unique(),
+                                                    StockRec_monthly_df %>%
+                                                      filter(StockClass %in% c("Dairy Heifers R1", "Dairy Heifers R2", "Milking Cows Mature"),
+                                                             StockCount_mean > 0) %>%
+                                                      pull(Entity__PeriodEnd) %>% 
+                                                      unique())
+                                                              
+    if(length(farms_with_breed_allocation_no_stock) > 0) {
+      stop(paste0("Breed allocation for the following farms are provided but there are no female dairy StockClass present: ", 
+                  farms_with_breed_allocation_no_stock))
     }
     
   }
