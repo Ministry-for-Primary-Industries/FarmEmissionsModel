@@ -260,8 +260,8 @@ val_SuppFeed_DryMatter_Sector_present <-function() {
   if(any(SuppFeed_DryMatter_df$Dry_Matter_t > 0, na.rm = TRUE)) {
     
     sectors_fed_supps_without_stock_df <- setdiff(SuppFeed_DryMatter_df %>%
-                                                    select(Entity__PeriodEnd, 4:7) %>% 
-                                                    gather(key = "Sector", value = "Allocation", 2:5) %>% 
+                                                    select(Entity__PeriodEnd, Beef_Allocation, Dairy_Allocation, Deer_Allocation, Sheep_Allocation) %>% 
+                                                    gather(key = "Sector", value = "Allocation", Beef_Allocation, Dairy_Allocation, Deer_Allocation, Sheep_Allocation) %>% 
                                                     mutate(Sector = gsub('.{11}$', '', Sector)) %>% 
                                                     group_by(Entity__PeriodEnd, Sector) %>% 
                                                     summarise(Allocation = sum(Allocation),
