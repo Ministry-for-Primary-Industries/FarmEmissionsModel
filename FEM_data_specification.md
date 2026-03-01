@@ -197,12 +197,12 @@ Numerical precision in R:
 |---:|:---|
 | 1 | Combination of Entity_ID and Period_End must exist in FarmYear |
 | 2 | Month must be unique within Entity_ID and Period_End |
-| 3 | Milk_L_herd must be 0 if no Milking Cows Mature are present for the Month, Entity_ID and Period_End |
-| 4 | Milk_Fat_kg_herd and Milk_Protein_kg_herd must be 0 if Milk_L_herd is 0 |
-| 5 | Milk_Fat_kg_herd must be \<= 15% of Milk_L_herd |
-| 6 | Milk_Protein_kg_herd must be \<= 15% of Milk_L_herd |
-| 7 | Milk_L_Herd must be \> 0 if Effluent_Structure_Use.Dairy_Shed_hrs_day \> 0 for the Month, Entity_ID, and Period_End |
-| 8 | Milk_L_Herd must be 0 if Effluent_Structure_Use.Dairy_Shed_hrs_day is 0 for the Month, Entity_ID, and Period_End |
+| 3 | Milk_Yield_Herd_L must be 0 if no Milking Cows Mature are present for the Month, Entity_ID and Period_End |
+| 4 | Milk_Fat_Herd_kg and Milk_Protein_Herd_kg must be 0 if Milk_Yield_Herd_L is 0 |
+| 5 | Milk_Fat_Herd_kg must be \<= 15% of Milk_Yield_Herd_L |
+| 6 | Milk_Protein_Herd_kg must be \<= 15% of Milk_Yield_Herd_L |
+| 7 | Milk_Yield_Herd_L must be \> 0 if Effluent_Structure_Use.Dairy_Shed_hrs_day \> 0 for the Month, Entity_ID, and Period_End |
+| 8 | Milk_Yield_Herd_L must be 0 if Effluent_Structure_Use.Dairy_Shed_hrs_day is 0 for the Month, Entity_ID, and Period_End |
 
 ### Breed_Allocation
 
@@ -220,7 +220,7 @@ Numerical precision in R:
 | 1 | Combination of Entity_ID and Period_End must exist in FarmYear |
 | 2 | Breed_Allocation records are only allowed and required for Entity_ID and Period_End with female Dairy StockClass present (Dairy Heifers R1, Dairy Heifers R2, Milking Cows Mature) |
 | 3 | Breed must be unique within Entity_ID and Period_End |
-| 4 | Breed_Allocation must aggregate sum to 1 per Entity_ID and Period_End (Guidance: A tolerance range of 0.999-1.001 is acceptable) |
+| 4 | Breed_Allocation must aggregate sum to 1 per Entity_ID and Period_End (a tolerance range of 0.999-1.001 is acceptable) |
 
 ### Effluent_Structure_Use
 
@@ -248,8 +248,8 @@ Numerical precision in R:
 | 3 | A row must exist for every Month that Milking Cows Mature are present for an Entity_ID and Period_End |
 | 4 | Sum of Dairy_Shed_hrs_day and Other_Structures_hrs_day must be \<= 24 |
 | 5 | Sum of Dairy_Shed_hrs_day and Other_Structures_hrs_day must be 0 or no row must exist for Months that no Milking Cows Mature are present for an Entity_ID and Period_End |
-| 6 | Dairy_Shed_hrs_day must be \> 0 if Dairy_Production.Milk_L_Herd is \> 0 for the Month, Entity_ID and Period_End |
-| 7 | Dairy_Shed_hrs_day must be 0 if Dairy_Production.Milk_L_Herd is 0 for the Month, Entity_ID and Period_End |
+| 6 | Dairy_Shed_hrs_day must be \> 0 if Dairy_Production.Milk_Yield_Herd_L is \> 0 for the Month, Entity_ID and Period_End |
+| 7 | Dairy_Shed_hrs_day must be 0 if Dairy_Production.Milk_Yield_Herd_L is 0 for the Month, Entity_ID and Period_End |
 
 ### Effluent_EcoPond_Treatments
 
@@ -291,7 +291,7 @@ Numerical precision in R:
 |---:|:---|
 | 1 | Combination of Entity_ID and Period_End must exist in FarmYear |
 | 2 | Supplement must be unique within Entity_ID and Period_End |
-| 3 | Sum of Beef, Dairy, Deer, and Sheep Allocations must be 1 if Dry_Matter_t \> 0 (Guidance: A tolerance range of 0.999-1.001 is acceptable) |
+| 3 | Sum of Beef, Dairy, Deer, and Sheep Allocations must be 1 if Dry_Matter_t \> 0 (a tolerance range of 0.999-1.001 is acceptable) |
 | 4 | Sum of Beef, Dairy, Deer, and Sheep Allocations must be 0 if Dry_Matter_t is 0 |
 | 5 | Allocation for a Sector must be 0 if no StockClass from that Sector is present |
 
