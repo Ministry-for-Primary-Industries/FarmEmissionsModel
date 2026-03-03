@@ -2,11 +2,11 @@
 
 ## Purpose
 
-Clear documentation and explicit versioning facilitate robust model management, allowing stakeholders to prepare and adapt effectively to changes. FEM's explicit versioning approach outlined below ensures transparency and ease of tracking model evolution, critical for accurate and reliable agricultural emissions reporting.
+Clear documentation and explicit versioning facilitate robust model management, allowing stakeholders to prepare and adapt effectively to changes. The Farm Emissions Model's (FEM) explicit versioning approach outlined below ensures transparency and ease of tracking model evolution, critical for accurate and reliable agricultural emissions reporting.
 
 ## Overview
 
-The Farm Emissions Model (FEM) utilizes an **explicit versioning** approach structured as:
+FEM utilises an **explicit versioning** approach structured as:
 
 ```
 Release.Breaking.Feature.Fix
@@ -16,22 +16,22 @@ This approach ensures clarity, transparency, and manageability in software updat
 
 ### Definition of Version Components
 
-- **Release**: Indicates the major annual software release. FEM adopts a yearly release cycle each December, integrating comprehensive scientific updates aligned with New Zealand's national Agricultural Inventory Model.
+- **Release**: Indicates the major annual software release. FEM adopts a yearly release cycle each March, integrating comprehensive scientific updates aligned with New Zealand's national Agricultural Inventory Model.
 - **Breaking**: Signifies a significant change that alters existing input/output data structures, requiring downstream users to adapt their input or output processes.
 - **Feature**: Denotes new functionality or capabilities that do not disrupt existing data structures.
 - **Fix**: Represents minor corrections or adjustments to existing model components, such as bug fixes or minor data corrections.
 
 ## Release Cycle
 
-FEM releases are published annually with a target of December. For example the next annual version released will be:
+FEM releases are published annually with a target of March. For example, the version released in March 2026 is:
 
 ```
-v2025.1.0.0
+v2026.1.0.0
 ```
 
-Each annual release will incorporate the latest updates from New Zealand’s national Agricultural Inventory Model published earlier in the year. Annual releases are supported and maintained for at least 3 years from initial release date.
+Each annual release will incorporate the latest updates from New Zealand’s national Agricultural Inventory Model published in April. Annual releases are supported and maintained for at least 3 years from initial release date.
 
-Pre-releases following a `v2025.1.0.0-beta.1` and `v2025.1.0.0-rc.1` versioning format will be published for downstream users to test in advance of a final release. This process may be streamlined if there are no or few breaking changes.
+Pre-releases following a `v2026.1.0.0-beta.1` and `v2026.1.0.0-rc.1` versioning format will be published for downstream users to test in advance of a final release. This process may be streamlined if there are no or few breaking changes.
 
 ## Examples of Intra-Year Version Updates
 
@@ -42,13 +42,13 @@ Breaking changes reflect significant modifications requiring users to adapt thei
 - **Example 1**: Introduction of a new mitigation technology resulting in fundamental changes to input data structures (e.g., adding new columns to existing data tables). This update would increment the breaking version:
 
 ```
-v2025.2.0.0
+v2026.2.0.0
 ```
 
 - **Example 2**: Modifications in output emissions columns to align with standardised reporting schemas. This adjustment to output structures constitutes another breaking change:
 
 ```
-v2025.3.0.0
+v2026.3.0.0
 ```
 
 ### Feature Updates
@@ -58,7 +58,7 @@ Feature updates include additional functionalities or enhancements that extend t
 - Adding optional runtime parameters to the `run_FEM.R` script to enable more flexible execution or reporting scenarios. Such an update would increment the feature version:
 
 ```
-v2025.3.1.0
+v2026.3.1.0
 ```
 
 ### Fixes
@@ -68,7 +68,7 @@ Fix updates address minor errors or inaccuracies within the model’s existing f
 - Correcting a constant value within the FEM equations, enhancing accuracy without impacting existing data structures or requiring user adjustments. This update increments the fix version:
 
 ```
-v2025.3.1.1
+v2026.3.1.1
 ```
 
 ## Impact on Emission Calculations
@@ -93,6 +93,6 @@ Git tags within the codebase enable developers to easily checkout to different v
 
 Versions are synchronised across all FEM components described above. This ensures consistency and alignment across all critical FEM components.
 
-However, supporting documents published on the MPI website may undergo asynchronous minor revisions, such as typo corrections or explanatory clarifications, without prompting a synchronised version update across all components. These minor revisions are indicated by an additional revision suffix (e.g. `v2025.3.1.1 Revision 2`) that only applies to the specific document concerned.
+However, supporting documents published on the MPI website may undergo asynchronous minor revisions, such as typo corrections or explanatory clarifications, without prompting a synchronised version update across all components. These minor revisions are indicated by an additional revision suffix (e.g., `v2026.3.1.1 Revision 2`) that only applies to the specific document concerned.
 
 This approach prevents unnecessary version increments in the codebase due solely to minor corrections in supporting documentation.
