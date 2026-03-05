@@ -16,14 +16,14 @@ This approach ensures clarity, transparency, and manageability in software updat
 
 ### Definition of Version Components
 
-- **Release**: Indicates the major annual software release. FEM adopts a yearly release cycle each March, integrating comprehensive scientific updates aligned with New Zealand's national Agricultural Inventory Model.
+- **Release**: Indicates the major annual software release. FEM adopts a yearly release cycle, integrating comprehensive scientific updates aligned with New Zealand's national Agricultural Inventory Model.
 - **Breaking**: Signifies a significant change that alters existing input/output data structures, requiring downstream users to adapt their input or output processes.
 - **Feature**: Denotes new functionality or capabilities that do not disrupt existing data structures.
 - **Fix**: Represents minor corrections or adjustments to existing model components, such as bug fixes or minor data corrections.
 
 ## Release Cycle
 
-FEM releases are published annually with a target of March. For example, the version released in March 2026 is:
+FEM releases are published annually. For example, the version released in 2026 is:
 
 ```
 v2026.1.0.0
