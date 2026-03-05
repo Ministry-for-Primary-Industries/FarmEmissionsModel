@@ -245,7 +245,7 @@ val_Breed_Allocation_StockClass_present <- function() {
                                                               
     if(length(farms_with_breed_allocation_no_stock) > 0) {
       stop(paste0("Breed allocation for the following farms are provided but there are no female dairy StockClass present: ", 
-                  farms_with_breed_allocation_no_stock))
+                  paste(farms_with_breed_allocation_no_stock, collapse = ", ")))
     }
     
   }
