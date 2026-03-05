@@ -36,9 +36,8 @@ Entity_ID:
 - 10002: a typical dairy farm.
 - 10003-A: an arable farm with no livestock.
 
-The example data files we supply (available from our repo README) are
-consistent with the examples shown in this file. These data files are
-provided in CSV format.
+The example input data files we supply in the repo (in CSV format) are
+consistent with the examples shown in this file.
 
 Rules that can be determined by looking at the relevant column only are
 described in column rules.
@@ -73,11 +72,6 @@ There are 5 data types used:
 All specified columns within any given input table are required. No
 null, NA or blank values are permitted in any column of any input data
 table.
-
-FEM currently implements limited validation rules, including a basic
-check that the daily stock count never goes negative (e.g., from selling
-more stock than are on the farm). **It is the user’s responsibility to
-validate inputs.**
 
 Numerical precision in R:
 
