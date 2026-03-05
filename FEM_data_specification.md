@@ -15,30 +15,29 @@ table can be thought of as the fundamental table that all other tables
 join on to (by Entity_ID and Period_End). The Fertiliser table connects
 to the fertiliser module of code. The remaining tables connect to the
 livestock module of code. Of the livestock-related tables, we have 3
-StockRec tables, a Dairy_Production table and a SuppFeed_DryMatter
-table.
+StockRec tables, a Dairy_Production table, a Breed_Allocation table, 2
+Effluent tables, a SuppFeed_DryMatter table and a BreedingValues table.
 
 Each section includes two components:
 
 - A table detailing input data requirements.
 - A list of rules applied within the FEM (note that there may be
-  additional rules applied as part of FEM-API documentation and the
+  additional rules applied as part of FEM API documentation and the
   On-Farm Emissions Calculator).
 
-Within the tables we supply example data for users to quickly get a
+Within the tables, we supply example data for users to quickly get a
 sense of the expected data format. We use 3 farms with the following
 Entity_ID:
 
-- 10001: a sheep farm which also does some beef finishing. Note in
-  FarmYear we enter this across 3 separated periods to illustrate
-  multiple periods for a single entity. In other tables we only enter
+- 10001: a sheep farm which also does some beef finishing. Note, in
+  FarmYear, we enter this across 3 separated periods to illustrate
+  multiple periods for a single entity. In other tables, we only enter
   data for the 2022-06-30 Period_End.
 - 10002: a typical dairy farm.
 - 10003-A: an arable farm with no livestock.
 
-The example data files we supply (available from our repo README) is
-consistent with the examples shown in this file. These data files are
-provided in CSV format.
+The example input data files we supply in the repo (in CSV format) are
+consistent with the examples shown in this file.
 
 Rules that can be determined by looking at the relevant column only are
 described in column rules.
@@ -58,26 +57,21 @@ the table Breed_Allocation:
   \[the **aggregate sum** refers to summing all provided rows per
   Entity_ID and Period_End\].
 
-There are 4 data types used:
+There are 5 data types used:
 
-- int: Integer number (i.e. a whole number).
+- int: Integer number (i.e., a whole number).
 - float: Floating point number (a numerical data type that supports
   decimal points).
-- str: String (i.e. a combination of characters). While numbers can be a
-  string datatype, you can only perform numerical operations like
-  multiplication on numerical datatypes like int and float.
+- str: String (i.e., a combination of characters). While numbers can be
+  a string data type, you can only perform numerical operations like
+  multiplication on numerical data types like int and float.
 - date str: A string following a specific date format. FEM always uses
-  ISO8601 YYYY-MM-DD format
+  ISO8601 YYYY-MM-DD format.
 - logical: A data type that can only be TRUE or FALSE.
 
 All specified columns within any given input table are required. No
 null, NA or blank values are permitted in any column of any input data
 table.
-
-FEM does not currently implement the validation rules aside from a basic
-check that the daily stock count never goes negative (e.g., from selling
-more stock than are on the farm). **It is the users responsibility to
-validate inputs.**
 
 Numerical precision in R:
 
@@ -197,12 +191,12 @@ Numerical precision in R:
 |---:|:---|
 | 1 | Combination of Entity_ID and Period_End must exist in FarmYear |
 | 2 | Month must be unique within Entity_ID and Period_End |
-| 3 | Milk_L_herd must be 0 if no Milking Cows Mature are present for the Month, Entity_ID and Period_End |
-| 4 | Milk_Fat_kg_herd and Milk_Protein_kg_herd must be 0 if Milk_L_herd is 0 |
-| 5 | Milk_Fat_kg_herd must be \<= 15% of Milk_L_herd |
-| 6 | Milk_Protein_kg_herd must be \<= 15% of Milk_L_herd |
-| 7 | Milk_L_Herd must be \> 0 if Effluent_Structure_Use.Dairy_Shed_hrs_day \> 0 for the Month, Entity_ID, and Period_End |
-| 8 | Milk_L_Herd must be 0 if Effluent_Structure_Use.Dairy_Shed_hrs_day is 0 for the Month, Entity_ID, and Period_End |
+| 3 | Milk_Yield_Herd_L must be 0 if no Milking Cows Mature are present for the Month, Entity_ID and Period_End |
+| 4 | Milk_Fat_Herd_kg and Milk_Protein_Herd_kg must be 0 if Milk_Yield_Herd_L is 0 |
+| 5 | Milk_Fat_Herd_kg must be \<= 15% of Milk_Yield_Herd_L |
+| 6 | Milk_Protein_Herd_kg must be \<= 15% of Milk_Yield_Herd_L |
+| 7 | Milk_Yield_Herd_L must be \> 0 if Effluent_Structure_Use.Dairy_Shed_hrs_day \> 0 for the Month, Entity_ID, and Period_End |
+| 8 | Milk_Yield_Herd_L must be 0 if Effluent_Structure_Use.Dairy_Shed_hrs_day is 0 for the Month, Entity_ID, and Period_End |
 
 ### Breed_Allocation
 
@@ -220,7 +214,7 @@ Numerical precision in R:
 | 1 | Combination of Entity_ID and Period_End must exist in FarmYear |
 | 2 | Breed_Allocation records are only allowed and required for Entity_ID and Period_End with female Dairy StockClass present (Dairy Heifers R1, Dairy Heifers R2, Milking Cows Mature) |
 | 3 | Breed must be unique within Entity_ID and Period_End |
-| 4 | Breed_Allocation must aggregate sum to 1 per Entity_ID and Period_End (Guidance: A tolerance range of 0.999-1.001 is acceptable) |
+| 4 | Breed_Allocation must aggregate sum to 1 per Entity_ID and Period_End (a tolerance range of 0.999-1.001 is acceptable) |
 
 ### Effluent_Structure_Use
 
@@ -248,8 +242,8 @@ Numerical precision in R:
 | 3 | A row must exist for every Month that Milking Cows Mature are present for an Entity_ID and Period_End |
 | 4 | Sum of Dairy_Shed_hrs_day and Other_Structures_hrs_day must be \<= 24 |
 | 5 | Sum of Dairy_Shed_hrs_day and Other_Structures_hrs_day must be 0 or no row must exist for Months that no Milking Cows Mature are present for an Entity_ID and Period_End |
-| 6 | Dairy_Shed_hrs_day must be \> 0 if Dairy_Production.Milk_L_Herd is \> 0 for the Month, Entity_ID and Period_End |
-| 7 | Dairy_Shed_hrs_day must be 0 if Dairy_Production.Milk_L_Herd is 0 for the Month, Entity_ID and Period_End |
+| 6 | Dairy_Shed_hrs_day must be \> 0 if Dairy_Production.Milk_Yield_Herd_L is \> 0 for the Month, Entity_ID and Period_End |
+| 7 | Dairy_Shed_hrs_day must be 0 if Dairy_Production.Milk_Yield_Herd_L is 0 for the Month, Entity_ID and Period_End |
 
 ### Effluent_EcoPond_Treatments
 
@@ -291,7 +285,7 @@ Numerical precision in R:
 |---:|:---|
 | 1 | Combination of Entity_ID and Period_End must exist in FarmYear |
 | 2 | Supplement must be unique within Entity_ID and Period_End |
-| 3 | Sum of Beef, Dairy, Deer, and Sheep Allocations must be 1 if Dry_Matter_t \> 0 (Guidance: A tolerance range of 0.999-1.001 is acceptable) |
+| 3 | Sum of Beef, Dairy, Deer, and Sheep Allocations must be 1 if Dry_Matter_t \> 0 (a tolerance range of 0.999-1.001 is acceptable) |
 | 4 | Sum of Beef, Dairy, Deer, and Sheep Allocations must be 0 if Dry_Matter_t is 0 |
 | 5 | Allocation for a Sector must be 0 if no StockClass from that Sector is present |
 
@@ -322,44 +316,40 @@ Required inputs are tables with rows needed for the model to
 successfully run. **All input data relevant to a given farm should be
 entered to estimate emissions accurately.**
 
-The `FarmYear` table is the core table and is always required.
+The FarmYear table is the core table and is always required.
 
-Either the `Fertiliser` table or at least one of three livestock
-StockRec tables are also required:
+Either the Fertiliser table or at least one of three livestock StockRec
+tables are also required:
 
-- `StockRec_OpeningBalance`
-- `StockRec_BirthsDeaths`
-- `StockRec_Movements`
+- StockRec_OpeningBalance
+- StockRec_BirthsDeaths
+- StockRec_Movements
 
 This ensures at least one of the emissions modules, currently Fertiliser
 and Livestock, are activated.
 
 The following livestock related tables are conditionally required:
 
-- `Breed_Allocation`
-
-  - required if a farm has any female Dairy cattle (i.e. `StockClass`
-    values containing `Dairy Heifers` or `Milking Cows Mature`) present
+- Breed_Allocation
+  - required if a farm has any female Dairy cattle (i.e., StockClass
+    values containing Dairy Heifers or Milking Cows Mature) present
     during the period, based on the three StockRec tables.
-
-- `Effluent_Structure_Use` required if a farm has any `StockClass` of
-  `Milking Cows Mature` present during the period, based on the three
-  StockRec tables.
-
-- `Dairy_Production` and `Effluent_Structure_Use`
-
-  - These both take data inputs on `Mature Milking Cows` being in the
+- Effluent_Structure_Use
+  - required if a farm has any StockClass of Milking Cows Mature present
+    during the period, based on the three StockRec tables.
+- Dairy_Production and Effluent_Structure_Use
+  - These both take data inputs on Mature Milking Cows being in the
     milking shed and therefore should be consistent with one another: If
-    either `Dairy_Production.Milk_Yield_L` or
-    `Effluent_Structure_Use.Dairy_Shed_hrs_day` are supplied and any of
-    these values are postive, both tables are required.
+    either Dairy_Production.Milk_Yield_L or
+    Effluent_Structure_Use.Dairy_Shed_hrs_day are supplied and any of
+    these values are positive, both tables are required.
 
 The remaining livestock related tables are not required to complete an
 emissions estimation:
 
-- `SuppFeed_DryMatter`
-- `BreedingValues`
-- `Effluent_EcoPond_Treatments`
+- SuppFeed_DryMatter
+- BreedingValues
+- Effluent_EcoPond_Treatments
 
 ## Input Data Column Definitions
 
@@ -411,11 +401,11 @@ approach minimises cost of compliance and maximises traceability.
 
 Note the approach of:
 
-- `Opening_Balance` should be the same as the closing balance for the
+- Opening_Balance should be the same as the closing balance for the
   previous reporting period.
 
 - As per data specification rules for this table, a **newborn**
-  `StockClass` (R1s or Lambs) can not have an `Opening_Balance`. Either
+  StockClass (R1s or Lambs) can not have an Opening_Balance. Either
   stock is aged-up or it has not been born yet.
 
 Which is aligned to accepted Stock valuation approaches from Inland
@@ -430,15 +420,15 @@ Revenue (NAMV and NSC).
 | Month | Calendar month. |
 | StockClass | Category of animals defined by its sector, sex, age and if castrated. Values defined by StockClass_list. |
 | Births | Number of live animals from relevant StockClass born. Positive values limited to newborn StockClasses. |
-| Deaths | Number animals from relevant stockclass that died. |
+| Deaths | Number of animals from relevant stockclass that died. |
 
 Note:
 
 - As per data specification rules for this table, only newborn
-  StockClass (R1s or Lambs) can be have positive births.
+  StockClass (R1s or Lambs) can have positive births.
 
-- `Births` and `Deaths` should be entered in the `Month` they occur, not
-  as Period_End values to adjust balances.
+- Births and Deaths should be entered in the Month they occur, not as
+  Period_End values to adjust balances.
 
 ### StockRec_Movements
 
@@ -472,8 +462,8 @@ Note:
 | Breed | Genetic ancestry of an animal, generally expressed as the number of 16ths of the breed which contribute to the makeup of the animal, in line with DIGAD definitions and data standards. Values defined by Breed_list, based on fields and aggregations published by DairyNZ. |
 | Breed_Allocation | Percentage of total dairy herd attributable to a given breed. |
 
-Note as per data specification rules for this table, `Breed` is
-currently only for female Dairy cattle.
+Note as per data specification rules for this table, Breed is currently
+only for female Dairy cattle.
 
 Breed & DIGAD references:
 
@@ -500,7 +490,7 @@ Breed & DIGAD references:
 | Treatment_Date | Date on which effluent lagoon was treated with EcoPond. |
 
 EcoPond treatments are effective in FEM for 6 weeks from the
-`Treatment_Date`. Therefore, treatments from the previous period may be
+Treatment_Date. Therefore, treatments from the previous period may be
 required to calculate efficacy in this period.
 
 ### SuppFeed_DryMatter
@@ -527,7 +517,7 @@ required to calculate efficacy in this period.
 
 Note:
 
-- As per data specification rules for this table, `BV_aCH4` is currently
+- As per data specification rules for this table, BV_aCH4 is currently
   only for Sheep stock classes.
 
 - Science underpinning breeding values and adjustments for sheep
@@ -590,7 +580,7 @@ NZ](https://datafinder.stats.govt.nz/layer/111194-territorial-authority-2023-gen
 | South Island Finishing-Breeding | Red meat | Farms which breed or trade finishing stock, and may do some cash cropping. A proportion of stock may be sold store, especially from dryland farms. Carrying capacity ranges from 6 to 11 stock units per hectare on dryland farms and over 12 stock units per hectare on wetter or irrigated farms. Mainly in Canterbury and Otago, this is the dominant farm class in the South Island. |
 | South Island Mixed Cropping & Finishing | Red meat | Located mainly on the Canterbury Plains. A high proportion of their revenue is derived from grain and small seed production, as well as stock finishing or grazing. |
 
-Note if a farm could be described by multiple farm classes (e.g. it has
+Note if a farm could be described by multiple farm classes (e.g., it has
 both dairy cows and sheep), farm revenue should be used as the primary
 determinant, followed by stocking rate.
 
@@ -738,7 +728,7 @@ determinant, followed by stocking rate.
 
 ## Output Data Specification
 
-In this section the columns and data types of FEM’s outputs are
+In this section, the columns and data types of FEM’s outputs are
 specified.
 
 Configuring FEM to generate and save output tables is described in the
@@ -852,10 +842,10 @@ The tables below show the emission impacts (in kg of gas) of mitigation
 technologies in varying levels of aggregation. There are four mitigation
 technologies supported in the model:
 
-- Urease inhibitor coated urea fertiliser.
-- Low methane animal genetics.
-- EcoPond effluent treatment.
-- Solid separator effluent systems.
+- Urease inhibitor-coated urea fertiliser
+- Low-methane animal genetics
+- EcoPond effluent treatment
+- Solid separator effluent systems
 
 The mitigation impact of a particular technology is the mitigated
 emissions minus the emissions without the impact of that technology.

@@ -18,12 +18,12 @@ StockRec_Movements,"Transaction_Date must be between (Period_End - 1 Year + 1 Da
 StockRec_Movements,Stock_Count cannot exceed the current StockClass balance when Transaction_Type values are Sale or Transfer Out for the Entity_ID and Period_End
 Dairy_Production,Combination of Entity_ID and Period_End must exist in FarmYear
 Dairy_Production,Month must be unique within Entity_ID and Period_End
-Dairy_Production,"Milk_L_herd must be 0 if no Milking Cows Mature are present for the Month, Entity_ID and Period_End"
-Dairy_Production,Milk_Fat_kg_herd and Milk_Protein_kg_herd must be 0 if Milk_L_herd is 0
-Dairy_Production,Milk_Fat_kg_herd must be <= 15% of Milk_L_herd
-Dairy_Production,Milk_Protein_kg_herd must be <= 15% of Milk_L_herd
-Dairy_Production,"Milk_L_Herd must be > 0 if Effluent_Structure_Use.Dairy_Shed_hrs_day > 0 for the Month, Entity_ID, and Period_End"
-Dairy_Production,"Milk_L_Herd must be 0 if Effluent_Structure_Use.Dairy_Shed_hrs_day is 0 for the Month, Entity_ID, and Period_End"
+Dairy_Production,"Milk_Yield_Herd_L must be 0 if no Milking Cows Mature are present for the Month, Entity_ID and Period_End"
+Dairy_Production,Milk_Fat_Herd_kg and Milk_Protein_Herd_kg must be 0 if Milk_Yield_Herd_L is 0
+Dairy_Production,Milk_Fat_Herd_kg must be <= 15% of Milk_Yield_Herd_L
+Dairy_Production,Milk_Protein_Herd_kg must be <= 15% of Milk_Yield_Herd_L
+Dairy_Production,"Milk_Yield_Herd_L must be > 0 if Effluent_Structure_Use.Dairy_Shed_hrs_day > 0 for the Month, Entity_ID, and Period_End"
+Dairy_Production,"Milk_Yield_Herd_L must be 0 if Effluent_Structure_Use.Dairy_Shed_hrs_day is 0 for the Month, Entity_ID, and Period_End"
 SuppFeed_DryMatter,Combination of Entity_ID and Period_End must exist in FarmYear
 SuppFeed_DryMatter,Supplement must be unique within Entity_ID and Period_End
 SuppFeed_DryMatter,"Sum of Beef, Dairy, Deer, and Sheep Allocations must be 1 if Dry_Matter_t > 0 (a tolerance range of 0.999-1.001 is acceptable)"
@@ -45,5 +45,5 @@ Effluent_Structure_Use,Month must be unique within Entity_ID and Period_End
 Effluent_Structure_Use,"A row must exist for every Month that Milking Cows Mature are present for an Entity_ID and Period_End"
 Effluent_Structure_Use,Sum of Dairy_Shed_hrs_day and Other_Structures_hrs_day must be <= 24
 Effluent_Structure_Use,"Sum of Dairy_Shed_hrs_day and Other_Structures_hrs_day must be 0 or no row must exist for Months that no Milking Cows Mature are present for an Entity_ID and Period_End"
-Effluent_Structure_Use,"Dairy_Shed_hrs_day must be > 0 if Dairy_Production.Milk_L_Herd is > 0 for the Month, Entity_ID and Period_End"
-Effluent_Structure_Use,"Dairy_Shed_hrs_day must be 0 if Dairy_Production.Milk_L_Herd is 0 for the Month, Entity_ID and Period_End"
+Effluent_Structure_Use,"Dairy_Shed_hrs_day must be > 0 if Dairy_Production.Milk_Yield_Herd_L is > 0 for the Month, Entity_ID and Period_End"
+Effluent_Structure_Use,"Dairy_Shed_hrs_day must be 0 if Dairy_Production.Milk_Yield_Herd_L is 0 for the Month, Entity_ID and Period_End"
